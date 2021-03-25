@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default () => {
+  const [form, setForm] = useState({ email: "", password: "" });
+  const changeHandler = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+    console.log(event.target.name);
+    console.log(event.target.value);
+  };
   const handleSubmit = () => {};
   return (
     <div className="registration">
@@ -13,10 +19,10 @@ export default () => {
             name="email"
             type="email"
             placeholder="aga"
-            value=""
-            onChange={handleSubmit}
+            //value=""
             required
             className="registration__input-field-input"
+            onChange={changeHandler}
           />
         </div>
         <div className="registration__input-field">
@@ -26,8 +32,8 @@ export default () => {
             name="password"
             type="password"
             placeholder="aga"
-            value=""
-            onChange={handleSubmit}
+            //value=""
+            onChange={changeHandler}
             required
             className="registration__input-field-input"
           />
@@ -39,7 +45,7 @@ export default () => {
             name="confirm"
             type="password"
             placeholder="aga"
-            value=""
+            //value=""
             onChange={handleSubmit}
             required
             className="registration__input-field-input"
