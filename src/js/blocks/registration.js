@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from "react";
-import useHttp from "../hooks/http.hook"
+import useHttp from "../hooks/http.hook";
 
 export default () => {
-  const {loading, error, request} = useHttp()
-  const [form, setForm] = useState({name: "", email: "", password: "" });
+  const { loading, error, request } = useHttp();
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
     //console.log(event.target.name);
     //console.log(event.target.value);
   };
-  const registerHandler = async() => {
+  const registerHandler = async () => {
     try {
-      const data = await request("https://react-learnwords-rslang.herokuapp.com/users", 
-      "POST", 
-      JSON.stringify({...form}), 
-      {'Accept': "application/json", "Content-Type": "application/json"})
-    } catch(e) {
-
-    }
+      const data = await request(
+        "https://react-learnwords-rslang.herokuapp.com/users",
+        "POST",
+        JSON.stringify({ ...form }),
+        { Accept: "application/json", "Content-Type": "application/json" }
+      );
+    } catch (e) {}
   };
   useEffect(() => {
     console.log(error);
-  }, error)
+  }, error);
   return (
     <div className="registration">
       <h1 className="registration-title">Регистрация</h1>
-      <form>
+      <div>
         <div className="registration__input-field">
           <label className="registration__input-title">Email:</label>
           <input
@@ -80,11 +80,13 @@ export default () => {
         </div> */}
         <button
           onClick={registerHandler}
-          type="submit"
+          //type="submit"
           value="Зарегестрироваться"
           className="registration__button-submit"
-        >Регистрация</button>
-      </form>
+        >
+          Регистрация
+        </button>
+      </div>
     </div>
   );
 };

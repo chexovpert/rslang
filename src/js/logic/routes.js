@@ -1,14 +1,17 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Route, Redirect, HashRouter } from "react-router-dom";
 import Registration from "../blocks/registration";
 import Login from "../blocks/login";
 import MainPage from "../pages/MainPage";
+import Header from "../blocks/header";
+import HeaderAuthorized from "../blocks/header-autorized";
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
         <main>
+          <HeaderAuthorized></HeaderAuthorized>
           <Route path="/" exact>
             <MainPage></MainPage>
           </Route>
@@ -23,15 +26,16 @@ export default (isAuthenticated) => {
               // ></CountryPage>
             )}
           />
-        </main>
 
-        <Redirect path={"/"} />
+          <Redirect to={"/"} />
+        </main>
       </Switch>
     );
   }
   return (
     <Switch>
       <main>
+        <Header></Header>
         <Route path="/" exact>
           <MainPage></MainPage>
         </Route>
@@ -52,8 +56,9 @@ export default (isAuthenticated) => {
             // ></CountryPage>
           )}
         />
+
+        <Redirect to={"/"} />
       </main>
-      <Redirect path={"/"} exact />
     </Switch>
   );
 };
