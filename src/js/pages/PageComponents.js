@@ -1,18 +1,44 @@
 import React from "react";
+// <<<<<<< HEAD
 import { BrowserRouter as Router, Switch, Route, HashRouter } from "react-router-dom";
 import TestingPage from "./testpage";
 import TextBook from "./textbook";
 import Word from "./wordcard";
+// =======
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   HashRouter,
+// } from "react-router-dom";
+
+import Header from "../blocks/header";
+// import Footer from "../blocks/footer";
+// import useRoutes from "../logic/routes";
+// import useAuth from "../hooks/auth.hook";
+// import AuthContext from "../context/AuthContext"
+
+// >>>>>>> chexovpert-mainpage
 function PageComponents() {
+  // const { token, login, logout, userId } = useAuth();
+  // const isAuthenticated = !!token;
+  // const routes = useRoutes(isAuthenticated);
   return (
+    // <AuthContext.Provider
+    //   value={{
+    //     token,
+    //     login,
+    //     logout,
+    //     userId,
+    //     isAuthenticated,
+    //   }}
+    // >
     <HashRouter basename="/">
+      {/* <<<<<<< HEAD */}
       <Switch>
         <Route path="/" exact>
           <div className="App">
-            <header className="App-header">
-              {/* <img src={logo} className="App-logo" alt="logo" /> */}
-              <p>HEADER</p>
-            </header>
+            <Header />
             <div className="page-container">
               {/* <TextBook /> */}
               <TestingPage />
@@ -31,7 +57,17 @@ function PageComponents() {
           )}
         />
       </Switch>
+      {/* =======
+      <div className="app-wrapper">
+        <div className="content-wrapper">
+          <Header></Header>
+          {routes}
+        </div>
+        <Footer></Footer>
+      </div>
+>>>>>>> chexovpert-mainpage */}
     </HashRouter>
+    // </AuthContext.Provider>
   );
 }
 

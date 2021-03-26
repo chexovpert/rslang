@@ -1,4 +1,9 @@
 @import "./common/common.css";
+@import "./blocks/header.css";
+@import "./blocks/main-page.css";
+@import "./blocks/registration.css";
+@import "./blocks/footer.css";
+@import "./blocks/main-page.css";
 
 body {
   margin: 0;
