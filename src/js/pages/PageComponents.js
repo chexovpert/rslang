@@ -1,10 +1,8 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  HashRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, HashRouter } from "react-router-dom";
+import TestingPage from "./testpage";
+import TextBook from "./textbook";
+import Word from "./wordcard";
 function PageComponents() {
   return (
     <HashRouter basename="/">
@@ -13,18 +11,12 @@ function PageComponents() {
           <div className="App">
             <header className="App-header">
               {/* <img src={logo} className="App-logo" alt="logo" /> */}
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
+              <p>HEADER</p>
             </header>
+            <div className="page-container">
+              {/* <TextBook /> */}
+              <TestingPage />
+            </div>
           </div>
         </Route>
         <Route
