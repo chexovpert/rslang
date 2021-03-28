@@ -21,8 +21,10 @@ export default function TextBook() {
           </Link>
         </div>
         <div className="textbook__cell">
-          <p>{"А тут сделать чтото типо повтора слов"}</p>
-          <button>{`Повторить слова`}</button>
+          <p>{"Посмотреть весь список слов"}</p>
+          <Link to={"/wordlist/1/1"}>
+            <button>{`Псмотреть слова`}</button>
+          </Link>
         </div>
         <div className="textbook__cell">
           <p>{"Возможно и не один раз"}</p>

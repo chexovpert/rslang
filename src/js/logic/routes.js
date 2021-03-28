@@ -9,6 +9,7 @@ import TestingPage from "../pages/testpage";
 import TextBook from "../pages/textbook";
 import WordContext, { WordProvider } from "../context/WordContext";
 import Vocabulary from "../pages/vocabulary";
+import Wordlist from "../pages/wordlist";
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
@@ -59,6 +60,9 @@ export default (isAuthenticated) => {
         </Route>
         <Route path="/vocabulary/:type">
           <Vocabulary />
+        </Route>
+        <Route path="/wordlist/:group/:page">
+          <Wordlist />
         </Route>
         <Redirect to={"/"} />
       </main>

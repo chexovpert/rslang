@@ -1,0 +1,17 @@
+.wordlist {
+  &__groups {
+    display: flex;
+    div {
+      width: 70px;
+      height: 30px;
+      background-color: antiquewhite;
+      margin: 5px;
+      color: black;
+      text-align: center;
+    }
+  }
+
+  &__pagination {
+    background-color: antiquewhite;
+  }
+}
