@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../styles/blocks/textbook.scss";
 
 export default function TextBook() {
@@ -15,7 +16,9 @@ export default function TextBook() {
       <div className="textbook__learn">
         <div className="textbook__cell">
           <p>{"Тут сделать начать дневное обучение"}</p>
-          <button>{`Начать обучение`}</button>
+          <Link to="/testing">
+            <button>{`Начать обучение`}</button>
+          </Link>
         </div>
         <div className="textbook__cell">
           <p>{"А тут сделать чтото типо повтора слов"}</p>

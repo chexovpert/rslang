@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 export default () => {
+  const auth = useContext(AuthContext);
+  const history = useHistory();
   const [show, setShow] = useState(false);
+
   const handleClick = () => {
     setShow(!show);
+  };
+  const logoutHandler = (event) => {
+    event.preventDefault();
+    auth.logout();
+    history.push("/");
   };
 
   return (
@@ -12,10 +21,10 @@ export default () => {
       <nav className={show ? "header__nav show" : "header__nav"}>
         <ul className="header__navlist">
           <li className="header__navlist-link">
-            <Link to={"/vocabulary"}>Словарь</Link>
+            <Link>Словарь</Link>
           </li>
           <li className="header__navlist-link">
-            <Link to="/classbook">Учебник</Link>
+            <Link>Учебник</Link>
           </li>
           <li className="header__navlist-link">
             <Link>Игры</Link>
@@ -34,11 +43,9 @@ export default () => {
         </Link>
       </div>
       <div className="header__right">
-        <Link to="/register" className="header__link register">
-          Зарегестрироваться
-        </Link>
-        <Link to="/login" className="header__link login">
-          Войти
+        <p>{auth.name}</p>
+        <Link to="/" className="header__link login" onClick={logoutHandler}>
+          Выйти
         </Link>
         <div className="header__burger-button" onClick={handleClick}>
           Click
