@@ -6,6 +6,7 @@ import MainPage from "../pages/MainPage";
 import Header from "../blocks/header";
 import HeaderAuthorized from "../blocks/header-autorized";
 import Savanna from "../pages/savanna";
+import AudioChallenge from "../pages/audioChallenge";
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
@@ -24,6 +25,16 @@ export default (isAuthenticated) => {
                 // countryData={countryData}
                 {...props}
               ></Savanna>
+            )}
+          />
+          <Route
+            path={"/games/audio"}
+            exact
+            render={(props) => (
+              <AudioChallenge
+                // countryData={countryData}
+                {...props}
+              ></AudioChallenge>
             )}
           />
 

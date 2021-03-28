@@ -5,6 +5,7 @@
 @import "./blocks/footer.css";
 @import "./blocks/main-page.css";
 @import "./blocks/savanna.css";
+@import "./blocks/audiochallenge.css";
 
 body {
   margin: 0;

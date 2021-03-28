@@ -30,7 +30,7 @@ export default () => {
             <Link to={"/games/savanna"}>Игры</Link>
           </li>
           <li className="header__navlist-link">
-            <Link>Что-то</Link>
+            <Link to="/games/audio"> Что-то</Link>
           </li>
         </ul>
         <div className="header__burger-button" onClick={handleClick}>
