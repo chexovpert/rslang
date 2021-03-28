@@ -1,0 +1,28 @@
+.vocabulary {
+  &__container {
+    width: 81vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+    color: black;
+  }
+
+  &__buttons {
+    display: flex;
+    div {
+      width: 27vw;
+      height: 50px;
+      border: 2px solid wheat;
+      text-align: center;
+      background-color: azure;
+    }
+  }
+
+  &__content {
+    width: 60%;
+    height: 100%;
+    background-color: aliceblue;
+  }
+}

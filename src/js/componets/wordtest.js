@@ -72,7 +72,7 @@ export default function WordTest({ word }) {
 
   return (
     <div className="word__container">
-      <img className="word__image" src={word.image} alt={`word_image.jpg`} />
+      <img className="word__image" src={`https://react-learnwords-rslang.herokuapp.com/${word.image}`} alt={`word_image.jpg`} />
       <h1 className="word__word" hidden={/*wordCntx.hide ||*/ wordCntx.learnd}>
         {word.word}
       </h1>

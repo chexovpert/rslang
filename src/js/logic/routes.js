@@ -57,7 +57,7 @@ export default (isAuthenticated) => {
             <TestingPage />
           </WordProvider>
         </Route>
-        <Route path="/vocabulary" exact>
+        <Route path="/vocabulary/:type">
           <Vocabulary />
         </Route>
         <Redirect to={"/"} />
