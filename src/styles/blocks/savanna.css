@@ -1,0 +1,88 @@
+.savanna {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#e66465, #9198e5);
+  overflow: hidden;
+}
+
+.savanna__component {
+  margin-top: 100px;
+}
+
+.savanna__component-baseword {
+  z-index: 1000;
+  position: fixed;
+  display: flex;
+  width: 100%;
+  top: 0;
+  justify-content: center;
+  text-align: center;
+  font-size: 50px;
+  transform: translateY(100vh);
+  /* transition: all 10s linear; */
+}
+.bw-enter {
+  transform: translateY(-100%);
+}
+.bw-enter-active {
+  transition: transform 15s linear;
+  transform: translateY(100vh);
+}
+.bw-enter-done {
+  transition: transform 1s linear;
+}
+.bw-exit {
+  opacity: 1;
+}
+.bw-exit-active {
+  /* transform: translateY(-100%); */
+  transition: transform 2s;
+  opacity: 0.5;
+}
+.bw-exit-done {
+  opacity: 0;
+}
+.wb-enter {
+  transform: translateX(100vw);
+}
+.wb-enter-active {
+  transition: transform 1s linear;
+  transform: translateX(0%);
+}
+/* .wb-enter-done {
+  transform: translateX(0%);
+} */
+.wb-exit {
+  opacity: 1;
+}
+.wb-exit-active {
+  transform: translateX(-100vw);
+  transition: transform 1s linear;
+  opacity: 0.5;
+}
+.wb-exit-done {
+  opacity: 0;
+}
+/* .savanna__component-baseword.exiting {
+  transition: all 1s linear;
+  transform: translateY(0%);
+} */
+.savanna__component-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@keyframes falldown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(90vh);
+  }
+}

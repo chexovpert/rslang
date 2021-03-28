@@ -4,6 +4,7 @@
 @import "./blocks/registration.css";
 @import "./blocks/footer.css";
 @import "./blocks/main-page.css";
+@import "./blocks/savanna.css";
 
 body {
   margin: 0;

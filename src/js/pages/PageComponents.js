@@ -38,7 +38,7 @@ function PageComponents() {
     >
       <HashRouter basename="/">
         <div className="app-wrapper">
-          <div className="content-wrapper">{routes}</div>
+          {routes}
           <Footer></Footer>
         </div>
       </HashRouter>

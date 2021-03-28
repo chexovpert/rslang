@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+//import savanna from "./savanna";
 
 export default () => {
   return (
