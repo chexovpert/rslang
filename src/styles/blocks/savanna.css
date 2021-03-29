@@ -33,7 +33,6 @@
 .bw-enter-active {
   /* transition: transform 15s linear;
   transform: translateY(100vh); */
-  
 }
 .bw-enter-done {
   /* transition: transform 1s linear; */
@@ -92,7 +91,6 @@
   }
 }
 @keyframes fallup {
-
   to {
     transform: translateY(150vh);
   }
