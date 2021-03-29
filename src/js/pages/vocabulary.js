@@ -1,6 +1,6 @@
 import "../../styles/pages/vocabulary.scss";
 import { Link, useParams } from "react-router-dom";
-import Word from "./wordcard";
+import Word from "../componets/wordcard";
 import { useEffect, useState } from "react";
 
 export default function Vocabulary() {
@@ -50,10 +50,7 @@ export default function Vocabulary() {
       </div>
       <div className="vocabulary__content">
         {wordsarray.map((elem, index) => {
-          return (
-            <Word word={elem} />
-            //   <br/>
-          );
+          return <Word word={elem} key={index} />;
         })}
       </div>
     </div>

@@ -1,0 +1,32 @@
+.wordunit {
+  &__container {
+    display: flex;
+    width: 95%;
+    height: 10vh;
+    background-color: azure;
+    font-size: 20px;
+    color: black;
+    margin: 10px 5px 0px;
+    align-items: center;
+    border-radius: 5px;
+    &:hover {
+      box-shadow: 1px 2px 3px gray;
+    }
+
+    svg:hover {
+      cursor: pointer;
+    }
+
+    img {
+      width: 6vw;
+      height: 8vh;
+      border-radius: 10px;
+      border: 2px solid black;
+      margin: 0px 10px;
+    }
+  }
+  &__word {
+    display: flex;
+    flex-direction: row;
+  }
+}

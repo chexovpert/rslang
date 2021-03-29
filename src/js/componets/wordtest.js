@@ -71,16 +71,20 @@ export default function WordTest({ word }) {
   }
 
   return (
-    <div className="word__container">
-      <img className="word__image" src={`https://react-learnwords-rslang.herokuapp.com/${word.image}`} alt={`word_image.jpg`} />
-      <h1 className="word__word" hidden={/*wordCntx.hide ||*/ wordCntx.learnd}>
+    <div className="wordtest__container">
+      <img
+        className="wordtest__image"
+        src={`https://react-learnwords-rslang.herokuapp.com/${word.image}`}
+        alt={`word_image.jpg`}
+      />
+      <h1 className="wordtest__word" hidden={/*wordCntx.hide ||*/ wordCntx.learnd}>
         {word.word}
       </h1>
-      <div className="word__translate">{word.wordTranslate}</div>
-      <div className="word__transcript" hidden={wordCntx.learnd}>
+      <div className="wordtest__translate">{word.wordTranslate}</div>
+      <div className="wordtest__transcript" hidden={wordCntx.learnd}>
         {word.transcription}
       </div>
-      <div className="word__meaning" dangerouslySetInnerHTML={{ __html: word.textMeaning }} hidden={wordCntx.learnd} />
+      <div className="wordtest__meaning" dangerouslySetInnerHTML={{ __html: word.textMeaning }} hidden={wordCntx.learnd} />
       {/* <button>Play</button> */}
       <input
         onKeyDown={(event) => (event.key === "Enter" ? clickHandler.bind(this) : null)}
@@ -91,8 +95,8 @@ export default function WordTest({ word }) {
       <button onClick={() => wordCntx.setAnswer("")}>x</button>
 
       {/* <div className="word__meaning-transl">{word.textMeaningTranslate}</div> */}
-      <div className="word__example" dangerouslySetInnerHTML={{ __html: word.textExample }} hidden={wordCntx.learnd} />
-      <div className="word__meaning-transl" hidden={!wordCntx.learnd}>
+      <div className="wordtest__example" dangerouslySetInnerHTML={{ __html: word.textExample }} hidden={wordCntx.learnd} />
+      <div className="wordtest__meaning-transl" hidden={!wordCntx.learnd}>
         {testExample}
       </div>
       <button>Play</button>

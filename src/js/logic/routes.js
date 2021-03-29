@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect, HashRouter } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Registration from "../blocks/registration";
 import Login from "../blocks/login";
 import MainPage from "../pages/MainPage";
@@ -7,7 +7,7 @@ import Header from "../blocks/header";
 import HeaderAuthorized from "../blocks/header-autorized";
 import TestingPage from "../pages/testpage";
 import TextBook from "../pages/textbook";
-import WordContext, { WordProvider } from "../context/WordContext";
+import { WordProvider } from "../context/WordContext";
 import Vocabulary from "../pages/vocabulary";
 import Wordlist from "../pages/wordlist";
 
@@ -40,7 +40,7 @@ export default (isAuthenticated) => {
   return (
     <Switch>
       <main>
-        <Header></Header>
+        <Header />
         <Route path="/" exact>
           <MainPage></MainPage>
         </Route>
@@ -50,20 +50,20 @@ export default (isAuthenticated) => {
         <Route path="/register" exact>
           <Registration></Registration>
         </Route>
-        <Route path={"/classbook"} exact>
-          <TextBook />
-        </Route>
-        <Route path={"/testing"}>
-          <WordProvider>
+        <WordProvider>
+          <Route path={"/classbook"} exact>
+            <TextBook />
+          </Route>
+          <Route path={"/testing"}>
             <TestingPage />
-          </WordProvider>
-        </Route>
-        <Route path="/vocabulary/:type">
-          <Vocabulary />
-        </Route>
-        <Route path="/wordlist/:group/:page">
-          <Wordlist />
-        </Route>
+          </Route>
+          <Route path="/vocabulary/:type">
+            <Vocabulary />
+          </Route>
+          <Route path="/wordlist/:group/:page">
+            <Wordlist />
+          </Route>
+        </WordProvider>
         <Redirect to={"/"} />
       </main>
     </Switch>

@@ -1,17 +1,46 @@
 .wordlist {
   &__groups {
     display: flex;
+    width: 100%;
+    margin-left: 15px;
     div {
-      width: 70px;
+      width: 150px;
       height: 30px;
-      background-color: antiquewhite;
-      margin: 5px;
+      background-color: rgb(255, 224, 184);
+      margin: 5px 0 0;
       color: black;
       text-align: center;
+      border: 1px solid rgb(255, 186, 96);
+      border-bottom: none;
+      border-start-start-radius: 5px;
     }
   }
 
+  &__active {
+    background-color: antiquewhite !important;
+  }
+
   &__pagination {
+    padding: 10px 0;
     background-color: antiquewhite;
+    width: 100%;
+    ul {
+      justify-content: center;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__container {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }

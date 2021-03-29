@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Word from "./wordcard";
 import "../../styles/pages/testpage.scss";
 import WordTest from "../componets/wordtest";
 import { useWordContext } from "../context/WordContext";

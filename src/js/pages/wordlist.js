@@ -1,6 +1,6 @@
 import { Pagination, PaginationItem } from "@material-ui/lab";
 import { useEffect, useState } from "react";
-import { MemoryRouter, Route, useParams } from "react-router";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Wordunit from "../componets/wordlistunit";
 import { useWordContext } from "../context/WordContext";
@@ -11,7 +11,6 @@ export default function Wordlist() {
   const [load, setLoad] = useState(false);
   const { group } = useParams();
   const { page } = useParams();
-  const wordCntx = useWordContext();
 
   useEffect(() => {
     fetch(`https://react-learnwords-rslang.herokuapp.com/words?group=${group - 1}&page=${page - 1}`)
@@ -28,20 +27,18 @@ export default function Wordlist() {
       .catch((error) => console.error("country countries loader", error));
   }, [group, page]);
 
-  const paginationHandler = (event, value) => {};
-
   return (
     <div className="wordlist__container">
       <div className="wordlist__groups">
         {Array.from({ length: 6 }, (x, i) => i + 1).map((elem) => {
           return (
             <Link to={`/wordlist/${elem}/1`}>
-              <div>{`Group ${elem}`}</div>
+              <div className={parseInt(group) === elem ? "wordlist__active" : null}>{`Group ${elem}`}</div>
             </Link>
           );
         })}
       </div>
-      <div>
+      <div className="wordlist__content">
         {words.map((elem) => {
           return <Wordunit word={elem} />;
         })}
