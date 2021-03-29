@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup, Transition } from "react-transition-group";
 
 export default (props) => {
   const [toggle, setToggle] = useState(null);

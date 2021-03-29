@@ -22,6 +22,7 @@ export default (props) => {
   );
   const [guess, setGuess] = useState(null);
   const [baseWord, setBaseWord] = useState(null);
+  const [image, setImage] = useState(null);
 
   const quessHandler = (event) => {
     if (event.target.textContent === baseWord.word) {
@@ -40,7 +41,7 @@ export default (props) => {
     setGuess([updateData[0]]);
     setBaseWord(updateData[0]);
     setUrl(`${baseUrl}${updateData[0].audio}`);
-
+    setImage(`${baseUrl}${updateData[0].image}`)
     const guesses = [updateData[0]];
     let baseDataUpdate = baseData
       .slice()
@@ -65,6 +66,7 @@ export default (props) => {
   }, url);
 
   if (data.length > 0) {
+    console.log(image)
     return (
       <CSSTransition
         in={toggle}
@@ -88,6 +90,11 @@ export default (props) => {
             classNames="ap"
           >
             <div className="audioChallenge__base">
+              <div>
+              <div ><img src={image} className="audioChallenge__base-image"></img></div>
+              <div ><button  className="audioChallenge__base-button">smth</button><div><h2>{baseWord && baseWord.word}</h2></div></div>
+              </div>
+              <div>
               <button
                 className={
                   playing
@@ -99,6 +106,7 @@ export default (props) => {
               >
                 {playing ? "Pause" : "Play"}
               </button>
+              </div>
             </div>
           </CSSTransition>
 
@@ -107,7 +115,7 @@ export default (props) => {
               {guess &&
                 guess.map((word) => (
                   <button className="header__link login" onClick={quessHandler}>
-                    {word.word}
+                    {word.wordTranslate}
                   </button>
                 ))}
             </div>
