@@ -24,7 +24,7 @@ export default () => {
             <Link>Словарь</Link>
           </li>
           <li className="header__navlist-link">
-            <Link>Учебник</Link>
+            <Link to={"/games/forkids"}>Учебник</Link>
           </li>
           <li className="header__navlist-link">
             <Link to={"/games/savanna"}>Игры</Link>

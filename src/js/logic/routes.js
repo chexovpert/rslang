@@ -7,6 +7,7 @@ import Header from "../blocks/header";
 import HeaderAuthorized from "../blocks/header-autorized";
 import Savanna from "../pages/savanna";
 import AudioChallenge from "../pages/audioChallenge";
+import EnglishForKids from "../pages/englishforkids";
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
@@ -35,6 +36,16 @@ export default (isAuthenticated) => {
                 // countryData={countryData}
                 {...props}
               ></AudioChallenge>
+            )}
+          />
+          <Route
+            path={"/games/forkids"}
+            exact
+            render={(props) => (
+              <EnglishForKids
+                // countryData={countryData}
+                {...props}
+              ></EnglishForKids>
             )}
           />
 
