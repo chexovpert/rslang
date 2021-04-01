@@ -10,6 +10,8 @@ import TextBook from "../pages/textbook";
 import { WordProvider } from "../context/WordContext";
 import Vocabulary from "../pages/vocabulary";
 import Wordlist from "../pages/wordlist";
+import Minigames from "../pages/minigames";
+import Sprint from "../pages/game-sprint";
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
@@ -62,6 +64,12 @@ export default (isAuthenticated) => {
           </Route>
           <Route path="/wordlist/:group/:page">
             <Wordlist />
+          </Route>
+          <Route path="/games" exact>
+            <Minigames />
+          </Route>
+          <Route path={"/games/sprint"} exact>
+            <Sprint />
           </Route>
         </WordProvider>
         <Redirect to={"/"} />
