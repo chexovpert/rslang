@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { useWordContext } from "../context/WordContext";
 import "../../styles/components/wordcard.scss";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+import { useParams } from "react-router";
 
 export default function Word({ word }) {
   const zaword = word;
   const wordCntx = useWordContext();
+  const { type } = useParams();
 
   return (
     <div className="word__container">
@@ -38,8 +40,16 @@ export default function Word({ word }) {
       </div>
       {/* <img className="word__image" src={`https://react-learnwords-rslang.herokuapp.com/${word.image}`} alt={`word_image.jpg`} /> */}
       <div className="word__buttons">
-        <button>Сложное слово</button>
-        <button>Удалить слово</button>
+        {type === "difficult" ? (
+          <button onClick={wordCntx.removeDifHndlr.bind(this, word)}>Убрать из сложных</button>
+        ) : (
+          <button onClick={wordCntx.difHndlr.bind(this, word)}>Сложное слово</button>
+        )}
+        {type === "deleted" ? (
+          <button onClick={wordCntx.removeDeleteHndlr.bind(this, word)}>Убрать из удаленных</button>
+        ) : (
+          <button onClick={wordCntx.deleteHndlr.bind(this, word)}>Удалить слово</button>
+        )}
       </div>
     </div>
   );

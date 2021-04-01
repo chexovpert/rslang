@@ -24,13 +24,13 @@ export default function Vocabulary() {
       }
     }
     if (type === "deleted") {
-      if ("deletedword" in localStorage) {
-        setWordsarray(JSON.parse(localStorage.getItem("deletedword")));
-        setWordsarrayid(JSON.parse(localStorage.getItem("deletedwordid")));
+      if ("deleteword" in localStorage) {
+        setWordsarray(JSON.parse(localStorage.getItem("deleteword")));
+        setWordsarrayid(JSON.parse(localStorage.getItem("deletewordid")));
       }
     }
     console.log(wordsarray);
-  }, [type]);
+  }, [type, wordsarray]);
 
   return (
     <div className="vocabulary__container">

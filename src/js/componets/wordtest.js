@@ -28,45 +28,9 @@ export default function WordTest({ word }) {
       alert("correct"); //заменить на отметку о правильности
       wordCntx.setLearnd(false);
       wordCntx.setCorrect(true);
-      let crctword = [];
-      let crctwordid = [];
-      if ("correctword" in localStorage) {
-        crctword = JSON.parse(localStorage.getItem("correctword"));
-        crctwordid = JSON.parse(localStorage.getItem("correctwordid"));
-        if (!crctwordid.includes(word.id)) {
-          crctword.push(word);
-          crctwordid.push(word.id);
-          localStorage.setItem("correctword", JSON.stringify(crctword));
-          localStorage.setItem("correctwordid", JSON.stringify(crctwordid));
-        }
-      } else {
-        crctword.push(word);
-        crctwordid.push(word.id);
-        localStorage.setItem("correctword", JSON.stringify(crctword));
-        localStorage.setItem("correctwordid", JSON.stringify(crctwordid));
-      }
+      wordCntx.correctHndlr(word);
     } else {
       alert("incorrect"); //заменить на отметку о неправильности
-    }
-  }
-
-  function difHndlr() {
-    let dWords = [];
-    let dWordsId = [];
-    if ("difWord" in localStorage) {
-      dWords = JSON.parse(localStorage.getItem("difWord"));
-      dWordsId = JSON.parse(localStorage.getItem("difWordId"));
-      if (!dWordsId.includes(word.id)) {
-        dWords.push(word);
-        dWordsId.push(word.id);
-        localStorage.setItem("difWord", JSON.stringify(dWords));
-        localStorage.setItem("difWordId", JSON.stringify(dWordsId));
-      }
-    } else {
-      dWords.push(word);
-      dWordsId.push(word.id);
-      localStorage.setItem("difWord", JSON.stringify(dWords));
-      localStorage.setItem("difWordId", JSON.stringify(dWordsId));
     }
   }
 
@@ -101,7 +65,7 @@ export default function WordTest({ word }) {
       </div>
       <button>Play</button>
       {/* <div className="word__example-transl">{word.textExampleTranslate}</div> */}
-      <button onClick={difHndlr}>Difficult word</button>
+      <button onClick={wordCntx.difHndlr.bind(this, word)}>Difficult word</button>
       {/* <button>Delete word</button> */}
       {/* <div className="word__counter">Counter of </div> */}
     </div>
