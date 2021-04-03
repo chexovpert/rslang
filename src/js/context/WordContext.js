@@ -13,7 +13,9 @@ export const WordProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [correct, setCorrect] = useState(false);
   const [learnd, setLearnd] = useState(true);
+  const [timer, setTimer] = useState(false);
 
+  const [start, setStart] = useState(false);
   let dltword = [];
   let dltwordid = [];
   let crctword = [];
@@ -180,6 +182,10 @@ export const WordProvider = ({ children }) => {
         deleteHndlr,
         removeDeleteHndlr,
         removeDifHndlr,
+        timer,
+        setTimer,
+        start,
+        setStart,
       }}
     >
       {children}
