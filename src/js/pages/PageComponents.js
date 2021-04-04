@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  HashRouter,
-} from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import Footer from "../blocks/footer";
 import useRoutes from "../logic/routes";
@@ -12,15 +7,7 @@ import useAuth from "../hooks/auth.hook";
 import AuthContext from "../context/AuthContext";
 
 function PageComponents() {
-  const {
-    token,
-    login,
-    logout,
-    userId,
-    name,
-    refreshToken,
-    message,
-  } = useAuth();
+  const { token, login, logout, userId, name, refreshToken, message } = useAuth();
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated);
   return (

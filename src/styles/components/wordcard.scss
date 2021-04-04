@@ -1,0 +1,63 @@
+.word {
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98%;
+    margin-left: 3vw;
+    border: 1px solid darkslategray;
+    margin: 10px 10px;
+  }
+
+  &__content {
+    width: 70%;
+    margin-left: 3vw;
+  }
+
+  &__image {
+    width: 100px;
+    height: 70px;
+  }
+
+  &__meaning {
+    &_container {
+      margin: 10px 0;
+    }
+    display: flex;
+    margin: 0px 10px;
+    svg {
+      margin: 0 10px;
+    }
+  }
+
+  &__example {
+    &_container {
+      margin: 10px 0;
+    }
+    display: flex;
+    margin: 0px 10px;
+    svg {
+      margin: 0 10px;
+    }
+  }
+
+  &__word {
+    display: flex;
+    align-items: center;
+    h1 {
+      margin: 0 10px;
+    }
+  }
+
+  &__buttons {
+    width: 30%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    button {
+      max-width: 150px;
+    }
+  }
+}

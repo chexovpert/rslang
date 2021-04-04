@@ -12,10 +12,10 @@ export default () => {
       <nav className={show ? "header__nav show" : "header__nav"}>
         <ul className="header__navlist">
           <li className="header__navlist-link">
-            <Link>Словарь</Link>
+            <Link to={"/vocabulary/learned"}>Словарь</Link>
           </li>
           <li className="header__navlist-link">
-            <Link>Учебник</Link>
+            <Link to="/classbook">Учебник</Link>
           </li>
           <li className="header__navlist-link">
             <Link to={"/games/savanna"}>Игры</Link>
