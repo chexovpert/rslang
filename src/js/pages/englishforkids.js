@@ -16,6 +16,7 @@ export default () => {
         { accept: "application/json" }
       );
       const randomWords = data.slice().sort(() => Math.random() - 0.5);
+      randomWords.map((elem) => (elem.checked = true));
       //const randomGuesses = data.slice().sort(() => Math.random() - 0.5);
       setFullData({ data: randomWords });
       console.log(data);
@@ -26,12 +27,19 @@ export default () => {
   };
   return (
     <div className="audioChallenge">
-      {!fullData && (
-        <button className="registration__button-submit" onClick={wordsHandler}>
+      {!fullData && !loading && (
+        <button
+          className="registration__button-submit"
+          disabled={loading}
+          onClick={wordsHandler}
+        >
           начать
         </button>
       )}
-      {fullData && <EnglishForKids data={fullData}></EnglishForKids>}
+      {!fullData && loading && <div>загрузка</div>}
+      {fullData && !loading && (
+        <EnglishForKids data={fullData}></EnglishForKids>
+      )}
     </div>
   );
 };

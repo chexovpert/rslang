@@ -10,8 +10,12 @@ import GameOver from "./gameover";
 const baseUrl = "https://react-learnwords-rslang.herokuapp.com/";
 
 export default (props) => {
+  const [correctWords] = useState([]);
+  const [wrongWords] = useState([]);
   //
   const [data, setData] = useState(props.data.data.slice());
+
+  console.log(data);
   const [guessData, setGuessData] = useState(props.data.data.slice());
 
   const [toggle, setToggle] = useState(null);
@@ -30,10 +34,29 @@ export default (props) => {
   const quessHandler = (event) => {
     if (event.target.value === baseWord.id) {
       console.log("Correct");
-      //setToggle(false);
+      data.map((elem) => {
+        if (elem.id === event.target.value) {
+          elem.checked = false;
+        }
+      });
+      let correctElem = data.find((elem) => elem.id === event.target.value);
+      if (
+        !wrongWords.find((elem) => elem.id === event.target.value) &&
+        !correctWords.find((elem) => elem.id === event.target.value)
+      ) {
+        correctWords.push(correctElem);
+      }
+      console.log(correctWords);
+      setToggle(false);
       setTimeout(newWords, 1200);
       //setCorrect(true);
     } else {
+      let wrongElem = data.find((elem) => elem.id === event.target.value);
+      if (!wrongWords.find((elem) => elem.id === event.target.value)) {
+        wrongWords.push(wrongElem);
+      }
+
+      console.log(wrongWords);
       console.log("wrong");
     }
   };
@@ -81,7 +104,7 @@ export default (props) => {
   //   }, [url]);
 
   if (guessData.length > 0) {
-    //console.log(image);
+    console.log(data);
     return (
       //   <CSSTransition
       //     in={toggle}
@@ -98,24 +121,22 @@ export default (props) => {
       //     }}
       //   >
       <div style={{ width: "100%" }}>
-        <div className="savanna__component">
-          <div className="savanna__component-buttons">
+        <div>
+          <div className="englishforkids_container">
             {data &&
               data.map((word) => (
-                <div>
+                <div className="englishforkids_container-buttons">
                   <img
                     src={`${baseUrl}${word.image}`}
-                    className="audioChallenge__base-image"
+                    className="englishforkids__base-image"
                   ></img>
                   <button
                     value={word.id}
                     //disabled={correct}
                     className={
-                      correct
-                        ? `audioChallenge__anwsers-button ${
-                            word.id === baseWord.id ? "true" : "wrong"
-                          }`
-                        : "audioChallenge__anwsers-button"
+                      !word.checked
+                        ? `audioChallenge__anwsers-button wrong`
+                        : "audioChallenge__anwsers-button correct"
                     }
                     onClick={quessHandler}
                   >
@@ -149,7 +170,7 @@ export default (props) => {
   } else {
     return (
       <div>
-        <GameOver></GameOver>
+        <GameOver correct={correctWords} wrong={wrongWords}></GameOver>
       </div>
     );
   }
