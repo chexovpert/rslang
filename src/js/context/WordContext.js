@@ -14,7 +14,7 @@ export const WordProvider = ({ children }) => {
   const [correct, setCorrect] = useState(false);
   const [learnd, setLearnd] = useState(true);
   const [timer, setTimer] = useState(false);
-
+  const [timerOut, setTimerOut] = useState(false);
   const [start, setStart] = useState(false);
   let dltword = [];
   let dltwordid = [];
@@ -186,6 +186,8 @@ export const WordProvider = ({ children }) => {
         setTimer,
         start,
         setStart,
+        timerOut,
+        setTimerOut,
       }}
     >
       {children}

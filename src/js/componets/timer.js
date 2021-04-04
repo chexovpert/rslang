@@ -5,7 +5,7 @@ import { useWordContext } from "../context/WordContext";
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
-const TIME_LIMIT = 60;
+const TIME_LIMIT = 10;
 
 const COLOR_CODES = {
   info: {
@@ -46,24 +46,23 @@ export default function Timer() {
   }
 
   function startTimer() {
-    // if (wordCntx.timer) {
+    clearInterval(timerInterval);
     wordCntx.setStart(false);
+    wordCntx.setTimerOut(false);
     timerInterval = setInterval(() => {
       wordCntx.setTimer(true);
       timePassed = timePassed + 1;
-      //   console.log(timePassed);
       timeLft = TIME_LIMIT - timePassed;
       setTimeLeft(formatTime(timeLft));
-      console.log(timeLft);
       setCircleDasharray(`${(calculateTimeFraction() * FULL_DASH_ARRAY).toFixed(0)} 283`);
       setPathColor(timeLft);
       if (timeLft === 0) {
         onTimesUp();
         setRemainingPathColor(COLOR_CODES.info.color);
         wordCntx.setTimer(false);
+        wordCntx.setTimerOut(true);
       }
     }, 1000);
-    // }
   }
 
   function calculateTimeFraction() {
@@ -79,7 +78,7 @@ export default function Timer() {
       setRemainingPathColor(warning.color);
     }
   }
-  if (wordCntx.start && !wordCntx.timer) {
+  if (wordCntx.start) {
     startTimer();
   }
   return (
@@ -103,8 +102,6 @@ export default function Timer() {
       <span id="base-timer-label" class="base-timer__label">
         {`${timeLeft}`}
       </span>
-      {/* <button onClick={startTimer}>Start Timer</button>
-      <button onClick={onTimesUp}>Stop Timer</button> */}
     </div>
   );
 }

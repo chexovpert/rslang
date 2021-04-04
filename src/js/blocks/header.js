@@ -18,10 +18,10 @@ export default () => {
             <Link to="/classbook">Учебник</Link>
           </li>
           <li className="header__navlist-link">
-            <Link to={"/games/savanna"}>Игры</Link>
+            <Link to={"/games"}>Игры</Link>
           </li>
           <li className="header__navlist-link">
-            <Link>Что-то</Link>
+            <Link to={"/settings"}>Настройки</Link>
           </li>
         </ul>
         <div className="header__burger-button" onClick={handleClick}>

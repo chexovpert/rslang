@@ -1,8 +1,79 @@
 .wordtest {
   &__container {
-    width: 50%;
-    height: 50%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px 20px;
   }
+
+  &__image {
+    width: 20vw;
+    height: 15vw;
+    margin-right: 15px;
+  }
+
+  &__content {
+    width: 45vw;
+    justify-content: center;
+  }
+
+  &__buttons {
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 180px;
+      height: 60px;
+      border-radius: 20px;
+      box-sizing: border-box;
+      border: 1px solid #407df4;
+      transition: all 0.2s linear;
+      margin: auto;
+      &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__example {
+    display: flex;
+    align-items: center;
+  }
+
+  &__word {
+    display: flex;
+    align-items: center;
+  }
+
+  &__meaning {
+    display: flex;
+    align-items: center;
+  }
+
+  &__clean {
+    position: relative;
+    left: -50px;
+    font-size: 25px;
+    font-style: italic;
+    opacity: 0.3;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__agree {
+    position: relative;
+    font-size: 30px;
+    font-style: italic;
+    color: green;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+br {
+  margin: 2px 0px;
 }

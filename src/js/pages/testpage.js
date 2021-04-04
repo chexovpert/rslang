@@ -40,9 +40,9 @@ export default function TestingPage() {
   if (load) {
     return (
       <div className="testpage">
-        <div>{<WordTest word={words[wordCntx.count]} />}</div>
-        <div style={{ display: "flex" }}>
+        <div className="testpage__container">
           <button onClick={() => wordCntx.setCount(wordCntx.count > 1 ? wordCntx.count - 1 : 0)}>Prev</button>
+          <div className="testpage__word">{<WordTest word={words[wordCntx.count]} />}</div>
           <button onClick={clickHandler}>Next</button>
         </div>
       </div>

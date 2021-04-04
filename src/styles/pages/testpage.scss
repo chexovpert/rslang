@@ -3,4 +3,12 @@
   height: 80vh;
   background-color: antiquewhite;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  &__container {
+    display: flex;
+    // align-items: center;
+    justify-content: space-between;
+  }
 }

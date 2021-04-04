@@ -15,6 +15,7 @@ import Sprint from "../pages/game-sprint";
 import Savanna from "../pages/savanna";
 import AudioChallenge from "../pages/audioChallenge";
 import EnglishForKids from "../pages/englishforkids";
+import Settings from "../pages/settings";
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
@@ -75,6 +76,9 @@ export default (isAuthenticated) => {
           <Registration></Registration>
         </Route>
         <WordProvider>
+          <Route path={"/settings"} exact>
+            <Settings />
+          </Route>
           <Route path={"/classbook"} exact>
             <TextBook />
           </Route>
@@ -93,6 +97,36 @@ export default (isAuthenticated) => {
           <Route path={"/games/sprint"} exact>
             <Sprint />
           </Route>
+          <Route
+            path={"/games/savanna"}
+            exact
+            render={(props) => (
+              <Savanna
+                // countryData={countryData}
+                {...props}
+              ></Savanna>
+            )}
+          />
+          <Route
+            path={"/games/audio"}
+            exact
+            render={(props) => (
+              <AudioChallenge
+                // countryData={countryData}
+                {...props}
+              ></AudioChallenge>
+            )}
+          />
+          <Route
+            path={"/games/forkids"}
+            exact
+            render={(props) => (
+              <EnglishForKids
+                // countryData={countryData}
+                {...props}
+              ></EnglishForKids>
+            )}
+          />
         </WordProvider>
         <Redirect to={"/"} />
       </div>

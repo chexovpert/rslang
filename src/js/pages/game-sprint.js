@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import Timer from "../componets/timer";
 import { useWordContext } from "../context/WordContext";
-
-//https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/ - таймер с анимацией
+import "../../styles/pages/sprint.scss";
+import Gameover from "../blocks/gameover";
 
 export default function Sprint() {
   const wordCntx = useWordContext();
   const [words, setWords] = useState([]);
   const [load, setLoad] = useState(false);
+  const [correctAns, setCorrectAns] = useState(null);
   const [hidestart, setHidestart] = useState(false);
   const [score, setScore] = useState(0);
   const [quest, setQuest] = useState("word");
@@ -37,6 +38,8 @@ export default function Sprint() {
         })
         .catch((error) => console.error("country countries loader", error));
     });
+    wordCntx.setStart(false);
+    wordCntx.setTimerOut(false);
   }, []);
 
   function randomWords() {
@@ -55,8 +58,6 @@ export default function Sprint() {
     setQuest(qWord.word);
     setQuestAns(qWord.wordTranslate);
     setAns([qWord.wordTranslate, mword1, mword2, mword3].sort(() => Math.random() - 0.5));
-    // quest = qWord.word;
-    // ans = [qWord.wordTranslate, mword1, mword2, mword3];
   }
 
   function startHandler() {
@@ -68,35 +69,64 @@ export default function Sprint() {
   function ansHandler(word) {
     if (word === questAns) {
       setScore(score + 1);
-      randomWords();
+      setCorrectAns("correct");
+      setTimeout(() => {
+        randomWords();
+        setCorrectAns(null);
+      }, 1000);
     } else {
-      randomWords();
+      setCorrectAns("wrong");
+      setTimeout(() => {
+        randomWords();
+        setCorrectAns(null);
+      }, 1000);
     }
   }
 
   if (load) {
+    // if (wordCntx.timerOut) {
+    //   setTimeout(() => {
+    //     return <div className="savanna">YOU WIN</div>;
+    //   }, 3000);
+    // } else {
     return (
-      <div className="sprint-container">
+      // <div >
+      <div className="savanna">
+        <div className="statistic" style={{ display: `${wordCntx.timerOut ? "flex" : "none"}` }}>
+          <Gameover />
+        </div>
         <div hidden={hidestart}>
-          <div>START THE GAME</div>
-          <button onClick={startHandler}>Start</button>
+          <div className="sprint__intro">
+            <h1>СПРИНТ</h1>
+            <div>Суть игры в том чтобы за минуту правильно перевести как можно большее количество слов</div>
+          </div>
+          <button className="registration__button-submit" onClick={startHandler}>
+            Начать
+          </button>
         </div>
 
         <div hidden={!hidestart}>
-          {/* <button onClick={randomWords}>Clkic</button> */}
-          <Timer />
-          <div>{quest}</div>
-          <div>
-            {ans.map((elem) => {
-              return <button onClick={ansHandler.bind(this, elem)}>{elem}</button>;
-            })}
+          <div className="sprint__container">
+            <div className="sprint__timer">
+              <Timer />
+            </div>
+            <div className={`sprint__questword ${correctAns}`}>{quest.toUpperCase()}</div>
+            <div className="sprint__buttons">
+              {ans.map((elem) => {
+                return (
+                  <button className="registration__button-submit" onClick={ansHandler.bind(this, elem)}>
+                    {elem}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="sprint__score">{`Score: ${score}`}</div>
           </div>
-          <div>{`Score: ${score}`}</div>
         </div>
       </div>
     );
     // }
   } else {
-    return <div>Loading....</div>;
+    return <div className="savanna">Loading....</div>;
   }
 }
