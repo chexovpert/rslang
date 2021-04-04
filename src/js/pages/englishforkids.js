@@ -26,7 +26,7 @@ export default () => {
     }
   };
   return (
-    <div className="audioChallenge">
+    <div className="englishforkids">
       {!fullData && !loading && (
         <button
           className="registration__button-submit"

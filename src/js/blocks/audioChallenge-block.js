@@ -5,10 +5,22 @@ import {
   Transition,
 } from "react-transition-group";
 import useAudio from "../hooks/audio.hook";
+import wrongAudioPath from "../../assets/sounds/error.mp3";
+import correctAudioPath from "../../assets/sounds/correct.mp3";
+import GameOver from "./gameover";
 
 const baseUrl = "https://react-learnwords-rslang.herokuapp.com/";
 
 export default (props) => {
+  const [correctWords] = useState([]);
+  const [wrongWords] = useState([]);
+  const [wrongWordsLength, setWrongWordsLength] = useState(wrongWords.length);
+  const [correctWordsLength, setCorrectWordsLength] = useState(
+    correctWords.length
+  );
+  //
+  const wrongAudio = new Audio(wrongAudioPath);
+  const correctAudio = new Audio(correctAudioPath);
   //
   const [data, setData] = useState(props.data.data.slice());
   const [toggle, setToggle] = useState(null);
@@ -26,13 +38,36 @@ export default (props) => {
 
   const quessHandler = (event) => {
     if (event.target.value === baseWord.id) {
-      console.log("Correct");
+      console.log(baseData);
+      let correctElem = baseData.find((elem) => elem.id === event.target.value);
+      if (
+        !wrongWords.find((elem) => elem.id === event.target.value) &&
+        !correctWords.find((elem) => elem.id === event.target.value)
+      ) {
+        correctWords.push(correctElem);
+      }
       setCorrect(true);
+      correctAudio.play();
+      setCorrectWordsLength(correctWords.length);
     } else {
+      let wrongElem = baseData.find((elem) => elem.id === event.target.value);
+      if (!wrongWords.find((elem) => elem.id === event.target.value)) {
+        wrongWords.push(wrongElem);
+      }
+      wrongAudio.play();
+      setWrongWordsLength(wrongWords.length);
       console.log("wrong");
     }
   };
   const nextpageHandler = () => {
+    if (!correct) {
+      let wrongElem = baseData.find((elem) => elem.id === baseWord.id);
+      if (!wrongWords.find((elem) => elem.id === baseWord.id)) {
+        wrongWords.push(wrongElem);
+      }
+      setWrongWordsLength(wrongWords.length);
+      wrongAudio.play();
+    }
     setToggle(false);
     setTimeout(newWords, 1200);
   };
@@ -65,7 +100,7 @@ export default (props) => {
   }, [props.data]);
 
   if (data.length > 0) {
-    console.log(image);
+    //console.log(image);
     return (
       <CSSTransition
         in={toggle}
@@ -82,6 +117,10 @@ export default (props) => {
         }}
       >
         <div style={{ width: "100%" }}>
+          <div>
+            <div>Выученые слова: {correctWordsLength}</div>
+            <div>Неправильные слова: {wrongWordsLength}</div>
+          </div>
           <div className="audioChallenge__base-word-container">
             <div className="audioChallenge__base-button-container">
               {!correct && (
@@ -164,6 +203,10 @@ export default (props) => {
       </CSSTransition>
     );
   } else {
-    return <div>Victory</div>;
+    return (
+      <div>
+        <GameOver correct={correctWords} wrong={wrongWords}></GameOver>
+      </div>
+    );
   }
 };

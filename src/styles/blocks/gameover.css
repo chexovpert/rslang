@@ -24,11 +24,11 @@
   overflow: hidden;
   position: relative;
 }
-.gameover__screen_switchWindow-list {
+.gameover__screen_switchWindow-listContainer {
   overflow-y: scroll;
   height: 270px;
   margin: 10px 10px;
-  border: 1px solid black;
+
   box-sizing: border-box;
 }
 .gameover_screen_stats-statCircle {
@@ -74,13 +74,62 @@
   background-color: black;
   transition: 2s ease-in-out all;
 }
-.gameover_screen_stats-animation:hover {
+/* .gameover_screen_stats-animation:hover {
   height: 90%;
-}
+} */
 .gameover_screen-radioGroup {
   display: flex;
 }
-
+.gameover__screen_switchWindow-list {
+  border-bottom: solid black 1px;
+}
+.gameover__screen_switchWindow-correctTitle {
+  background-color: green;
+  border-radius: 15px;
+  width: 30px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+}
+.gameover__screen_switchWindow-wrongTitle {
+  background-color: red;
+  border-radius: 15px;
+  width: 30px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+}
+.gameover__screen_switchWindow-soundButton {
+  width: 30px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+  opacity: 0.8;
+  transition: opacity linear 0.3s;
+  margin-right: 10px;
+  border: none;
+}
+.gameover__screen_switchWindow-soundButton:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.gameover__screen_switchWindow-word {
+  display: inline-block;
+  size: 15px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.gameover__screen_switchWindow-wordTranslate {
+  size: 15px;
+  opacity: 0.8;
+  margin-right: 10px;
+}
+.gameover__screen_switchWindow-li {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-bottom: 10px;
+}
 .gameover-animation-enter {
   transform: scale(0.9);
   opacity: 0;
