@@ -12,37 +12,59 @@ import Vocabulary from "../pages/vocabulary";
 import Wordlist from "../pages/wordlist";
 import Minigames from "../pages/minigames";
 import Sprint from "../pages/game-sprint";
+import Savanna from "../pages/savanna";
+import AudioChallenge from "../pages/audioChallenge";
+import EnglishForKids from "../pages/englishforkids";
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
-        <main>
+        <div className="content-wrapper">
           <HeaderAuthorized></HeaderAuthorized>
           <Route path="/" exact>
             <MainPage></MainPage>
           </Route>
           <Route
-            path={"/classbook/:category"}
+            path={"/games/savanna"}
             exact
             render={(props) => (
-              <div>smth</div>
-              // <CountryPage
-              //   // countryData={this.state.countryData}
-              //   {...props}
-              // ></CountryPage>
+              <Savanna
+                // countryData={countryData}
+                {...props}
+              ></Savanna>
+            )}
+          />
+          <Route
+            path={"/games/audio"}
+            exact
+            render={(props) => (
+              <AudioChallenge
+                // countryData={countryData}
+                {...props}
+              ></AudioChallenge>
+            )}
+          />
+          <Route
+            path={"/games/forkids"}
+            exact
+            render={(props) => (
+              <EnglishForKids
+                // countryData={countryData}
+                {...props}
+              ></EnglishForKids>
             )}
           />
 
           <Redirect to={"/"} />
-        </main>
+        </div>
       </Switch>
     );
   }
   return (
     <Switch>
-      <main>
-        <Header />
+      <div className="content-wrapper">
+        <Header></Header>
         <Route path="/" exact>
           <MainPage></MainPage>
         </Route>
@@ -73,7 +95,7 @@ export default (isAuthenticated) => {
           </Route>
         </WordProvider>
         <Redirect to={"/"} />
-      </main>
+      </div>
     </Switch>
   );
 };

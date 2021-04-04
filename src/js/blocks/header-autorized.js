@@ -24,13 +24,13 @@ export default () => {
             <Link>Словарь</Link>
           </li>
           <li className="header__navlist-link">
-            <Link>Учебник</Link>
+            <Link to={"/games/forkids"}>Учебник</Link>
           </li>
           <li className="header__navlist-link">
-            <Link>Игры</Link>
+            <Link to={"/games/savanna"}>Игры</Link>
           </li>
           <li className="header__navlist-link">
-            <Link>Что-то</Link>
+            <Link to="/games/audio"> Что-то</Link>
           </li>
         </ul>
         <div className="header__burger-button" onClick={handleClick}>

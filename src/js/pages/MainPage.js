@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import GameOver from "../blocks/gameover";
 
 export default () => {
   return (
@@ -8,6 +9,7 @@ export default () => {
         <h1>RS LANG</h1>
       </section>
       <section className="mainPage__description">
+        <GameOver></GameOver>
         <p>Cool app</p>
       </section>
       <section className="mainPage__video">
