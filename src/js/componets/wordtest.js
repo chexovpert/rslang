@@ -54,7 +54,7 @@ export default function WordTest({ word }) {
         <h1 className="wordtest__translate" hidden={!wordCntx.learnd}>
           {word.wordTranslate.toUpperCase()}
         </h1>
-        <div className="wordtest__translate" hidden={wordCntx.learnd}>
+        <div className="wordtest__translate" hidden={wordCntx.learnd || !wordCntx.showWordTransl}>
           Перевод: {word.wordTranslate}
         </div>
         <div className="wordtest__transcript" hidden={wordCntx.learnd}>
@@ -90,7 +90,10 @@ export default function WordTest({ word }) {
           <div dangerouslySetInnerHTML={{ __html: word.textMeaning }} />
           <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audioMeaning)} title="Прослушать произношение" />
         </div>
-        <div className="word__meaning-transl" style={{ display: `${wordCntx.learnd ? "none" : "flex"}` }}>
+        <div
+          className="word__meaning-transl"
+          style={{ display: `${wordCntx.learnd || !wordCntx.showExtraTransl ? "none" : "flex"}` }}
+        >
           {word.textMeaningTranslate}{" "}
         </div>
         <br />
@@ -102,9 +105,11 @@ export default function WordTest({ word }) {
         <div className="wordtest__meaning-transl" hidden={!wordCntx.learnd}>
           {testExample}
         </div>
-        <div className="word__example-transl">{word.textExampleTranslate}</div>
+        <div className="word__example-transl" hidden={!wordCntx.showExtraTransl}>
+          {word.textExampleTranslate}
+        </div>
       </div>
-      <div className="wordtest__buttons">
+      <div className="wordtest__buttons" hidden={!wordCntx.showDifButton}>
         <button onClick={wordCntx.difHndlr.bind(this, word)}>Сложное слово</button>
       </div>
     </div>

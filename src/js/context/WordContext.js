@@ -16,6 +16,7 @@ export const WordProvider = ({ children }) => {
   const [timer, setTimer] = useState(false);
   const [timerOut, setTimerOut] = useState(false);
   const [start, setStart] = useState(false);
+
   let dltword = [];
   let dltwordid = [];
   let crctword = [];
@@ -24,9 +25,17 @@ export const WordProvider = ({ children }) => {
   let dWordsId = [];
   let index;
 
+  const [settings, setSettings] = useState(true);
+  const [showWordTransl, setShowWordTransl] = useState(true);
+  const [showExtraTransl, setShowExtraTransl] = useState(true);
+  const [showDifButton, setShowDifButton] = useState(true);
+  const [showDelButton, setShowDelButton] = useState(true);
+  const [soundVolume, setSoundVolume] = useState(100);
+
   const sound = new Audio();
   const soundHandler = (link) => {
     sound.src = `https://react-learnwords-rslang.herokuapp.com/${link}`;
+    sound.volume = soundVolume / 100;
     sound.onended = () => {
       setEnd(true);
     };
@@ -188,6 +197,18 @@ export const WordProvider = ({ children }) => {
         setStart,
         timerOut,
         setTimerOut,
+        showWordTransl,
+        setShowWordTransl,
+        showExtraTransl,
+        setShowExtraTransl,
+        showDifButton,
+        setShowDifButton,
+        showDelButton,
+        setShowDelButton,
+        soundVolume,
+        setSoundVolume,
+        settings,
+        setSettings,
       }}
     >
       {children}

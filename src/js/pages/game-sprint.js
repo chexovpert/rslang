@@ -4,6 +4,30 @@ import { useWordContext } from "../context/WordContext";
 import "../../styles/pages/sprint.scss";
 import Gameover from "../blocks/gameover";
 
+const group = Array.from({ length: 6 }, (x, i) => i);
+const page = Array.from({ length: 30 }, (x, i) => i);
+const request = Array.from({ length: 4 }, (x, i) => [group[Math.floor(Math.random() * 5)], page[Math.floor(Math.random() * 30)]]);
+
+function pagesHandler(currentPage, currentGroup) {
+  let array = [];
+  if (currentPage < 3) {
+    for (let i = 0; array.length < 4; i++) {
+      array.push([currentGroup, currentPage + i]);
+    }
+  } else {
+    if (currentPage > 28) {
+      for (let i = 0; array.length < 4; i++) {
+        array.push([currentGroup, currentPage - i]);
+      }
+    } else {
+      for (let i = -2; array.length < 4; i++) {
+        array.push([currentGroup, currentPage + i]);
+      }
+    }
+  }
+  return array;
+}
+
 export default function Sprint() {
   const wordCntx = useWordContext();
   const [words, setWords] = useState([]);
@@ -14,12 +38,8 @@ export default function Sprint() {
   const [quest, setQuest] = useState("word");
   const [questAns, setQuestAns] = useState("word");
   const [ans, setAns] = useState(["word1", "word2", "word3", "word4"]);
-  const group = Array.from({ length: 6 }, (x, i) => i);
-  const page = Array.from({ length: 30 }, (x, i) => i);
-  const request = Array.from({ length: 4 }, (x, i) => [
-    group[Math.floor(Math.random() * 5)],
-    page[Math.floor(Math.random() * 30)],
-  ]);
+
+  // const request2 = pagesHandler(group, page)`
   let array = [];
 
   useEffect(() => {
@@ -84,13 +104,7 @@ export default function Sprint() {
   }
 
   if (load) {
-    // if (wordCntx.timerOut) {
-    //   setTimeout(() => {
-    //     return <div className="savanna">YOU WIN</div>;
-    //   }, 3000);
-    // } else {
     return (
-      // <div >
       <div className="savanna">
         <div className="statistic" style={{ display: `${wordCntx.timerOut ? "flex" : "none"}` }}>
           <Gameover />
@@ -125,7 +139,6 @@ export default function Sprint() {
         </div>
       </div>
     );
-    // }
   } else {
     return <div className="savanna">Loading....</div>;
   }

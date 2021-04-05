@@ -9,7 +9,6 @@ export default function Vocabulary() {
   const [wordsarrayid, setWordsarrayid] = useState([]);
 
   useEffect(() => {
-    console.log(type);
     setWordsarray([]);
     if (type === "difficult") {
       if ("difWord" in localStorage) {
@@ -29,8 +28,8 @@ export default function Vocabulary() {
         setWordsarrayid(JSON.parse(localStorage.getItem("deletewordid")));
       }
     }
-    console.log(wordsarray);
-  }, [type, wordsarray]);
+    console.log(type);
+  }, [type, wordsarrayid]);
 
   return (
     <div className="vocabulary__container">

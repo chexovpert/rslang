@@ -65,20 +65,21 @@ export default (isAuthenticated) => {
   return (
     <Switch>
       <div className="content-wrapper">
-        <Header></Header>
-        <Route path="/" exact>
-          <MainPage></MainPage>
-        </Route>
-        <Route path="/login" exact>
-          <Login></Login>
-        </Route>
-        <Route path="/register" exact>
-          <Registration></Registration>
-        </Route>
         <WordProvider>
-          <Route path={"/settings"} exact>
-            <Settings />
+          <Header></Header>
+          <Route path="/" exact>
+            <MainPage></MainPage>
           </Route>
+          <Route path="/login" exact>
+            <Login></Login>
+          </Route>
+          <Route path="/register" exact>
+            <Registration></Registration>
+          </Route>
+
+          {/* <Route path={"/settings"} exact> */}
+          <Settings />
+          {/* </Route> */}
           <Route path={"/classbook"} exact>
             <TextBook />
           </Route>
