@@ -25,37 +25,42 @@ export default (isAuthenticated) => {
           <Route path="/" exact>
             <MainPage></MainPage>
           </Route>
-          <Route
-            path={"/games/savanna"}
-            exact
-            render={(props) => (
-              <Savanna
-                // countryData={countryData}
-                {...props}
-              ></Savanna>
-            )}
-          />
-          <Route
-            path={"/games/audio"}
-            exact
-            render={(props) => (
-              <AudioChallenge
-                // countryData={countryData}
-                {...props}
-              ></AudioChallenge>
-            )}
-          />
-          <Route
-            path={"/games/forkids"}
-            exact
-            render={(props) => (
-              <EnglishForKids
-                // countryData={countryData}
-                {...props}
-              ></EnglishForKids>
-            )}
-          />
 
+          <WordProvider>
+            <Route
+              path={"/games/savanna"}
+              exact
+              render={(props) => <Savanna {...props}></Savanna>}
+            />
+            <Route
+              path={"/games/audio"}
+              exact
+              render={(props) => <AudioChallenge {...props}></AudioChallenge>}
+            />
+            <Route
+              path={"/games/forkids"}
+              exact
+              render={(props) => <EnglishForKids {...props}></EnglishForKids>}
+            />
+            <Route path={"/classbook"} exact>
+              <TextBook />
+            </Route>
+            <Route path={"/testing"}>
+              <TestingPage />
+            </Route>
+            <Route path="/vocabulary/:type">
+              <Vocabulary />
+            </Route>
+            <Route path="/wordlist/:group/:page">
+              <Wordlist />
+            </Route>
+            <Route path="/games" exact>
+              <Minigames />
+            </Route>
+            <Route path={"/games/sprint"} exact>
+              <Sprint />
+            </Route>
+          </WordProvider>
           <Redirect to={"/"} />
         </div>
       </Switch>

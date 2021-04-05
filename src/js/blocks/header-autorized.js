@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-
+import Burger from "./burger";
 export default () => {
   const auth = useContext(AuthContext);
   const history = useHistory();
   const [show, setShow] = useState(false);
 
-  const handleClick = () => {
-    setShow(!show);
-  };
+  // const handleClick = () => {
+  //   setShow(!show);
+  // };
   const logoutHandler = (event) => {
     event.preventDefault();
     auth.logout();
@@ -18,7 +18,7 @@ export default () => {
 
   return (
     <div className="header">
-      <nav className={show ? "header__nav show" : "header__nav"}>
+      {/* <nav className={show ? "header__nav show" : "header__nav"}>
         <ul className="header__navlist">
           <li className="header__navlist-link">
             <Link>Словарь</Link>
@@ -36,7 +36,7 @@ export default () => {
         <div className="header__burger-button" onClick={handleClick}>
           Click
         </div>
-      </nav>
+      </nav> */}
       <div className="header__left">
         <Link to="/" className="header__logo">
           RsLang
@@ -47,9 +47,10 @@ export default () => {
         <Link to="/" className="header__link login" onClick={logoutHandler}>
           Выйти
         </Link>
-        <div className="header__burger-button" onClick={handleClick}>
+        <Burger></Burger>
+        {/* <div className="header__burger-button" onClick={handleClick}>
           Click
-        </div>
+        </div> */}
       </div>
     </div>
   );
