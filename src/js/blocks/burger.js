@@ -10,6 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MenuIcon from "@material-ui/icons/Menu";
 //import MailIcon from "@material-ui/icons/Mail";
 import { Link, Route, useHistory } from "react-router-dom";
 
@@ -116,7 +117,9 @@ export default function TemporaryDrawer() {
     <div>
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>
+            <MenuIcon />
+          </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}

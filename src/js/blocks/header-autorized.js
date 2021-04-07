@@ -37,6 +37,9 @@ export default () => {
           Click
         </div>
       </nav> */}
+      <div>
+        <Burger></Burger>
+      </div>
       <div className="header__left">
         <Link to="/" className="header__logo">
           RsLang
@@ -47,7 +50,7 @@ export default () => {
         <Link to="/" className="header__link login" onClick={logoutHandler}>
           Выйти
         </Link>
-        <Burger></Burger>
+
         {/* <div className="header__burger-button" onClick={handleClick}>
           Click
         </div> */}
