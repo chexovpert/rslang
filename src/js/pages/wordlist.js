@@ -1,5 +1,5 @@
 import { Pagination, PaginationItem } from "@material-ui/lab";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Wordunit from "../componets/wordlistunit";
@@ -8,6 +8,7 @@ import "../../styles/pages/wordlist.scss";
 export default function Wordlist() {
   const [words, setWords] = useState([]);
   const [load, setLoad] = useState(false);
+  const [dltWordsId, setDltWordsId] = useState([]);
   const { group } = useParams();
   const { page } = useParams();
 
@@ -24,7 +25,16 @@ export default function Wordlist() {
         setLoad(true);
       })
       .catch((error) => console.error("country countries loader", error));
+    if ("deletewordid" in localStorage) {
+      setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
+    }
   }, [group, page]);
+
+  const delHandler = useCallback(() => {
+    if ("deletewordid" in localStorage) {
+      setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
+    }
+  }, [dltWordsId]);
 
   return (
     <div className="wordlist__container">
@@ -39,7 +49,9 @@ export default function Wordlist() {
       </div>
       <div className="wordlist__content">
         {words.map((elem) => {
-          return <Wordunit word={elem} />;
+          if (!dltWordsId.includes(elem.id)) {
+            return <Wordunit word={elem} delHndlr={delHandler} />;
+          }
         })}
       </div>
 

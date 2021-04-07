@@ -7,11 +7,11 @@ export default function TestingPage() {
   const [words, setWords] = useState([]);
   const [load, setLoad] = useState(false);
   const wordCntx = useWordContext();
-  const group = 0;
-  const page = 0;
+  // const group = 0;
+  // const page = 0;
 
   useEffect(() => {
-    fetch(`https://react-learnwords-rslang.herokuapp.com/words?group=${group}&page=${page}`)
+    fetch(`https://react-learnwords-rslang.herokuapp.com/words?group=${wordCntx.groupnum}&page=${wordCntx.pagenum}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("HTTP error " + response.status);

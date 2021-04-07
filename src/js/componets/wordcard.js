@@ -1,13 +1,44 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useWordContext } from "../context/WordContext";
 import "../../styles/components/wordcard.scss";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 import { useParams } from "react-router";
 
-export default function Word({ word }) {
-  const zaword = word;
+export default function Word({ word, delHndlr }) {
   const wordCntx = useWordContext();
+  const [dWordsId, setDWordsId] = useState([]);
+  const [diffword, setDiffword] = useState(false);
   const { type } = useParams();
+
+  useEffect(() => {
+    if ("difWordId" in localStorage) {
+      setDWordsId(JSON.parse(localStorage.getItem("difWordId")));
+    }
+  }, [word]);
+
+  useEffect(() => {
+    setDiffword(false);
+    if (dWordsId.includes(word.id)) {
+      setDiffword(true);
+    }
+  }, [dWordsId]);
+
+  function clickHandler() {
+    if (diffword) {
+      wordCntx.removeDifHndlr(word);
+      setDWordsId(JSON.parse(localStorage.getItem("difWordId")));
+    } else {
+      wordCntx.difHndlr(word);
+      setDWordsId(JSON.parse(localStorage.getItem("difWordId")));
+    }
+  }
+
+  function delClickHndlr() {
+    if (type !== "deleted") {
+      wordCntx.deleteHndlr(word);
+    }
+    delHndlr(word);
+  }
 
   return (
     <div className="word__container">
@@ -16,10 +47,8 @@ export default function Word({ word }) {
           <h1>{word.word}</h1>
           <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audio)} title="Прослушать произношение" />
         </div>
-
         <div className="word__translate">Перевод: {word.wordTranslate}</div>
         <div className="word__transcript">Транскрипция: {word.transcription}</div>
-
         <div className="word__meaning_container">
           <h3>Значение слова</h3>
           <div className="word__meaning">
@@ -28,28 +57,22 @@ export default function Word({ word }) {
           </div>
           <div className="word__meaning-transl">{word.textMeaningTranslate}</div>
         </div>
-
         <div className="word__example_container">
           <h3>Пример слова в предложении</h3>
           <div className="word__example">
             <div dangerouslySetInnerHTML={{ __html: word.textExample }} />
             <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audioExample)} title="Прослушать произношение" />
           </div>
-          <div className="word__example-transl">{zaword.textExampleTranslate}</div>
+          <div className="word__example-transl">{word.textExampleTranslate}</div>
         </div>
       </div>
-      {/* <img className="word__image" src={`https://react-learnwords-rslang.herokuapp.com/${word.image}`} alt={`word_image.jpg`} /> */}
       <div className="word__buttons">
-        {type === "difficult" ? (
-          <button onClick={wordCntx.removeDifHndlr.bind(this, word)}>Убрать из сложных</button>
-        ) : (
-          <button onClick={wordCntx.difHndlr.bind(this, word)}>Сложное слово</button>
-        )}
-        {type === "deleted" ? (
-          <button onClick={wordCntx.removeDeleteHndlr.bind(this, word)}>Убрать из удаленных</button>
-        ) : (
-          <button onClick={wordCntx.deleteHndlr.bind(this, word)}>Удалить слово</button>
-        )}
+        <button className="registration__button-submit" onClick={clickHandler}>
+          {diffword ? "Убрать из сложных" : "Сложное слово"}
+        </button>
+        <button className="registration__button-submit" onClick={delClickHndlr}>
+          {type === "deleted" ? "Убрать из удаленных" : "Удалить слово"}
+        </button>
       </div>
     </div>
   );

@@ -16,16 +16,16 @@ export const WordProvider = ({ children }) => {
   const [timer, setTimer] = useState(false);
   const [timerOut, setTimerOut] = useState(false);
   const [start, setStart] = useState(false);
+  const [pagenum, setPagenum] = useState(0);
+  const [groupnum, setGroupnum] = useState(0);
+  const [upd, setUpd] = useState(1);
 
-  let dltword = [];
   let dltwordid = [];
-  let crctword = [];
   let crctwordid = [];
-  let dWords = [];
   let dWordsId = [];
   let index;
 
-  const [settings, setSettings] = useState(true);
+  const [settings, setSettings] = useState(false);
   const [showWordTransl, setShowWordTransl] = useState(true);
   const [showExtraTransl, setShowExtraTransl] = useState(true);
   const [showDifButton, setShowDifButton] = useState(true);
@@ -47,126 +47,93 @@ export const WordProvider = ({ children }) => {
   };
 
   function difHndlr(word) {
-    if ("difWord" in localStorage) {
-      dWords = JSON.parse(localStorage.getItem("difWord"));
+    if ("difWordId" in localStorage) {
       dWordsId = JSON.parse(localStorage.getItem("difWordId"));
       if (!dWordsId.includes(word.id)) {
-        dWords.push(word);
         dWordsId.push(word.id);
-        localStorage.setItem("difWord", JSON.stringify(dWords));
         localStorage.setItem("difWordId", JSON.stringify(dWordsId));
       }
     } else {
-      dWords.push(word);
       dWordsId.push(word.id);
-      localStorage.setItem("difWord", JSON.stringify(dWords));
       localStorage.setItem("difWordId", JSON.stringify(dWordsId));
     }
   }
 
   function correctHndlr(word) {
-    if ("correctword" in localStorage) {
-      crctword = JSON.parse(localStorage.getItem("correctword"));
+    if ("correctwordid" in localStorage) {
       crctwordid = JSON.parse(localStorage.getItem("correctwordid"));
       if (!crctwordid.includes(word.id)) {
-        crctword.push(word);
         crctwordid.push(word.id);
-        localStorage.setItem("correctword", JSON.stringify(crctword));
         localStorage.setItem("correctwordid", JSON.stringify(crctwordid));
       }
     } else {
-      crctword.push(word);
       crctwordid.push(word.id);
-      localStorage.setItem("correctword", JSON.stringify(crctword));
       localStorage.setItem("correctwordid", JSON.stringify(crctwordid));
     }
   }
 
   function deleteHndlr(word) {
-    if ("deleteword" in localStorage) {
-      dltword = JSON.parse(localStorage.getItem("deleteword"));
+    if ("deletewordid" in localStorage) {
       dltwordid = JSON.parse(localStorage.getItem("deletewordid"));
       if (!dltwordid.includes(word.id)) {
-        if ("correctword" in localStorage) {
-          crctword = JSON.parse(localStorage.getItem("correctword"));
+        if ("correctwordid" in localStorage) {
           crctwordid = JSON.parse(localStorage.getItem("correctwordid"));
           if (crctwordid.includes(word.id)) {
             index = crctwordid.indexOf(word.id);
-            crctword.splice(index, 1);
             crctwordid.splice(index, 1);
-            localStorage.setItem("correctword", JSON.stringify(crctword));
             localStorage.setItem("correctwordid", JSON.stringify(crctwordid));
           }
         }
-        if ("difWord" in localStorage) {
-          dWords = JSON.parse(localStorage.getItem("difWord"));
+        if ("difWordId" in localStorage) {
           dWordsId = JSON.parse(localStorage.getItem("difWordId"));
           if (dWordsId.includes(word.id)) {
             index = dWordsId.indexOf(word.id);
-            dWords.splice(index, 1);
             dWordsId.splice(index, 1);
-            localStorage.setItem("difWord", JSON.stringify(dWords));
             localStorage.setItem("difWordId", JSON.stringify(dWordsId));
           }
         }
-        dltword.push(word);
         dltwordid.push(word.id);
-        localStorage.setItem("deleteword", JSON.stringify(dltword));
         localStorage.setItem("deletewordid", JSON.stringify(dltwordid));
       }
     } else {
-      if ("correctword" in localStorage) {
-        crctword = JSON.parse(localStorage.getItem("correctword"));
+      if ("correctwordid" in localStorage) {
         crctwordid = JSON.parse(localStorage.getItem("correctwordid"));
         if (crctwordid.includes(word.id)) {
           index = crctwordid.indexOf(word.id);
-          crctword.splice(index, 1);
           crctwordid.splice(index, 1);
-          localStorage.setItem("correctword", JSON.stringify(crctword));
           localStorage.setItem("correctwordid", JSON.stringify(crctwordid));
         }
       }
-      if ("difWord" in localStorage) {
-        dWords = JSON.parse(localStorage.getItem("difWord"));
+      if ("difWordId" in localStorage) {
         dWordsId = JSON.parse(localStorage.getItem("difWordId"));
         if (dWordsId.includes(word.id)) {
           index = dWordsId.indexOf(word.id);
-          dWords.splice(index, 1);
           dWordsId.splice(index, 1);
-          localStorage.setItem("difWord", JSON.stringify(dWords));
           localStorage.setItem("difWordId", JSON.stringify(dWordsId));
         }
       }
-      dltword.push(word);
       dltwordid.push(word.id);
-      localStorage.setItem("deleteword", JSON.stringify(dltword));
       localStorage.setItem("deletewordid", JSON.stringify(dltwordid));
     }
   }
 
   function removeDeleteHndlr(word) {
-    if ("deleteword" in localStorage) {
-      dltword = JSON.parse(localStorage.getItem("deleteword"));
+    if ("deletewordid" in localStorage) {
       dltwordid = JSON.parse(localStorage.getItem("deletewordid"));
       if (dltwordid.includes(word.id)) {
         index = dltwordid.indexOf(word.id);
-        dltword.splice(index, 1);
         dltwordid.splice(index, 1);
-        localStorage.setItem("deleteword", JSON.stringify(dltword));
         localStorage.setItem("deletewordid", JSON.stringify(dltwordid));
       }
     }
   }
 
   function removeDifHndlr(word) {
-    if ("difWord" in localStorage) {
-      dWords = JSON.parse(localStorage.getItem("difWord"));
+    if ("difWordId" in localStorage) {
       dWordsId = JSON.parse(localStorage.getItem("difWordId"));
       if (dWordsId.includes(word.id)) {
         index = dWordsId.indexOf(word.id);
-        dWords.splice(index, 1);
         dWordsId.splice(index, 1);
-        localStorage.setItem("difWord", JSON.stringify(dWords));
         localStorage.setItem("difWordId", JSON.stringify(dWordsId));
       }
     }
@@ -209,6 +176,12 @@ export const WordProvider = ({ children }) => {
         setSoundVolume,
         settings,
         setSettings,
+        pagenum,
+        setPagenum,
+        groupnum,
+        setGroupnum,
+        upd,
+        setUpd,
       }}
     >
       {children}

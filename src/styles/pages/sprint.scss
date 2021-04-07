@@ -41,6 +41,11 @@
       font-size: 60%;
     }
   }
+
+  &__groups {
+    justify-content: space-around;
+    margin: 0 40px 20px;
+  }
 }
 .correct {
   color: limegreen;

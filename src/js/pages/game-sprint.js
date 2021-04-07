@@ -3,10 +3,13 @@ import Timer from "../componets/timer";
 import { useWordContext } from "../context/WordContext";
 import "../../styles/pages/sprint.scss";
 import Gameover from "../blocks/gameover";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-const group = Array.from({ length: 6 }, (x, i) => i);
+// const group = Array.from({ length: 6 }, (x, i) => i);
 const page = Array.from({ length: 30 }, (x, i) => i);
-const request = Array.from({ length: 4 }, (x, i) => [group[Math.floor(Math.random() * 5)], page[Math.floor(Math.random() * 30)]]);
+// const request = Array.from({ length: 4 }, (x, i) => [group[Math.floor(Math.random() * 5)], page[Math.floor(Math.random() * 30)]]);
 
 function pagesHandler(currentPage, currentGroup) {
   let array = [];
@@ -39,7 +42,7 @@ export default function Sprint() {
   const [questAns, setQuestAns] = useState("word");
   const [ans, setAns] = useState(["word1", "word2", "word3", "word4"]);
 
-  // const request2 = pagesHandler(group, page)`
+  const request = pagesHandler(wordCntx.groupnum, wordCntx.pagenum);
   let array = [];
 
   useEffect(() => {
@@ -104,6 +107,7 @@ export default function Sprint() {
   }
 
   if (load) {
+    console.log(wordCntx.groupnum, typeof wordCntx.groupnum);
     return (
       <div className="savanna">
         <div className="statistic" style={{ display: `${wordCntx.timerOut ? "flex" : "none"}` }}>
@@ -114,6 +118,21 @@ export default function Sprint() {
             <h1>СПРИНТ</h1>
             <div>Суть игры в том чтобы за минуту правильно перевести как можно большее количество слов</div>
           </div>
+          <RadioGroup
+            row
+            aria-label="gender"
+            name="gender1"
+            value={wordCntx.groupnum}
+            onChange={(event) => wordCntx.setGroupnum(parseInt(event.target.value))}
+            className="sprint__groups"
+          >
+            <FormControlLabel value={0} control={<Radio />} label="Группа 1" />
+            <FormControlLabel value={1} control={<Radio />} label="Группа 2" />
+            <FormControlLabel value={2} control={<Radio />} label="Группа 3" />
+            <FormControlLabel value={3} control={<Radio />} label="Группа 4" />
+            <FormControlLabel value={4} control={<Radio />} label="Группа 5" />
+            <FormControlLabel value={5} control={<Radio />} label="Группа 6" />
+          </RadioGroup>
           <button className="registration__button-submit" onClick={startHandler}>
             Начать
           </button>

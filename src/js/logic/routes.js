@@ -86,7 +86,7 @@ export default (isAuthenticated) => {
           <Route path={"/testing"}>
             <TestingPage />
           </Route>
-          <Route path="/vocabulary/:type">
+          <Route path="/vocabulary/:type/:group/:page">
             <Vocabulary />
           </Route>
           <Route path="/wordlist/:group/:page">

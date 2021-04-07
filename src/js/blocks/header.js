@@ -14,7 +14,7 @@ export default () => {
       <nav className={show ? "header__nav show" : "header__nav"}>
         <ul className="header__navlist">
           <li className="header__navlist-link">
-            <Link to={"/vocabulary/learned"}>Словарь</Link>
+            <Link to={"/vocabulary/learned/1/1"}>Словарь</Link>
           </li>
           <li className="header__navlist-link">
             <Link to="/classbook">Учебник</Link>

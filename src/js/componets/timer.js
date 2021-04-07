@@ -5,7 +5,7 @@ import { useWordContext } from "../context/WordContext";
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
-const TIME_LIMIT = 10;
+const TIME_LIMIT = 60;
 
 const COLOR_CODES = {
   info: {
