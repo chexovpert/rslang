@@ -11,7 +11,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 const page = Array.from({ length: 30 }, (x, i) => i);
 // const request = Array.from({ length: 4 }, (x, i) => [group[Math.floor(Math.random() * 5)], page[Math.floor(Math.random() * 30)]]);
 
-function pagesHandler(currentPage, currentGroup) {
+function pagesHandler(currentGroup, currentPage) {
   let array = [];
   if (currentPage < 3) {
     for (let i = 0; array.length < 4; i++) {
@@ -42,10 +42,13 @@ export default function Sprint() {
   const [questAns, setQuestAns] = useState("word");
   const [ans, setAns] = useState(["word1", "word2", "word3", "word4"]);
 
-  const request = pagesHandler(wordCntx.groupnum, wordCntx.pagenum);
+  const [mult, setMult] = useState(1);
+
+  const request = pagesHandler(parseInt(wordCntx.groupnum), parseInt(wordCntx.pagenum));
   let array = [];
 
   useEffect(() => {
+    console.log(request);
     request.map((elem) => {
       fetch(`https://react-learnwords-rslang.herokuapp.com/words?group=${elem[0]}&page=${elem[1]}`)
         .then((response) => {
@@ -91,15 +94,21 @@ export default function Sprint() {
 
   function ansHandler(word) {
     if (word === questAns) {
-      setScore(score + 1);
+      setScore(score + mult);
+
       setCorrectAns("correct");
       setTimeout(() => {
+        if (mult !== 3) {
+          setMult(mult + 1);
+        }
         randomWords();
         setCorrectAns(null);
       }, 1000);
     } else {
       setCorrectAns("wrong");
+
       setTimeout(() => {
+        setMult(1);
         randomWords();
         setCorrectAns(null);
       }, 1000);
@@ -107,7 +116,7 @@ export default function Sprint() {
   }
 
   if (load) {
-    console.log(wordCntx.groupnum, typeof wordCntx.groupnum);
+    // console.log(wordCntx.groupnum, typeof wordCntx.groupnum);
     return (
       <div className="savanna">
         <div className="statistic" style={{ display: `${wordCntx.timerOut ? "flex" : "none"}` }}>
@@ -142,6 +151,17 @@ export default function Sprint() {
           <div className="sprint__container">
             <div className="sprint__timer">
               <Timer />
+            </div>
+            <div className="sprint__mult">
+              <div className="sprint__mult_orb" style={{ backgroundColor: `${mult >= 1 ? "green" : "gray"}  ` }}>
+                x1
+              </div>
+              <div className="sprint__mult_orb" style={{ backgroundColor: `${mult >= 2 ? "green" : "gray"}  ` }}>
+                x2
+              </div>
+              <div className="sprint__mult_orb" style={{ backgroundColor: `${mult >= 3 ? "green" : "gray"}  ` }}>
+                x3
+              </div>
             </div>
             <div className={`sprint__questword ${correctAns}`}>{quest.toUpperCase()}</div>
             <div className="sprint__buttons">

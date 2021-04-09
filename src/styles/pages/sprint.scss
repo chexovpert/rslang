@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     width: 70vw;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   &__buttons {
@@ -45,6 +46,25 @@
   &__groups {
     justify-content: space-around;
     margin: 0 40px 20px;
+  }
+
+  &__mult {
+    display: flex;
+    width: 20vw;
+    justify-content: space-around;
+    margin: 15px 0;
+    font-size: 25px;
+    text-align: center;
+    &_orb {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background-color: gray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
 .correct {

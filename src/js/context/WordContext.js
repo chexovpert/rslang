@@ -16,8 +16,8 @@ export const WordProvider = ({ children }) => {
   const [timer, setTimer] = useState(false);
   const [timerOut, setTimerOut] = useState(false);
   const [start, setStart] = useState(false);
-  const [pagenum, setPagenum] = useState(0);
-  const [groupnum, setGroupnum] = useState(0);
+  const [pagenum, setPagenum] = useState(1);
+  const [groupnum, setGroupnum] = useState(1);
   const [upd, setUpd] = useState(1);
 
   let dltwordid = [];

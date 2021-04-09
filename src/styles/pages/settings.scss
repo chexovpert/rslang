@@ -1,13 +1,17 @@
 .settings {
   &__container {
     width: 100vw;
-    height: 95vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     color: black;
-    position: absolute;
+    position: fixed;
     background-color: rgba(127, 255, 212, 0.432);
+    // body {
+    overflow: hidden;
+    overflow-y: hidden;
+    // }
   }
 
   &__content {
@@ -29,4 +33,8 @@
     display: flex;
     justify-content: space-around;
   }
+}
+
+body.settings__container {
+  overflow: hidden;
 }

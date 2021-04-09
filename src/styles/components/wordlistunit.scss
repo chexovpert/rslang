@@ -4,7 +4,7 @@
     width: 95%;
     height: 10vh;
     background-color: azure;
-    font-size: 20px;
+    font-size: 23px;
     color: black;
     margin: 10px 5px 0px;
     align-items: center;
@@ -18,9 +18,9 @@
       cursor: pointer;
     }
 
-    img {
+    .image {
       height: 8vh;
-      width: 100px;
+      width: 10 px;
       border-radius: 10px;
       border: 2px solid black;
       margin: 0px 10px;
@@ -29,6 +29,8 @@
   &__word {
     display: flex;
     flex-direction: row;
+    margin-bottom: 10px;
+    align-items: center;
   }
 
   &__buttons {

@@ -13,9 +13,10 @@ export default function Vocabulary() {
   const [wordsarrayid, setWordsarrayid] = useState([]);
   const [load, setLoad] = useState(false);
   const [hide, setHide] = useState(false);
-  const [test, setTest] = useState(true);
+  // const [test, setTest] = useState(true);
   const wordCntx = useWordContext();
   const [dltWordsId, setDltWordsId] = useState([]);
+  const [difWordsId, setDifWordsId] = useState([]);
 
   useEffect(() => {
     fetch(`https://react-learnwords-rslang.herokuapp.com/words?group=${group - 1}&page=${page - 1}`)
@@ -35,6 +36,8 @@ export default function Vocabulary() {
     if (type === "difficult") {
       if ("difWord" in localStorage) {
         setWordsarrayid(JSON.parse(localStorage.getItem("difWordId")));
+        setDifWordsId(JSON.parse(localStorage.getItem("difWordId")));
+        setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
       }
     }
     if (type === "learned") {
@@ -46,19 +49,31 @@ export default function Vocabulary() {
       if ("deleteword" in localStorage) {
         setWordsarrayid(JSON.parse(localStorage.getItem("deletewordid")));
         setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
+        setDifWordsId(JSON.parse(localStorage.getItem("difWordId")));
       }
     }
   }, [type, group, page]);
 
+  const delDif = useCallback(
+    (word) => {
+      console.log("delDif");
+      setDifWordsId(JSON.parse(localStorage.getItem("difWordId")));
+    },
+    [difWordsId]
+  );
+
   const delHandler = useCallback(
     (word) => {
+      console.log("delHandler");
       if ("deletewordid" in localStorage) {
         if (type !== "deleted") {
+          wordCntx.deleteHndlr(word);
           setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
+          console.log("delHandler del");
         } else {
-          console.log("restore");
           wordCntx.removeDeleteHndlr(word);
           setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
+          console.log("delHandler nondel");
         }
       }
     },
@@ -86,14 +101,14 @@ export default function Vocabulary() {
         <div className="wordlist__groups">
           {Array.from({ length: 6 }, (x, i) => i + 1).map((elem) => {
             return (
-              <Link to={`/vocabulary/${type}/${elem}/1`}>
+              <Link to={`/vocabulary/${type}/${elem}/${page}`}>
                 <div className={parseInt(group) === elem ? "wordlist__active" : null}>{`Group ${elem}`}</div>
               </Link>
             );
           })}
         </div>
         <div className="vocabulary__content">
-          <div className="wordsmissing" hidden={hide}>
+          <div className="wordsmissing" style={{ display: `${hide ? "none" : "flex"}` }}>
             В данном разделе слова отсутствуют по различным на то причинам
           </div>
           {/* {setHide(false)} */}
@@ -102,13 +117,19 @@ export default function Vocabulary() {
               if (hide === false) {
                 setHide(true);
               }
-              if (type !== "deleted") {
-                if (!dltWordsId.includes(elem.id)) {
+              if (type === "deleted") {
+                if (dltWordsId.includes(elem.id)) {
                   return <Word word={elem} key={index} delHndlr={delHandler} />;
                 }
               } else {
-                if (dltWordsId.includes(elem.id)) {
-                  return <Word word={elem} key={index} delHndlr={delHandler} />;
+                if (type === "difficult") {
+                  if (difWordsId.includes(elem.id) && !dltWordsId.includes(elem.id)) {
+                    return <Word word={elem} key={index} delHndlr={delHandler} delDif={delDif} />;
+                  }
+                } else {
+                  if (!dltWordsId.includes(elem.id)) {
+                    return <Word word={elem} key={index} delHndlr={delHandler} delDif={delDif} />;
+                  }
                 }
               }
             }
