@@ -6,7 +6,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(#7b0e91, #ecf00b);
+  /* background: linear-gradient(#7b0e91, #ecf00b); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
 }
 
@@ -94,6 +97,8 @@
   background-color: transparent;
   transition: all 0.1s ease-in-out;
   margin: auto;
+  color: white;
+  text-shadow: 1px 1px 1px black;
 }
 .audioChallenge__anwsers-button.true {
   opacity: 1;

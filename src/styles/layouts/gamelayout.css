@@ -1,0 +1,42 @@
+.gameLayout {
+  width: 100%;
+  height: 100%;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background: linear-gradient(#299745, #97336a); */
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.gameLayout-button {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 60px;
+  border: transparent;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: transparent;
+  transition: all 0.1s ease-in-out;
+  margin: auto;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+.gameLayout-button:hover {
+  background-color: rgba(128, 128, 128, 0.205);
+  cursor: pointer;
+  border: 2px solid whitesmoke;
+  box-shadow: 1px 1px 1px black;
+}
+
+.gameLayout-h1 {
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
+}

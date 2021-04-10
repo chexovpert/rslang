@@ -20,66 +20,28 @@ export default (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
-        <div className="content-wrapper">
-          <HeaderAuthorized></HeaderAuthorized>
-          <Route path="/" exact>
-            <MainPage></MainPage>
-          </Route>
+        {/* <div className="content-wrapper"> */}
 
-          <WordProvider>
-            <Route
-              path={"/games/savanna"}
-              exact
-              render={(props) => <Savanna {...props}></Savanna>}
-            />
-            <Route
-              path={"/games/audio"}
-              exact
-              render={(props) => <AudioChallenge {...props}></AudioChallenge>}
-            />
-            <Route
-              path={"/games/forkids"}
-              exact
-              render={(props) => <EnglishForKids {...props}></EnglishForKids>}
-            />
-            <Route path={"/classbook"} exact>
-              <TextBook />
-            </Route>
-            <Route path={"/testing"}>
-              <TestingPage />
-            </Route>
-            <Route path="/vocabulary/:type">
-              <Vocabulary />
-            </Route>
-            <Route path="/wordlist/:group/:page">
-              <Wordlist />
-            </Route>
-            <Route path="/games" exact>
-              <Minigames />
-            </Route>
-            <Route path={"/games/sprint"} exact>
-              <Sprint />
-            </Route>
-          </WordProvider>
-          <Redirect to={"/"} />
-        </div>
-      </Switch>
-    );
-  }
-  return (
-    <Switch>
-      <div className="content-wrapper">
-        <Header></Header>
         <Route path="/" exact>
           <MainPage></MainPage>
         </Route>
-        <Route path="/login" exact>
-          <Login></Login>
-        </Route>
-        <Route path="/register" exact>
-          <Registration></Registration>
-        </Route>
+
         <WordProvider>
+          <Route
+            path={"/games/savanna/"}
+            exact
+            render={(props) => <Savanna {...props}></Savanna>}
+          />
+          <Route
+            path={"/games/audio"}
+            exact
+            render={(props) => <AudioChallenge {...props}></AudioChallenge>}
+          />
+          <Route
+            path={"/games/forkids/:group?/:page?"}
+            exact
+            render={(props) => <EnglishForKids {...props}></EnglishForKids>}
+          />
           <Route path={"/classbook"} exact>
             <TextBook />
           </Route>
@@ -100,7 +62,45 @@ export default (isAuthenticated) => {
           </Route>
         </WordProvider>
         <Redirect to={"/"} />
-      </div>
+        {/* </div> */}
+      </Switch>
+    );
+  }
+  return (
+    <Switch>
+      {/* <div className="content-wrapper">
+        <Header></Header> */}
+      <Route path="/" exact>
+        <MainPage></MainPage>
+      </Route>
+      <Route path="/login" exact>
+        <Login></Login>
+      </Route>
+      <Route path="/register" exact>
+        <Registration></Registration>
+      </Route>
+      <WordProvider>
+        <Route path={"/classbook"} exact>
+          <TextBook />
+        </Route>
+        <Route path={"/testing"}>
+          <TestingPage />
+        </Route>
+        <Route path="/vocabulary/:type">
+          <Vocabulary />
+        </Route>
+        <Route path="/wordlist/:group/:page">
+          <Wordlist />
+        </Route>
+        <Route path="/games" exact>
+          <Minigames />
+        </Route>
+        <Route path={"/games/sprint"} exact>
+          <Sprint />
+        </Route>
+      </WordProvider>
+      <Redirect to={"/"} />
+      {/* </div> */}
     </Switch>
   );
 };

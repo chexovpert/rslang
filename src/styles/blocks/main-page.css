@@ -143,7 +143,7 @@
   padding: 0 auto;
   padding-bottom: 20px;
 }
-.mainPage__team>h2 {
+.mainPage__team > h2 {
   text-align: center;
 }
 .mainPage__team__wrapper {
@@ -153,6 +153,7 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 .mainPage__team__card {
   background-color: brown;
@@ -162,17 +163,17 @@
   margin-top: 100px;
   margin-bottom: 15px;
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 .mainPage__team__card-image {
   width: 90%;
   margin-bottom: -100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: -100px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -100px auto 0;
 }
 .mainPage__team__card_description {
   margin: 0 auto;
@@ -181,19 +182,19 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.mainPage__team__card_description>h3 {
+.mainPage__team__card_description > h3 {
   width: 100%;
   text-align: center;
   margin-bottom: 15px;
 }
-.mainPage__team__card_description>h5 {
+.mainPage__team__card_description > h5 {
   width: 100%;
   text-align: center;
   border-bottom: blanchedalmond 1px solid;
   padding-bottom: 15px;
   margin-bottom: 15px;
 }
-.mainPage__team__card_description>p {
+.mainPage__team__card_description > p {
   width: 100%;
   text-align: left;
 }

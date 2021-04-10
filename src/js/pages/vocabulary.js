@@ -2,6 +2,7 @@ import "../../styles/pages/vocabulary.scss";
 import { Link, useParams } from "react-router-dom";
 import Word from "../componets/wordcard";
 import { useEffect, useState } from "react";
+import MainLayout from "../layouts/MainLayout";
 
 export default function Vocabulary() {
   const { type } = useParams();
@@ -33,26 +34,29 @@ export default function Vocabulary() {
   }, [type, wordsarray]);
 
   return (
-    <div className="vocabulary__container">
-      <div className="vocabulary__title">
-        Это ваш словарь. Тут вы можете увидеть какие слова вы выучили или же какие для вас сложные
+    <MainLayout>
+      <div className="vocabulary__container">
+        <div className="vocabulary__title">
+          Это ваш словарь. Тут вы можете увидеть какие слова вы выучили или же
+          какие для вас сложные
+        </div>
+        <div className="vocabulary__buttons">
+          <Link to={"/vocabulary/learned"}>
+            <div>LEARNED</div>
+          </Link>
+          <Link to={"/vocabulary/difficult"}>
+            <div>DIFFICULT</div>
+          </Link>
+          <Link to={"/vocabulary/deleted"}>
+            <div>DELETED</div>
+          </Link>
+        </div>
+        <div className="vocabulary__content">
+          {wordsarray.map((elem, index) => {
+            return <Word word={elem} key={index} />;
+          })}
+        </div>
       </div>
-      <div className="vocabulary__buttons">
-        <Link to={"/vocabulary/learned"}>
-          <div>LEARNED</div>
-        </Link>
-        <Link to={"/vocabulary/difficult"}>
-          <div>DIFFICULT</div>
-        </Link>
-        <Link to={"/vocabulary/deleted"}>
-          <div>DELETED</div>
-        </Link>
-      </div>
-      <div className="vocabulary__content">
-        {wordsarray.map((elem, index) => {
-          return <Word word={elem} key={index} />;
-        })}
-      </div>
-    </div>
+    </MainLayout>
   );
 }
