@@ -28,6 +28,7 @@
   font-size: 50px;
   animation: falldown 14s linear;
   pointer-events: none;
+  text-shadow: 1px 1px 1px black;
   /* transform: translateY(100vh); */
   /* transition: all 10s linear; */
 }
@@ -97,5 +98,10 @@
 @keyframes fallup {
   to {
     transform: translateY(150vh);
+  }
+}
+@media (max-width: 800px) {
+  .savanna__component-baseword {
+    font-size: 35px;
   }
 }

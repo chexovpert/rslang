@@ -24,8 +24,8 @@ export default (props) => {
     setSelectedValue(event.target.value);
     setToggle(!toggle);
   };
-  const toggleAudioHandler = (event) => {
-    changeSrc(`${baseUrl}${event.target.value}`);
+  const toggleAudioHandler = (audio) => {
+    changeSrc(`${baseUrl}${audio}`);
 
     toggleAudio();
   };
@@ -35,9 +35,10 @@ export default (props) => {
   let percent =
     correctWords && wrongWords
       ? Math.round(
-          correctWords.length / (correctWords.length + wrongWords.length)
-        ) * 100
-      : 80;
+          (correctWords.length / (correctWords.length + wrongWords.length)) *
+            100
+        )
+      : 0;
   return (
     <div className="gameover__screen">
       <div className="gameover__screen_switchWindow">
@@ -91,9 +92,13 @@ export default (props) => {
                 correctWords.map((word) => (
                   <li className="gameover__screen_switchWindow-li">
                     <button
-                      onClick={toggleAudioHandler}
+                      onClick={() => toggleAudioHandler(word.audio)}
                       value={word.audio}
-                      className="gameover__screen_switchWindow-soundButton"
+                      className={
+                        playing
+                          ? "gameover__screen_switchWindow-soundButton"
+                          : "gameover__screen_switchWindow-soundButton"
+                      }
                     >
                       <VolumeUpIcon></VolumeUpIcon>
                     </button>
@@ -117,15 +122,15 @@ export default (props) => {
                 wrongWords.map((word) => (
                   <li>
                     <button
-                      onClick={toggleAudioHandler}
+                      onClick={() => toggleAudioHandler(word.audio)}
                       value={word.audio}
                       className={
                         playing
-                          ? "audioChallenge__base-button play"
-                          : "audioChallenge__base-button"
+                          ? "gameover__screen_switchWindow-soundButton"
+                          : "gameover__screen_switchWindow-soundButton"
                       }
                     >
-                      {playing ? "Pause" : "Play"}
+                      <VolumeUpIcon></VolumeUpIcon>
                     </button>
                     <span className="audioChallenge__base-correct-word">
                       <h4>{word && word.word}</h4>

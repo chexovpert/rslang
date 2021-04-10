@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useHttp from "../hooks/http.hook";
+import HeaderAuthorized from "../blocks/header-autorized";
 //import EnglishForKids from "../blocks/englishforkids-block";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -57,6 +58,7 @@ export default (props) => {
   return (
     <div className="app-wrapper">
       <div className="content-wrapper">
+        <HeaderAuthorized />
         <div
           className="gameLayout"
           style={{ backgroundImage: `url(${props.gameBackground})` }}

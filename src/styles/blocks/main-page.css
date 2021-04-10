@@ -106,6 +106,8 @@
 }
 .mainPage_features_card {
   width: 45%;
+
+  min-height: 200px;
   border: black solid 2px;
   border-radius: 15px;
   box-sizing: border-box;
@@ -168,7 +170,7 @@
   justify-content: space-around;
 }
 .mainPage__team__card-image {
-  width: 90%;
+  width: 60%;
   margin-bottom: -100px;
   display: flex;
   justify-content: space-between;
@@ -197,6 +199,12 @@
 .mainPage__team__card_description > p {
   width: 100%;
   text-align: left;
+}
+.mainPage__team__card-link {
+  transition: all 0.2s linear;
+}
+.mainPage__team__card-link:hover {
+  opacity: 0.6;
 }
 @media (max-width: 1199px) {
   .mainPage_startScreen {

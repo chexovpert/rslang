@@ -9,6 +9,7 @@ import correctAudioPath from "../../assets/sounds/correct.mp3";
 import GameOver from "./gameover";
 
 export default (props) => {
+  const [lives, setLives] = useState(5);
   const [correctWords] = useState([]);
   const [wrongWords] = useState([]);
   const [wrongWordsLength, setWrongWordsLength] = useState(wrongWords.length);
@@ -55,6 +56,13 @@ export default (props) => {
         !correctWords.find((elem) => elem.id === event.target.value)
       ) {
         wrongWords.push(wrongElem);
+      }
+      setLives(lives - 1);
+      if (lives <= 1) {
+        data.length = 1;
+        nextpageHandler();
+        //setToggle(true);
+        //setCorrect(true);
       }
       wrongAudio.play();
       setWrongWordsLength(wrongWords.length);
@@ -115,12 +123,26 @@ export default (props) => {
     setBaseData(props.data.data.slice().sort(() => Math.random() - 0.5));
     newWords();
   }, [props.data]);
+  // useEffect(() => {
+  //   if (data.length <= 1) {
+  //     nextpageHandler();
+  //   }
+  // }, [data]);
+
   if (data.length > 0) {
     return (
       <div style={{ width: "100%" }}>
-        <div>
-          <div>Выученые слова: {correctWordsLength}</div>
-          <div>Неправильные слова: {wrongWordsLength}</div>
+        <div className="gameLayout__gameStats">
+          <div className="gameLayout__gameStats-div">
+            Выученые слова: {correctWordsLength}
+          </div>
+          <div className="gameLayout__gameStats-div">
+            Неправильные слова: {wrongWordsLength}
+          </div>
+          <div className="gameLayout__gameStats-div">
+            Слов осталось: {data.length}
+          </div>
+          <div className="gameLayout__gameStats-div">Жизни: {lives}</div>
         </div>
         <CSSTransition
           in={toggle}
@@ -129,7 +151,7 @@ export default (props) => {
             exit: 300,
           }}
           mountOnEnter
-          unmountOnExit
+          //unmountOnExit
           classNames="bw"
           onEntered={() => {
             addWrongWord();
@@ -154,7 +176,7 @@ export default (props) => {
             //   node.addEventListener("transitionend", done, false);
             // }}
             mountOnEnter
-            unmountOnExit
+            //unmountOnExit
             classNames="wb"
           >
             <div className="savanna__component-buttons">

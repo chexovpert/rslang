@@ -28,7 +28,7 @@ export default (isAuthenticated) => {
 
         <WordProvider>
           <Route
-            path={"/games/savanna/"}
+            path={"/games/savanna/:group?/:page?"}
             exact
             render={(props) => <Savanna {...props}></Savanna>}
           />

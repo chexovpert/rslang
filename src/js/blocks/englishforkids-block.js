@@ -100,47 +100,52 @@ export default (props) => {
   if (guessData.length > 0) {
     //console.log(data);
     return (
-      <div style={{ width: "100%" }}>
-        <div>
-          <div>
-            <div>Выученые слова: {correctWordsLength}</div>
-            <div>Неправильные слова: {wrongWordsLength}</div>
+      <div style={{ width: "100%", marginTop: "100px" }}>
+        <div className="gameLayout__gameStats">
+          <div className="gameLayout__gameStats-div">
+            Выученые слова: {correctWordsLength}
           </div>
-          <div className="englishforkids_container">
-            {data &&
-              data.map((word) => (
-                <div className="englishforkids_container-buttons">
-                  <img
-                    src={`${baseUrl}${word.image}`}
-                    className="englishforkids__base-image"
-                  ></img>
-                  <button
-                    value={word.id}
-                    disabled={!word.checked}
-                    className={
-                      !word.checked
-                        ? `audioChallenge__anwsers-button wrong`
-                        : "audioChallenge__anwsers-button correct"
-                    }
-                    onClick={quessHandler}
-                  >
-                    {word.wordTranslate}
-                  </button>
-                </div>
-              ))}
+          <div className="gameLayout__gameStats-div">
+            Неправильные слова: {wrongWordsLength}
           </div>
-          <button
-            className={
-              playing
-                ? "audioChallenge__base-button play"
-                : "audioChallenge__base-button"
-            }
-            style={{ margin: "30px auto", display: "block" }}
-            onClick={toggleAudio}
-          >
-            {playing ? "Pause" : "Play"}
-          </button>
+          <div className="gameLayout__gameStats-div">
+            Слов осталось: {data.length}
+          </div>
         </div>
+        <div className="englishforkids_container">
+          {data &&
+            data.map((word) => (
+              <div className="englishforkids_container-buttons">
+                <img
+                  src={`${baseUrl}${word.image}`}
+                  className="englishforkids__base-image"
+                ></img>
+                <button
+                  value={word.id}
+                  disabled={!word.checked}
+                  className={
+                    !word.checked
+                      ? `audioChallenge__anwsers-button wrong`
+                      : "audioChallenge__anwsers-button correct"
+                  }
+                  onClick={quessHandler}
+                >
+                  {word.wordTranslate}
+                </button>
+              </div>
+            ))}
+        </div>
+        <button
+          className={
+            playing
+              ? "audioChallenge__base-button play"
+              : "audioChallenge__base-button"
+          }
+          style={{ margin: "30px auto", display: "block" }}
+          onClick={toggleAudio}
+        >
+          {playing ? "Pause" : "Play"}
+        </button>
       </div>
     );
   } else {

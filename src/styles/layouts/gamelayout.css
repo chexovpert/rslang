@@ -40,3 +40,13 @@
   text-align: center;
   text-shadow: 1px 1px 1px black;
 }
+
+.gameLayout__gameStats {
+  display: flex;
+  justify-content: space-between;
+  margin: -100px auto 30px;
+}
+.gameLayout__gameStats-div {
+  size: 18px;
+  text-shadow: 1px 1px 1px black;
+}
