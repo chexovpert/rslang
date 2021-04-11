@@ -120,7 +120,7 @@ export default (props) => {
               </li>
               {wrongWords &&
                 wrongWords.map((word) => (
-                  <li>
+                  <li className="gameover__screen_switchWindow-li">
                     <button
                       onClick={() => toggleAudioHandler(word.audio)}
                       value={word.audio}
@@ -132,12 +132,12 @@ export default (props) => {
                     >
                       <VolumeUpIcon></VolumeUpIcon>
                     </button>
-                    <span className="audioChallenge__base-correct-word">
-                      <h4>{word && word.word}</h4>
-                    </span>
-                    <span className="audioChallenge__base-correct-word">
-                      <h4>{word && word.wordTranslate}</h4>
-                    </span>
+                    <div className="gameover__screen_switchWindow-word">
+                      <p>{word && word.word}</p>
+                    </div>
+                    <div className="gameover__screen_switchWindow-wordTranslate">
+                      <p>- {word && word.wordTranslate}</p>
+                    </div>
                   </li>
                 ))}
             </ul>

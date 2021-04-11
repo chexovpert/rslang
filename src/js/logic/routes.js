@@ -15,25 +15,79 @@ import Sprint from "../pages/game-sprint";
 import Savanna from "../pages/savanna";
 import AudioChallenge from "../pages/audioChallenge";
 import EnglishForKids from "../pages/englishforkids";
+import { CSSTransition } from "react-transition-group";
+
+const routeList = [
+  {
+    path: "/",
+    Component: MainPage,
+  },
+  {
+    path: "/games/savanna/:group?/:page?",
+    Component: Savanna,
+  },
+  {
+    path: "/games/audio/:group?/:page?",
+    Component: AudioChallenge,
+  },
+  {
+    path: "/games/forkids/:group?/:page?",
+    Component: EnglishForKids,
+  },
+  {
+    path: "/classbook",
+    Component: TextBook,
+  },
+  {
+    path: "/vocabulary/:type",
+    Component: Vocabulary,
+  },
+  {
+    path: "/wordlist/:group/:page",
+    Component: Wordlist,
+  },
+  {
+    path: "/games",
+    Component: Minigames,
+  },
+  {
+    path: "/games/sprint",
+    Component: Sprint,
+  },
+];
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
-        {/* <div className="content-wrapper"> */}
-
-        <Route path="/" exact>
-          <MainPage></MainPage>
-        </Route>
-
         <WordProvider>
+          {/* {routeList.map(({ path, Component }) => (
+            <Route
+              key={path}
+              path={path}
+              exact
+              render={(props) => <Component {...props}></Component>}
+            >
+              {({ match }) => (
+                <CSSTransition
+                  timeout={1000}
+                  classNames="pages"
+                  unmountOnExit
+                  in={match != null}
+                ></CSSTransition>
+              )}
+            </Route>
+          ))} */}
+          <Route path="/" exact>
+            <MainPage></MainPage>
+          </Route>
           <Route
             path={"/games/savanna/:group?/:page?"}
             exact
             render={(props) => <Savanna {...props}></Savanna>}
           />
           <Route
-            path={"/games/audio"}
+            path={"/games/audio/:group?/:page?"}
             exact
             render={(props) => <AudioChallenge {...props}></AudioChallenge>}
           />
@@ -62,14 +116,11 @@ export default (isAuthenticated) => {
           </Route>
         </WordProvider>
         <Redirect to={"/"} />
-        {/* </div> */}
       </Switch>
     );
   }
   return (
     <Switch>
-      {/* <div className="content-wrapper">
-        <Header></Header> */}
       <Route path="/" exact>
         <MainPage></MainPage>
       </Route>
@@ -80,6 +131,21 @@ export default (isAuthenticated) => {
         <Registration></Registration>
       </Route>
       <WordProvider>
+        <Route
+          path={"/games/savanna/:group?/:page?"}
+          exact
+          render={(props) => <Savanna {...props}></Savanna>}
+        />
+        <Route
+          path={"/games/audio/:group?/:page?"}
+          exact
+          render={(props) => <AudioChallenge {...props}></AudioChallenge>}
+        />
+        <Route
+          path={"/games/forkids/:group?/:page?"}
+          exact
+          render={(props) => <EnglishForKids {...props}></EnglishForKids>}
+        />
         <Route path={"/classbook"} exact>
           <TextBook />
         </Route>
@@ -100,7 +166,6 @@ export default (isAuthenticated) => {
         </Route>
       </WordProvider>
       <Redirect to={"/"} />
-      {/* </div> */}
     </Switch>
   );
 };

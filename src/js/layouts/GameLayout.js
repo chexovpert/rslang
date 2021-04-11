@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useHttp from "../hooks/http.hook";
 import HeaderAuthorized from "../blocks/header-autorized";
 //import EnglishForKids from "../blocks/englishforkids-block";
+import Burger from "../blocks/burger";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -58,11 +59,25 @@ export default (props) => {
   return (
     <div className="app-wrapper">
       <div className="content-wrapper">
-        <HeaderAuthorized />
+        {/* <HeaderAuthorized /> */}
+
         <div
           className="gameLayout"
           style={{ backgroundImage: `url(${props.gameBackground})` }}
         >
+          <div
+            style={{
+              position: "absolute",
+              top: "2%",
+              //left: "0%",
+              right: "0%",
+              marginLeft: "auto",
+              marginRight: "auto",
+              textAlign: "center",
+            }}
+          >
+            <Burger></Burger>
+          </div>
           {!fullData &&
             !loading &&
             !props.match.params.group &&

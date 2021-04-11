@@ -100,7 +100,7 @@ export default (props) => {
   if (guessData.length > 0) {
     //console.log(data);
     return (
-      <div style={{ width: "100%", marginTop: "100px" }}>
+      <div style={{ width: "100%", marginTop: "150px" }}>
         <div className="gameLayout__gameStats">
           <div className="gameLayout__gameStats-div">
             Выученые слова: {correctWordsLength}
