@@ -42,6 +42,10 @@ const gameRoutes = [
 ];
 const studyBookRoutes = [
   {
+    name: "Главная страница",
+    route: "/",
+  },
+  {
     name: "Учебник",
     route: "/classbook",
   },
@@ -118,7 +122,7 @@ export default function TemporaryDrawer() {
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
-            <MenuIcon />
+            <MenuIcon color="secondary" />
           </Button>
           <Drawer
             anchor={anchor}

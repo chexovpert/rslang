@@ -58,7 +58,6 @@ const users = [
 ];
 
 export default () => {
-  console.log(avatar1);
   return (
     <MainLayout>
       <div className="mainPage">

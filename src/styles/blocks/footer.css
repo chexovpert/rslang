@@ -6,6 +6,7 @@
   width: 100%;
   height: 40px;
   color: var(--white);
+  border-top: 2px solid white;
 }
 
 .footer__list {
@@ -65,7 +66,6 @@
   display: flex;
   align-items: center;
   transition: transform 0.1s ease-in;
-
 }
 
 .authors__item,
@@ -97,7 +97,7 @@
   transition: transform 0.1s ease-in;
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .footer__list {
     padding: 0 20px;
   }
@@ -129,7 +129,6 @@
   .authors__item {
     font-size: 0.7rem;
     margin: 0;
-
   }
 
   .authors__link {
@@ -137,5 +136,4 @@
     text-align: right;
     width: 100%;
   }
-
 }

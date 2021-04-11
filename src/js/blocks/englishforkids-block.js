@@ -12,8 +12,6 @@ import correctAudioPath from "../../assets/sounds/correct.mp3";
 const baseUrl = "https://react-learnwords-rslang.herokuapp.com/";
 
 export default (props) => {
-  console.log(props);
-  //console.log(props[0].data);
   const [correctWords] = useState([]);
   const [wrongWords] = useState([]);
   const [wrongWordsLength, setWrongWordsLength] = useState(wrongWords.length);
@@ -25,7 +23,6 @@ export default (props) => {
   //
   const [data, setData] = useState(props.data.data.slice());
 
-  //console.log(data);
   const [guessData, setGuessData] = useState(props.data.data.slice());
 
   const [toggle, setToggle] = useState(null);
@@ -42,7 +39,7 @@ export default (props) => {
 
   const quessHandler = (event) => {
     if (event.target.value === baseWord.id) {
-      console.log("Correct");
+      //console.log("Correct");
       data.map((elem) => {
         if (elem.id === event.target.value) {
           elem.checked = false;
@@ -98,7 +95,6 @@ export default (props) => {
   }, [props.data]);
 
   if (guessData.length > 0) {
-    //console.log(data);
     return (
       <div style={{ width: "100%", marginTop: "150px" }}>
         <div className="gameLayout__gameStats">

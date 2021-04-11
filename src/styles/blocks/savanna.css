@@ -104,4 +104,7 @@
   .savanna__component-baseword {
     font-size: 35px;
   }
+  .savanna__component {
+    margin-top: 60px;
+  }
 }

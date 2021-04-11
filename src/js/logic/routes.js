@@ -114,16 +114,13 @@ export default (isAuthenticated) => {
           <Route path={"/games/sprint"} exact>
             <Sprint />
           </Route>
+          <Redirect to={"/"} />
         </WordProvider>
-        <Redirect to={"/"} />
       </Switch>
     );
   }
   return (
     <Switch>
-      <Route path="/" exact>
-        <MainPage></MainPage>
-      </Route>
       <Route path="/login" exact>
         <Login></Login>
       </Route>
@@ -131,6 +128,9 @@ export default (isAuthenticated) => {
         <Registration></Registration>
       </Route>
       <WordProvider>
+        <Route path="/" exact>
+          <MainPage></MainPage>
+        </Route>
         <Route
           path={"/games/savanna/:group?/:page?"}
           exact
@@ -164,8 +164,8 @@ export default (isAuthenticated) => {
         <Route path={"/games/sprint"} exact>
           <Sprint />
         </Route>
+        <Redirect to={"/"} />
       </WordProvider>
-      <Redirect to={"/"} />
     </Switch>
   );
 };
