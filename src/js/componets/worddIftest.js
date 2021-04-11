@@ -6,20 +6,17 @@ import CheckIcon from "@material-ui/icons/Check";
 import ClearIcon from "@material-ui/icons/Clear";
 import Input from "@material-ui/core/Input";
 
-export default function WordTest({ word }) {
+export default function WordDifTest({ word, crct, setCrct }) {
   const wordCntx = useWordContext();
   const [dWordsId, setDWordsId] = useState([]);
   const [diffword, setDiffword] = useState(false);
   const [wrong, setWrong] = useState(false);
   const [borderColor, setBorderColor] = useState("rgb(77, 77, 77)");
-  let crctword = [];
+
   useEffect(() => {
     wordCntx.setLearnd(true);
-    if ("correctwordid" in localStorage) {
-      crctword = JSON.parse(localStorage.getItem("correctwordid"));
-      if (crctword.includes(word.id)) {
-        wordCntx.setLearnd(false);
-      }
+    if (crct.includes(word.id)) {
+      wordCntx.setLearnd(false);
     }
     if ("difWordId" in localStorage) {
       setDWordsId(JSON.parse(localStorage.getItem("difWordId")));
@@ -54,7 +51,10 @@ export default function WordTest({ word }) {
     if (wordCntx.answer == word.word) {
       wordCntx.setLearnd(false);
       wordCntx.setCorrect(true);
-      wordCntx.correctHndlr(word);
+      if (!crct.includes(word.id)) {
+        let buff = crct.concat(word.id);
+        setCrct(buff);
+      }
       setWrong(false);
       setBorderColor("green");
       setTimeout(() => {

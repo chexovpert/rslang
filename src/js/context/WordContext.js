@@ -16,8 +16,8 @@ export const WordProvider = ({ children }) => {
   const [timer, setTimer] = useState(false);
   const [timerOut, setTimerOut] = useState(false);
   const [start, setStart] = useState(false);
-  const [pagenum, setPagenum] = useState(1);
-  const [groupnum, setGroupnum] = useState(1);
+  const [pagenum, setPagenum] = useState(0);
+  const [groupnum, setGroupnum] = useState(0);
   const [upd, setUpd] = useState(1);
 
   let dltwordid = [];
@@ -139,6 +139,28 @@ export const WordProvider = ({ children }) => {
     }
   }
 
+  function pageHandler() {
+    let progress = [];
+    if ("progress" in localStorage) {
+      progress = JSON.parse(localStorage.getItem("progress"));
+      setGroupnum(parseInt(progress[0]));
+      setPagenum(parseInt(progress[1]));
+    } else {
+      progress = [0, 0];
+      localStorage.setItem("progress", JSON.stringify(progress));
+    }
+  }
+
+  function progressHandler() {
+    let progress = [];
+    if (pagenum > 30) {
+      progress = [groupnum + 1, 0];
+    } else {
+      progress = [groupnum, pagenum + 1];
+    }
+    localStorage.setItem("progress", JSON.stringify(progress));
+  }
+
   return (
     <WordContext.Provider
       value={{
@@ -180,8 +202,10 @@ export const WordProvider = ({ children }) => {
         setPagenum,
         groupnum,
         setGroupnum,
-        upd,
-        setUpd,
+        // upd,
+        // setUpd,
+        progressHandler,
+        pageHandler,
       }}
     >
       {children}

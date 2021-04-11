@@ -16,6 +16,7 @@ import Savanna from "../pages/savanna";
 import AudioChallenge from "../pages/audioChallenge";
 import EnglishForKids from "../pages/englishforkids";
 import Settings from "../pages/settings";
+import TestingDifPage from "../pages/testdif";
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
@@ -85,6 +86,9 @@ export default (isAuthenticated) => {
           </Route>
           <Route path={"/testing"}>
             <TestingPage />
+          </Route>
+          <Route path={"/testingdif"}>
+            <TestingDifPage />
           </Route>
           <Route path="/vocabulary/:type/:group/:page">
             <Vocabulary />

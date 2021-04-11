@@ -1,0 +1,30 @@
+.compl {
+  &__container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    position: fixed;
+    left: 0;
+    background-color: rgba(127, 255, 212, 0.897);
+  }
+
+  &__content {
+    width: 35vw;
+    height: 20vh;
+    background-color: antiquewhite;
+    z-index: 3;
+    border-radius: 30px;
+    box-shadow: 3px 3px 2px gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    p {
+      font-style: italic;
+    }
+  }
+}
