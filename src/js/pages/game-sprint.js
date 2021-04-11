@@ -23,7 +23,9 @@ export default function Sprint() {
 
   useEffect(() => {
     request.map((elem) => {
-      fetch(`https://react-learnwords-rslang.herokuapp.com/words?group=${elem[0]}&page=${elem[1]}`)
+      fetch(
+        `https://react-learnwords-rslang.herokuapp.com/words?group=${elem[0]}&page=${elem[1]}`
+      )
         .then((response) => {
           if (!response.ok) {
             throw new Error("HTTP error " + response.status);
@@ -54,7 +56,11 @@ export default function Sprint() {
     let mword3 = words[numarr[3]].wordTranslate;
     setQuest(qWord.word);
     setQuestAns(qWord.wordTranslate);
-    setAns([qWord.wordTranslate, mword1, mword2, mword3].sort(() => Math.random() - 0.5));
+    setAns(
+      [qWord.wordTranslate, mword1, mword2, mword3].sort(
+        () => Math.random() - 0.5
+      )
+    );
     // quest = qWord.word;
     // ans = [qWord.wordTranslate, mword1, mword2, mword3];
   }
@@ -88,7 +94,9 @@ export default function Sprint() {
           <div>{quest}</div>
           <div>
             {ans.map((elem) => {
-              return <button onClick={ansHandler.bind(this, elem)}>{elem}</button>;
+              return (
+                <button onClick={ansHandler.bind(this, elem)}>{elem}</button>
+              );
             })}
           </div>
           <div>{`Score: ${score}`}</div>

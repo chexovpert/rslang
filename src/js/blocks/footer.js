@@ -37,7 +37,7 @@ export default () => {
                 className="authors__link"
                 target="_blank"
               >
-                Macros
+                chexovpert
               </a>
             </li>
             <li className="authors__item">

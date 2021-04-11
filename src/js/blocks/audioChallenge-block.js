@@ -102,105 +102,117 @@ export default (props) => {
   if (data.length > 0) {
     //console.log(image);
     return (
-      <CSSTransition
-        in={toggle}
-        timeout={{
-          enter: 1000,
-          exit: 1000,
-        }}
-        mountOnEnter
-        unmountOnExit
-        classNames="audChall-buttons"
-        onEntered={() => {
-          toggleAudio();
-          changeSrc(`${url}`);
-        }}
-      >
-        <div style={{ width: "100%" }}>
-          <div>
-            <div>Выученые слова: {correctWordsLength}</div>
-            <div>Неправильные слова: {wrongWordsLength}</div>
+      <div style={{ width: "100%" }}>
+        <div className="gameLayout__gameStats">
+          <div className="gameLayout__gameStats-div">
+            Выученые слова: {correctWordsLength}
           </div>
-          <div className="audioChallenge__base-word-container">
-            <div className="audioChallenge__base-button-container">
-              {!correct && (
-                <button
-                  className={
-                    playing
-                      ? "audioChallenge__base-button play"
-                      : "audioChallenge__base-button"
-                  }
-                  style={{ margin: "0 auto" }}
-                  onClick={toggleAudio}
-                >
-                  {playing ? "Pause" : "Play"}
-                </button>
-              )}
-            </div>
-
-            <CSSTransition
-              in={correct}
-              timeout={{
-                enter: 1000,
-                exit: 1000,
-              }}
-              mountOnEnter
-              unmountOnExit
-              classNames="ap-card"
-            >
-              <div className="audioChallenge__card-correct">
-                <div className="audioChallenge__card-correct-image">
-                  <img src={image} className="audioChallenge__base-image"></img>
-                </div>
-                <div className="audioChallenge__card-correct-bottom">
+          <div className="gameLayout__gameStats-div">
+            Неправильные слова: {wrongWordsLength}
+          </div>
+          <div className="gameLayout__gameStats-div">
+            Слов осталось: {data.length}
+          </div>
+        </div>
+        <CSSTransition
+          in={toggle}
+          timeout={{
+            enter: 1000,
+            exit: 1000,
+          }}
+          mountOnEnter
+          //unmountOnExit
+          classNames="audChall-buttons"
+          onEntered={() => {
+            toggleAudio();
+            changeSrc(`${url}`);
+          }}
+        >
+          <div style={{ width: "100%" }}>
+            <div className="audioChallenge__base-word-container">
+              <div className="audioChallenge__base-button-container">
+                {!correct && (
                   <button
-                    onClick={toggleAudio}
                     className={
                       playing
                         ? "audioChallenge__base-button play"
                         : "audioChallenge__base-button"
                     }
+                    style={{ margin: "0 auto" }}
+                    onClick={toggleAudio}
                   >
                     {playing ? "Pause" : "Play"}
                   </button>
-                  <div className="audioChallenge__base-correct-word">
-                    <h2>{baseWord && baseWord.word}</h2>
+                )}
+              </div>
+
+              <CSSTransition
+                in={correct}
+                timeout={{
+                  enter: 1000,
+                  exit: 300,
+                }}
+                mountOnEnter
+                unmountOnExit
+                classNames="ap-card"
+              >
+                <div className="audioChallenge__card-correct">
+                  <div className="audioChallenge__card-correct-image">
+                    <img
+                      src={image}
+                      className="audioChallenge__base-image"
+                    ></img>
+                  </div>
+                  <div className="audioChallenge__card-correct-bottom">
+                    <button
+                      onClick={toggleAudio}
+                      className={
+                        playing
+                          ? "audioChallenge__base-button play"
+                          : "audioChallenge__base-button"
+                      }
+                    >
+                      {playing ? "Pause" : "Play"}
+                    </button>
+                    <div className="audioChallenge__base-correct-word">
+                      <h2>{baseWord && baseWord.word}</h2>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </CSSTransition>
-          </div>
-          <div className="savanna__component">
-            <div className="savanna__component-buttons">
-              {guess &&
-                guess.map((word) => (
-                  <button
-                    value={word.id}
-                    disabled={correct}
-                    className={
-                      correct
-                        ? `audioChallenge__anwsers-button ${
-                            word.id === baseWord.id ? "true" : "wrong"
-                          }`
-                        : "audioChallenge__anwsers-button"
-                    }
-                    onClick={quessHandler}
-                  >
-                    {word.wordTranslate}
-                  </button>
-                ))}
+              </CSSTransition>
             </div>
+            <div className="savanna__component">
+              <div className="savanna__component-buttons">
+                {guess &&
+                  guess.map((word) => (
+                    <button
+                      value={word.id}
+                      disabled={correct}
+                      className={
+                        correct
+                          ? `audioChallenge__anwsers-button ${
+                              word.id === baseWord.id ? "true" : "wrong"
+                            }`
+                          : "audioChallenge__anwsers-button"
+                      }
+                      onClick={quessHandler}
+                    >
+                      {word.wordTranslate}
+                    </button>
+                  ))}
+              </div>
 
-            <button
-              onClick={nextpageHandler}
-              className="header__link login"
-              style={{ margin: "0 auto" }}
-            >
-              {correct ? "следующее слово" : "я не знаю"}
-            </button>
+              <button
+                onClick={nextpageHandler}
+                className="header__link login"
+                style={{ margin: "0 auto" }}
+              >
+                {correct ? "следующее слово" : "я не знаю"}
+              </button>
+            </div>
           </div>
-        </div>
-      </CSSTransition>
+        </CSSTransition>
+      </div>
     );
   } else {
     return (

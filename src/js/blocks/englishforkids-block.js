@@ -12,6 +12,8 @@ import correctAudioPath from "../../assets/sounds/correct.mp3";
 const baseUrl = "https://react-learnwords-rslang.herokuapp.com/";
 
 export default (props) => {
+  console.log(props);
+  //console.log(props[0].data);
   const [correctWords] = useState([]);
   const [wrongWords] = useState([]);
   const [wrongWordsLength, setWrongWordsLength] = useState(wrongWords.length);
@@ -23,7 +25,7 @@ export default (props) => {
   //
   const [data, setData] = useState(props.data.data.slice());
 
-  console.log(data);
+  //console.log(data);
   const [guessData, setGuessData] = useState(props.data.data.slice());
 
   const [toggle, setToggle] = useState(null);
@@ -53,7 +55,7 @@ export default (props) => {
       ) {
         correctWords.push(correctElem);
       }
-      console.log(correctWords);
+      //console.log(correctWords);
       correctAudio.play();
       setToggle(false);
       setCorrectWordsLength(correctWords.length);
@@ -65,8 +67,8 @@ export default (props) => {
       }
       wrongAudio.play();
       setWrongWordsLength(wrongWords.length);
-      console.log(wrongWords);
-      console.log("wrong");
+      //console.log(wrongWords);
+      //console.log("wrong");
     }
   };
   const newWords = () => {
@@ -86,7 +88,7 @@ export default (props) => {
     //   .filter((elem) => elem.id !== updateData[0].id);
 
     updateData.shift();
-    console.log(updateData);
+    //console.log(updateData);
     setGuessData(updateData);
   };
   useEffect(() => {
@@ -96,49 +98,54 @@ export default (props) => {
   }, [props.data]);
 
   if (guessData.length > 0) {
-    console.log(data);
+    //console.log(data);
     return (
-      <div style={{ width: "100%" }}>
-        <div>
-          <div>
-            <div>Выученые слова: {correctWordsLength}</div>
-            <div>Неправильные слова: {wrongWordsLength}</div>
+      <div style={{ width: "100%", marginTop: "150px" }}>
+        <div className="gameLayout__gameStats">
+          <div className="gameLayout__gameStats-div">
+            Выученые слова: {correctWordsLength}
           </div>
-          <div className="englishforkids_container">
-            {data &&
-              data.map((word) => (
-                <div className="englishforkids_container-buttons">
-                  <img
-                    src={`${baseUrl}${word.image}`}
-                    className="englishforkids__base-image"
-                  ></img>
-                  <button
-                    value={word.id}
-                    disabled={!word.checked}
-                    className={
-                      !word.checked
-                        ? `audioChallenge__anwsers-button wrong`
-                        : "audioChallenge__anwsers-button correct"
-                    }
-                    onClick={quessHandler}
-                  >
-                    {word.wordTranslate}
-                  </button>
-                </div>
-              ))}
+          <div className="gameLayout__gameStats-div">
+            Неправильные слова: {wrongWordsLength}
           </div>
-          <button
-            className={
-              playing
-                ? "audioChallenge__base-button play"
-                : "audioChallenge__base-button"
-            }
-            style={{ margin: "30px auto", display: "block" }}
-            onClick={toggleAudio}
-          >
-            {playing ? "Pause" : "Play"}
-          </button>
+          <div className="gameLayout__gameStats-div">
+            Слов осталось: {data.length}
+          </div>
         </div>
+        <div className="englishforkids_container">
+          {data &&
+            data.map((word) => (
+              <div className="englishforkids_container-buttons">
+                <img
+                  src={`${baseUrl}${word.image}`}
+                  className="englishforkids__base-image"
+                ></img>
+                <button
+                  value={word.id}
+                  disabled={!word.checked}
+                  className={
+                    !word.checked
+                      ? `audioChallenge__anwsers-button wrong`
+                      : "audioChallenge__anwsers-button correct"
+                  }
+                  onClick={quessHandler}
+                >
+                  {word.wordTranslate}
+                </button>
+              </div>
+            ))}
+        </div>
+        <button
+          className={
+            playing
+              ? "audioChallenge__base-button play"
+              : "audioChallenge__base-button"
+          }
+          style={{ margin: "30px auto", display: "block" }}
+          onClick={toggleAudio}
+        >
+          {playing ? "Pause" : "Play"}
+        </button>
       </div>
     );
   } else {

@@ -1,13 +1,20 @@
 import React from "react";
 import { HashRouter } from "react-router-dom";
 
-import Footer from "../blocks/footer";
 import useRoutes from "../logic/routes";
 import useAuth from "../hooks/auth.hook";
 import AuthContext from "../context/AuthContext";
 
 function PageComponents() {
-  const { token, login, logout, userId, name, refreshToken, message } = useAuth();
+  const {
+    token,
+    login,
+    logout,
+    userId,
+    name,
+    refreshToken,
+    message,
+  } = useAuth();
   const isAuthenticated = !!token;
   const routes = useRoutes(isAuthenticated);
   return (
@@ -23,12 +30,7 @@ function PageComponents() {
         message,
       }}
     >
-      <HashRouter basename="/">
-        <div className="app-wrapper">
-          {routes}
-          <Footer></Footer>
-        </div>
-      </HashRouter>
+      <HashRouter basename="/">{routes}</HashRouter>
     </AuthContext.Provider>
   );
 }
