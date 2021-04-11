@@ -31,8 +31,8 @@ export default (props) => {
   const quessHandler = (event) => {
     //console.log(event.target.textContent);
     //console.log(baseWord);
-    console.log(guess);
-    console.log(baseWord);
+    //console.log(guess);
+    //console.log(baseWord);
     if (event.target.textContent === baseWord.word) {
       let correctElem = baseData.find((elem) => elem.id === event.target.value);
       if (
@@ -58,12 +58,12 @@ export default (props) => {
         wrongWords.push(wrongElem);
       }
       setLives(lives - 1);
-      if (lives <= 1) {
-        data.length = 1;
-        nextpageHandler();
-        //setToggle(true);
-        //setCorrect(true);
-      }
+      // if (lives <= 1) {
+      //   data.length = 1;
+      //   nextpageHandler();
+      //   //setToggle(true);
+      //   //setCorrect(true);
+      // }
       wrongAudio.play();
       setWrongWordsLength(wrongWords.length);
       console.log("wrong");
@@ -123,11 +123,12 @@ export default (props) => {
     setBaseData(props.data.data.slice().sort(() => Math.random() - 0.5));
     newWords();
   }, [props.data]);
-  // useEffect(() => {
-  //   if (data.length <= 1) {
-  //     nextpageHandler();
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (lives <= 0) {
+      data.length = 1;
+      nextpageHandler();
+    }
+  }, [lives]);
 
   if (data.length > 0) {
     return (
@@ -154,7 +155,9 @@ export default (props) => {
           //unmountOnExit
           classNames="bw"
           onEntered={() => {
+            setLives(lives - 1);
             addWrongWord();
+
             nextpageHandler();
           }}
         >

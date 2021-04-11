@@ -38,7 +38,7 @@ export default (props) => {
 
   const quessHandler = (event) => {
     if (event.target.value === baseWord.id) {
-      console.log(baseData);
+      //console.log(baseData);
       let correctElem = baseData.find((elem) => elem.id === event.target.value);
       if (
         !wrongWords.find((elem) => elem.id === event.target.value) &&
@@ -100,7 +100,6 @@ export default (props) => {
   }, [props.data]);
 
   if (data.length > 0) {
-    //console.log(image);
     return (
       <div style={{ width: "100%" }}>
         <div className="gameLayout__gameStats">
