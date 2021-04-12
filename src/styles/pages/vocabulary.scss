@@ -24,5 +24,15 @@
     width: 80%;
     height: 100%;
     background-color: aliceblue;
+    .wordsmissing {
+      display: flex;
+      font-size: 30px;
+      // text-align: center;
+      justify-content: center;
+      align-items: center;
+      background-color: none;
+      margin: 50px;
+      height: 60vh;
+    }
   }
 }

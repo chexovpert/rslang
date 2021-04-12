@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import { useWordContext } from "../context/WordContext";
-import "../../styles/components/wordcard.scss";
+import "../../styles/components/popup.scss";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-export default function Word({ word, delHndlr, delDif }) {
+export default function Popup({ word, setShow }) {
   const wordCntx = useWordContext();
   const [dWordsId, setDWordsId] = useState([]);
   const [diffword, setDiffword] = useState(false);
@@ -34,52 +34,50 @@ export default function Word({ word, delHndlr, delDif }) {
       }
     } else {
       wordCntx.removeDifHndlr(word);
-      delDif(word);
       setDWordsId(JSON.parse(localStorage.getItem("difWordId")));
     }
   }
 
-  // function delClickHndlr() {
-  //   if (type !== "deleted") {
-  //     // wordCntx.deleteHndlr(word);
-  //   }
-  //   delHndlr(word);
-  // }
-
   return (
-    <div className="word__container">
-      <div className="word__content">
-        <div className="word__word">
-          <h1>{word.word}</h1>
-          <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audio)} title="Прослушать произношение" />
+    <div className="popup__container" onMouseDown={setShow}>
+      <div
+        className="popup__content"
+        onMouseDown={(event) => {
+          event.stopPropagation();
+        }}
+      >
+        <div className="popup__head">
+          <img
+            className="popup__image"
+            src={`https://react-learnwords-rslang.herokuapp.com/${word.image}`}
+            alt={"word_image.jpg"}
+          />
+          <div className="popup__title">
+            <div className="popup__word">
+              <h1>{word.word}</h1>
+              <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audio)} title="Прослушать произношение" />
+            </div>
+            <div className="popup__translate">Перевод: {word.wordTranslate}</div>
+            <div className="popup__transcript">Транскрипция: {word.transcription}</div>
+          </div>
         </div>
-        <div className="word__translate">Перевод: {word.wordTranslate}</div>
-        <div className="word__transcript">Транскрипция: {word.transcription}</div>
-        <div className="word__meaning_container">
+
+        <div className="popup__meaning_container">
           <h3>Значение слова</h3>
-          <div className="word__meaning">
+          <div className="popup__meaning">
             <div dangerouslySetInnerHTML={{ __html: word.textMeaning }} />
             <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audioMeaning)} title="Прослушать произношение" />
           </div>
-          <div className="word__meaning-transl">{word.textMeaningTranslate}</div>
+          <div className="popup__meaning-transl">{word.textMeaningTranslate}</div>
         </div>
-        <div className="word__example_container">
+        <div className="popup__example_container">
           <h3>Пример слова в предложении</h3>
-          <div className="word__example">
+          <div className="popup__example">
             <div dangerouslySetInnerHTML={{ __html: word.textExample }} />
             <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audioExample)} title="Прослушать произношение" />
           </div>
-          <div className="word__example-transl">{word.textExampleTranslate}</div>
+          <div className="popup__example-transl">{word.textExampleTranslate}</div>
         </div>
-      </div>
-      <div className="word__buttons">
-        <button className="registration__button-submit" onClick={clickHandler}>
-          {diffword ? "Убрать из сложных" : "Сложное слово"}
-        </button>
-        {/* <button className="registration__button-submit" onClick={delClickHndlr}> */}
-        <button className="registration__button-submit" onClick={delHndlr.bind(this, word)}>
-          {type === "deleted" ? "Убрать из удаленных" : "Удалить слово"}
-        </button>
       </div>
     </div>
   );
