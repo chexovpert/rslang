@@ -5,6 +5,8 @@ import useAudio from "../hooks/audio.hook";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import { CSSTransition } from "react-transition-group";
+import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+import { Link, useHistory } from "react-router-dom";
 
 const baseUrl = "https://react-learnwords-rslang.herokuapp.com/";
 
@@ -16,132 +18,126 @@ export default (props) => {
   const [toggle, setToggle] = useState(true);
   const [toggle1, setToggle1] = useState(false);
   const auth = useContext(AuthContext);
-  //const { loading, error, request } = useHttp();
   const [playing, toggleAudio, changeSrc] = useAudio(null);
 
-  // const gameOverHandler = async () => {
-  //   try {
-  //     const data = await request(
-  //       "https://react-learnwords-rslang.herokuapp.com/signin",
-  //       "POST",
-  //       //JSON.stringify({ ...form }),
-  //       { Accept: "application/json", "Content-Type": "application/json" }
-  //     );
-  //     auth.login(
-  //       data.token,
-  //       data.userId,
-  //       data.name,
-  //       data.refreshToken,
-  //       data.message
-  //     );
-  //   } catch (e) {}
-  // };
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
     setToggle(!toggle);
   };
-  const toggleAudioHandler = (event) => {
-    changeSrc(`${baseUrl}${event.target.value}`);
+  const toggleAudioHandler = (audio) => {
+    changeSrc(`${baseUrl}${audio}`);
 
     toggleAudio();
   };
   // useEffect(() => {
   //   console.log(error);
   // }, error);
+  let percent =
+    correctWords && wrongWords
+      ? Math.round(
+          (correctWords.length / (correctWords.length + wrongWords.length)) *
+            100
+        )
+      : 0;
   return (
     <div className="gameover__screen">
       <div className="gameover__screen_switchWindow">
-        {/* <CSSTransition
-          in={toggle}
-          timeout={{
-            enter: 1000,
-            exit: 1000,
-          }}
-          mountOnEnter
-          unmountOnExit
-          classNames="audChall-buttons"
-          onExited={() => {
-            setToggle(false);
-          }}
-        > */}
         {toggle && (
           <div className="gameover__screen_switchWindowWrap">
             <div className="gameover__screen_title">
-              <h2 className="gameover__screen_title-h2">Отличный результат</h2>
+              <h2 className="gameover__screen_title-h2">Игра окончена</h2>
               <p className="gameover__screen_title-p">
-                слов изучено, 0 на изучении
+                слов изучено {correctWords ? correctWords.length : 0},{" "}
+                {wrongWords ? wrongWords.length : 0} на изучении
               </p>
             </div>
             <div className="gameover_screen_stats">
               <div className="gameover_screen_stats-statCircle">
                 <div className="gameover_screen_stats-outerCircle">
-                  <div className="gameover_screen_stats-innerCircle">90%</div>
-                  <div className="gameover_screen_stats-animation"></div>
+                  <div className="gameover_screen_stats-innerCircle">
+                    {percent}%
+                  </div>
+                  <div
+                    className="gameover_screen_stats-animation"
+                    style={{ height: `${percent}%` }}
+                  ></div>
                 </div>
               </div>
             </div>
           </div>
         )}
-        {/* </CSSTransition> */}
+
         <CSSTransition
           in={!toggle}
           timeout={{
             enter: 300,
             exit: 300,
           }}
-          //mountOnEnter
+          mountOnEnter
           unmountOnExit
           classNames="gameover-animation"
           onExited={() => {
             setToggle(true);
           }}
         >
-          <div className="gameover__screen_switchWindow-list">
-            <ul>
+          <div className="gameover__screen_switchWindow-listContainer">
+            <ul className="gameover__screen_switchWindow-list">
+              <li>
+                <span>Знаю </span>
+                <span className="gameover__screen_switchWindow-correctTitle">
+                  {correctWords ? correctWords.length : "0"}
+                </span>
+              </li>
               {correctWords &&
                 correctWords.map((word) => (
-                  <li>
+                  <li className="gameover__screen_switchWindow-li">
                     <button
-                      onClick={toggleAudioHandler}
+                      onClick={() => toggleAudioHandler(word.audio)}
                       value={word.audio}
                       className={
                         playing
-                          ? "audioChallenge__base-button play"
-                          : "audioChallenge__base-button"
+                          ? "gameover__screen_switchWindow-soundButton"
+                          : "gameover__screen_switchWindow-soundButton"
                       }
                     >
-                      {playing ? "Pause" : "Play"}
+                      <VolumeUpIcon></VolumeUpIcon>
                     </button>
-                    <div className="audioChallenge__base-correct-word">
-                      <h2>{word && word.word}</h2>
+                    <div className="gameover__screen_switchWindow-word">
+                      <p>{word && word.word}</p>
                     </div>
-                    <span className="audioChallenge__base-correct-word">
-                      <h4>{word && word.wordTranslate}</h4>
-                    </span>
+                    <div className="gameover__screen_switchWindow-wordTranslate">
+                      <p>- {word && word.wordTranslate}</p>
+                    </div>
                   </li>
                 ))}
             </ul>
             <ul>
+              <li>
+                <span>Ошибок </span>
+                <span className="gameover__screen_switchWindow-wrongTitle">
+                  {wrongWords ? wrongWords.length : "0"}
+                </span>
+              </li>
               {wrongWords &&
                 wrongWords.map((word) => (
-                  <li>
+                  <li className="gameover__screen_switchWindow-li">
                     <button
-                      onClick={toggleAudioHandler}
+                      onClick={() => toggleAudioHandler(word.audio)}
                       value={word.audio}
                       className={
                         playing
-                          ? "audioChallenge__base-button play"
-                          : "audioChallenge__base-button"
+                          ? "gameover__screen_switchWindow-soundButton"
+                          : "gameover__screen_switchWindow-soundButton"
                       }
                     >
-                      {playing ? "Pause" : "Play"}
+                      <VolumeUpIcon></VolumeUpIcon>
                     </button>
-                    <span className="audioChallenge__base-correct-word">
-                      <h4>{word && word.word}</h4>
-                    </span>
-                    <span className="audioChallenge__base-correct-word">
-                      <h4>{word && word.wordTranslate}</h4>
-                    </span>
+                    <div className="gameover__screen_switchWindow-word">
+                      <p>{word && word.word}</p>
+                    </div>
+                    <div className="gameover__screen_switchWindow-wordTranslate">
+                      <p>- {word && word.wordTranslate}</p>
+                    </div>
                   </li>
                 ))}
             </ul>
@@ -155,29 +151,20 @@ export default (props) => {
         className="gameover_screen-radioGroup"
       >
         <Radio
-          //checked={selectedValue === true}
-          //onChange={handleChange}
           value={"stats"}
           name="radio-button-demo"
           inputProps={{ "aria-label": "A" }}
         />
         <Radio
-          //checked={selectedValue === false}
-
           value={"words"}
           name="radio-button-demo"
           inputProps={{ "aria-label": "B" }}
         />
       </RadioGroup>
       <div>
-        <button
-          //type="submit"
-          //value="Войти"
-          className="registration__button-submit"
-          //onClick={authHandler}
-        >
-          Войти
-        </button>
+        <Link to={"/"}>
+          <button className="registration__button-submit">На главную</button>
+        </Link>
       </div>
     </div>
   );

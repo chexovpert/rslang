@@ -17,49 +17,78 @@ import AudioChallenge from "../pages/audioChallenge";
 import EnglishForKids from "../pages/englishforkids";
 import Settings from "../pages/settings";
 import TestingDifPage from "../pages/testdif";
+import { CSSTransition } from "react-transition-group";
+
+const routeList = [
+  {
+    path: "/",
+    Component: MainPage,
+  },
+  {
+    path: "/games/savanna/:group?/:page?",
+    Component: Savanna,
+  },
+  {
+    path: "/games/audio/:group?/:page?",
+    Component: AudioChallenge,
+  },
+  {
+    path: "/games/forkids/:group?/:page?",
+    Component: EnglishForKids,
+  },
+  {
+    path: "/classbook",
+    Component: TextBook,
+  },
+  {
+    path: "/vocabulary/:type",
+    Component: Vocabulary,
+  },
+  {
+    path: "/wordlist/:group/:page",
+    Component: Wordlist,
+  },
+  {
+    path: "/games",
+    Component: Minigames,
+  },
+  {
+    path: "/games/sprint",
+    Component: Sprint,
+  },
+];
 
 export default (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
-        <div className="content-wrapper">
-          <HeaderAuthorized></HeaderAuthorized>
+        <WordProvider>
+          {/* {routeList.map(({ path, Component }) => (
+            <Route
+              key={path}
+              path={path}
+              exact
+              render={(props) => <Component {...props}></Component>}
+            >
+              {({ match }) => (
+                <CSSTransition
+                  timeout={1000}
+                  classNames="pages"
+                  unmountOnExit
+                  in={match != null}
+                ></CSSTransition>
+              )}
+            </Route>
+          ))} */}
           <Route path="/" exact>
             <MainPage></MainPage>
           </Route>
-          <Route
-            path={"/games/savanna"}
-            exact
-            render={(props) => (
-              <Savanna
-                // countryData={countryData}
-                {...props}
-              ></Savanna>
-            )}
-          />
-          <Route
-            path={"/games/audio"}
-            exact
-            render={(props) => (
-              <AudioChallenge
-                // countryData={countryData}
-                {...props}
-              ></AudioChallenge>
-            )}
-          />
-          <Route
-            path={"/games/forkids"}
-            exact
-            render={(props) => (
-              <EnglishForKids
-                // countryData={countryData}
-                {...props}
-              ></EnglishForKids>
-            )}
-          />
+          <Route path={"/games/savanna/:group?/:page?"} exact render={(props) => <Savanna {...props}></Savanna>} />
+          <Route path={"/games/audio/:group?/:page?"} exact render={(props) => <AudioChallenge {...props}></AudioChallenge>} />
+          <Route path={"/games/forkids/:group?/:page?"} exact render={(props) => <EnglishForKids {...props}></EnglishForKids>} />
 
           <Redirect to={"/"} />
-        </div>
+        </WordProvider>
       </Switch>
     );
   }
@@ -67,7 +96,7 @@ export default (isAuthenticated) => {
     <Switch>
       <div className="content-wrapper">
         <WordProvider>
-          <Header></Header>
+          {/* <Header></Header> */}
           <Route path="/" exact>
             <MainPage></MainPage>
           </Route>
@@ -96,45 +125,54 @@ export default (isAuthenticated) => {
           <Route path="/wordlist/:group/:page">
             <Wordlist />
           </Route>
-          <Route path="/games" exact>
+          {/* <Route path="/games" exact>
             <Minigames />
-          </Route>
+          </Route> */}
           <Route path={"/games/sprint"} exact>
             <Sprint />
           </Route>
-          <Route
-            path={"/games/savanna"}
-            exact
-            render={(props) => (
-              <Savanna
-                // countryData={countryData}
-                {...props}
-              ></Savanna>
-            )}
-          />
-          <Route
-            path={"/games/audio"}
-            exact
-            render={(props) => (
-              <AudioChallenge
-                // countryData={countryData}
-                {...props}
-              ></AudioChallenge>
-            )}
-          />
-          <Route
-            path={"/games/forkids"}
-            exact
-            render={(props) => (
-              <EnglishForKids
-                // countryData={countryData}
-                {...props}
-              ></EnglishForKids>
-            )}
-          />
+          <Route path={"/games/savanna/:group?/:page?"} exact render={(props) => <Savanna {...props}></Savanna>} />
+          <Route path={"/games/audio/:group?/:page?"} exact render={(props) => <AudioChallenge {...props}></AudioChallenge>} />
+          <Route path={"/games/forkids/:group?/:page?"} exact render={(props) => <EnglishForKids {...props}></EnglishForKids>} />
+          <Redirect to={"/"} />
         </WordProvider>
-        <Redirect to={"/"} />
       </div>
+    </Switch>
+  );
+
+  return (
+    <Switch>
+      <Route path="/login" exact>
+        <Login></Login>
+      </Route>
+      <Route path="/register" exact>
+        <Registration></Registration>
+      </Route>
+      <WordProvider>
+        <Route path="/" exact>
+          <MainPage></MainPage>
+        </Route>
+
+        <Route path={"/classbook"} exact>
+          <TextBook />
+        </Route>
+        <Route path={"/testing"}>
+          <TestingPage />
+        </Route>
+        <Route path="/vocabulary/:type">
+          <Vocabulary />
+        </Route>
+        <Route path="/wordlist/:group/:page">
+          <Wordlist />
+        </Route>
+        <Route path="/games" exact>
+          <Minigames />
+        </Route>
+        <Route path={"/games/sprint"} exact>
+          <Sprint />
+        </Route>
+        <Redirect to={"/"} />
+      </WordProvider>
     </Switch>
   );
 };

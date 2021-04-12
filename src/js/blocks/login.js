@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import useHttp from "../hooks/http.hook";
+import MainLayout from "../layouts/MainLayout";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default () => {
   const auth = useContext(AuthContext);
@@ -17,6 +19,7 @@ export default () => {
         JSON.stringify({ ...form }),
         { Accept: "application/json", "Content-Type": "application/json" }
       );
+      console.log(data);
       auth.login(
         data.token,
         data.userId,
@@ -24,48 +27,65 @@ export default () => {
         data.refreshToken,
         data.message
       );
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
-  useEffect(() => {
-    console.log(error);
-  }, error);
+  // useEffect(() => {
+  //   console.log(error);
+  // }, error);
   return (
-    <div className="registration">
-      <h1 className="registration-title">Войти</h1>
-      <div>
-        <div className="registration__input-field">
-          <label className="registration__input-title">Email:</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="введите email"
-            onChange={changeHandler}
-            required
-            className="registration__input-field-input"
-          />
+    <MainLayout>
+      <div className="registration">
+        <h1 className="registration-title">Войти</h1>
+        <div>
+          <div className="registration__input-field">
+            <label className="registration__input-title">Email:</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="введите email"
+              onChange={changeHandler}
+              required
+              className="registration__input-field-input"
+            />
+          </div>
+          <div className="registration__input-field">
+            <label className="registration__input-title">Пароль:</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="введите пароль"
+              onChange={changeHandler}
+              required
+              className="registration__input-field-input"
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+              height: "60px",
+            }}
+          >
+            {!loading && (
+              <button
+                //type="submit"
+                //value="Войти"
+                className="registration__button-submit"
+                onClick={authHandler}
+                disabled={loading}
+              >
+                {loading ? "Загрузка" : "Войти"}
+              </button>
+            )}
+            {loading && <CircularProgress></CircularProgress>}
+          </div>
         </div>
-        <div className="registration__input-field">
-          <label className="registration__input-title">Пароль:</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="введите пароль"
-            onChange={changeHandler}
-            required
-            className="registration__input-field-input"
-          />
-        </div>
-        <button
-          //type="submit"
-          //value="Войти"
-          className="registration__button-submit"
-          onClick={authHandler}
-        >
-          Войти
-        </button>
       </div>
-    </div>
+    </MainLayout>
   );
 };

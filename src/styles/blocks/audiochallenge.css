@@ -6,7 +6,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(#e66465, #9198e5);
+  /* background: linear-gradient(#7b0e91, #ecf00b); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
 }
 
@@ -94,6 +97,8 @@
   background-color: transparent;
   transition: all 0.1s ease-in-out;
   margin: auto;
+  color: white;
+  text-shadow: 1px 1px 1px black;
 }
 .audioChallenge__anwsers-button.true {
   opacity: 1;
@@ -123,7 +128,7 @@
 .ap-card-exit-active {
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 1000ms, transform 300ms;
+  transition: opacity 300ms, transform 300ms;
 }
 .audChall-buttons-enter {
   transform: translateX(100vw);
