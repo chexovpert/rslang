@@ -11,6 +11,12 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+    @media (max-width: 600px) {
+      flex-direction: column;
+      button {
+        height: 50px;
+      }
+    }
   }
 
   &__timer {
@@ -22,35 +28,23 @@
     font-size: 40px;
     margin: 30px;
     text-shadow: 1px 2px 1px gray;
+    @media (max-width: 600px) {
+      font-size: 35px;
+    }
   }
 
   &__score {
     font-size: 30px;
     margin: 30px;
-  }
-  &__intro {
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 50px;
-    // width:   70%;
-    text-align: center;
-    margin-bottom: 40px;
-    div {
-      font-size: 60%;
+    @media (max-width: 600px) {
+      font-size: 25px;
     }
-  }
-
-  &__groups {
-    justify-content: space-around;
-    margin: 0 40px 20px;
   }
 
   &__mult {
     display: flex;
     width: 20vw;
+    min-width: 200px;
     justify-content: space-around;
     margin: 15px 0;
     font-size: 25px;
@@ -64,6 +58,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    @media (max-width: 600px) {
+      margin-bottom: 0;
+      width: 200px;
+      font-size: 35px;
     }
   }
 }
