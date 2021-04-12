@@ -6,12 +6,22 @@ import MainLayout from "../layouts/MainLayout";
 
 export default function TextBook() {
   const [value, setValue] = useState(10);
-  const [pers, setPers] = useState(15);
+  const [pers, setPers] = useState(2);
+  const [dif, setDif] = useState(true);
   useEffect(() => {
     if ("correctwordid" in localStorage) {
       setValue(JSON.parse(localStorage.getItem("correctwordid")));
+      setPers(value.length / 36);
+    } else {
+      setValue(0);
     }
     setPers(value.length / 36);
+    if ("difWordId" in localStorage) {
+      let dWordsId = JSON.parse(localStorage.getItem("difWordId"));
+      if (dWordsId.length < 20) {
+        setDif(false);
+      }
+    }
   }, []);
   return (
     <MainLayout>
@@ -35,10 +45,11 @@ export default function TextBook() {
               <p>{"Посмотреть весь список слов"}</p>
             </div>
           </Link>
-          <Link to={"/testingdif"}>
+          <Link to={dif ? "/testingdif" : null}>
             <div className="textbook__cell">
               <h4 style={{ color: "blue", textDecoration: "dash ed" }}>НАПОМИНАНИЕ!!!</h4>
               <p>{"Повторить сложные слова"}</p>
+              {!dif ? <p style={{ fontSize: "20px", fontStyle: "italic" }}>пока мало сложных</p> : null}
             </div>
           </Link>
         </div>

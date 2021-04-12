@@ -38,21 +38,42 @@ export default (props) => {
   ];
 
   const wordsHandler = async (group, page = 0) => {
-    try {
-      const data = await request(
-        `https://react-learnwords-rslang.herokuapp.com/words?group=${group}&page=${page}`,
-        "GET",
-        null,
-        { accept: "application/json" }
-      );
-      const randomWords = data.slice().sort(() => Math.random() - 0.5);
-      randomWords.map((elem) => (elem.checked = true));
-      //const randomGuesses = data.slice().sort(() => Math.random() - 0.5);
-      setFullData({ data: randomWords });
-      //console.log(data);
-      //console.log(randomWords);
-    } catch (e) {
-      console.log(e);
+    if (props.type === "sprint") {
+      const rqst = pagesHandler(group, page);
+      let wordsarr = [];
+      try {
+        let rq = await Promise.all(
+          rqst.map(async (elem) => {
+            const data = await request(
+              `https://react-learnwords-rslang.herokuapp.com/words?group=${elem[0]}&page=${elem[1]}`,
+              "GET",
+              null,
+              { accept: "application/json" }
+            );
+            wordsarr = wordsarr.concat(data);
+          })
+        );
+        setFullData(wordsarr.sort(() => Math.random() - 0.5));
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        const data = await request(
+          `https://react-learnwords-rslang.herokuapp.com/words?group=${group}&page=${page}`,
+          "GET",
+          null,
+          { accept: "application/json" }
+        );
+        const randomWords = data.slice().sort(() => Math.random() - 0.5);
+        randomWords.map((elem) => (elem.checked = true));
+        //const randomGuesses = data.slice().sort(() => Math.random() - 0.5);
+        setFullData({ data: randomWords });
+        //console.log(data);
+        //console.log(randomWords);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -61,10 +82,7 @@ export default (props) => {
       <div className="content-wrapper">
         {/* <HeaderAuthorized /> */}
 
-        <div
-          className="gameLayout"
-          style={{ backgroundImage: `url(${props.gameBackground})` }}
-        >
+        <div className="gameLayout" style={{ backgroundImage: `url(${props.gameBackground})` }}>
           <div
             style={{
               position: "absolute",
@@ -78,45 +96,34 @@ export default (props) => {
           >
             <Burger></Burger>
           </div>
-          {!fullData &&
-            !loading &&
-            !props.match.params.group &&
-            !props.match.params.page && (
-              <div>
-                <h1 className="gameLayout-h1">{props.text}</h1>
-                {buttons.map((elem) => (
-                  <button
-                    className="gameLayout-button"
-                    disabled={loading}
-                    onClick={() => wordsHandler(elem.group)}
-                    //value={elem.group}
-                  >
-                    {elem.text}
-                  </button>
-                ))}
-              </div>
-            )}
-          {!fullData &&
-            !loading &&
-            props.match.params.group &&
-            props.match.params.page && (
-              <div>
-                <h1 className="gameLayout-h1">{props.text}</h1>
+          {!fullData && !loading && !props.match.params.group && !props.match.params.page && (
+            <div>
+              <h1 className="gameLayout-h1">{props.text}</h1>
+              {buttons.map((elem) => (
                 <button
                   className="gameLayout-button"
                   disabled={loading}
-                  onClick={() =>
-                    wordsHandler(
-                      props.match.params.group,
-                      props.match.params.page
-                    )
-                  }
+                  onClick={() => wordsHandler(elem.group)}
                   //value={elem.group}
                 >
-                  Начать игру
+                  {elem.text}
                 </button>
-              </div>
-            )}
+              ))}
+            </div>
+          )}
+          {!fullData && !loading && props.match.params.group && props.match.params.page && (
+            <div>
+              <h1 className="gameLayout-h1">{props.text}</h1>
+              <button
+                className="gameLayout-button"
+                disabled={loading}
+                onClick={() => wordsHandler(props.match.params.group, props.match.params.page)}
+                //value={elem.group}
+              >
+                Начать игру
+              </button>
+            </div>
+          )}
           {!fullData && loading && (
             <div>
               <CircularProgress></CircularProgress>
@@ -128,3 +135,23 @@ export default (props) => {
     </div>
   );
 };
+
+function pagesHandler(currentGroup, currentPage) {
+  let array = [];
+  if (currentPage < 3) {
+    for (let i = 0; array.length < 4; i++) {
+      array.push([currentGroup, currentPage + i]);
+    }
+  } else {
+    if (currentPage > 28) {
+      for (let i = 0; array.length < 4; i++) {
+        array.push([currentGroup, currentPage - i]);
+      }
+    } else {
+      for (let i = -2; array.length < 4; i++) {
+        array.push([currentGroup, currentPage + i]);
+      }
+    }
+  }
+  return array;
+}
