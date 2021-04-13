@@ -1,6 +1,7 @@
 .testpage {
-  &__cont{
-    background-image: linear-gradient(rgba(255, 255, 255, 0.197), rgba(255, 255, 255, 0.217)), url('../../assets/images/book-background.png');
+  &__cont {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.197), rgba(255, 255, 255, 0.217)),
+      url("../../assets/images/backgrounds/book-background.png");
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,7 +9,7 @@
   &__container {
     width: 100vw;
     min-width: 600px;
-    height: 85vh;
+    height: 87vh;
     background-color: rgba(250, 235, 215, 0.381);
     color: black;
     display: flex;
@@ -16,13 +17,19 @@
     align-self: center;
     display: flex;
     justify-content: space-between;
-    @media (max-width:600px) {
+    @media (max-width: 600px) {
       min-width: 300px;
     }
   }
 
+  &__load {
+    height: 87vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__arrow {
-    // width: 5vw;
     display: flex;
     height: 100%;
     align-items: center;
@@ -33,7 +40,7 @@
       background-color: rgba(250, 208, 154, 0.714);
       color: rgb(95, 95, 95);
     }
-    @media (max-width:400px) {
+    @media (max-width: 400px) {
       padding: 3px;
       font-size: 12px;
     }
@@ -44,7 +51,7 @@
     align-self: center;
     justify-content: space-around;
     @media (max-width: 900px) {
-          width: 95%;
+      width: 95%;
     }
   }
 }

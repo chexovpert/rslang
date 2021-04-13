@@ -30,7 +30,7 @@ export default function TestingPage() {
         setLoad(true);
       })
       .catch((error) => console.error("country countries loader", error));
-  }, []);
+  }, [wordCntx.pagenum]);
 
   function clickNextHandler() {
     learnComplited();
@@ -54,35 +54,50 @@ export default function TestingPage() {
     if ("correctwordid" in localStorage) {
       setLearned(JSON.parse(localStorage.getItem("correctwordid")));
     }
-    setCompl(
-      words.every((elem) => {
-        return learned.includes(elem.id);
-      })
-    );
-    if (compl) {
+    let buff = words.every((elem) => {
+      return learned.includes(elem.id);
+    });
+    if (buff) {
       wordCntx.progressHandler();
+      setCompl(buff);
     }
   }
 
   if (load) {
     return (
       <MainLayout>
-      <div className="testpage__cont">
-      <div className="testpage__container">
-        {compl ? <Complete /> : null}
-        <div className="testpage__arrow" onClick={clickPrevHandler}>
-          <ArrowBackIosIcon fontSize="large" />
+        <div className="testpage__cont">
+          <div className="testpage__container">
+            {compl ? <Complete /> : null}
+            <div className="testpage__arrow" onClick={clickPrevHandler}>
+              <ArrowBackIosIcon fontSize="large" />
+            </div>
+            <div className="testpage__word">{<WordTest word={words[wordCntx.count]} next={clickNextHandler} />}</div>
+            <div className="testpage__arrow" onClick={clickNextHandler}>
+              <ArrowForwardIosIcon fontSize="large" />
+            </div>
+          </div>
         </div>
-        <div className="testpage__word">{<WordTest word={words[wordCntx.count]} next={clickNextHandler} />}</div>
-        <div className="testpage__arrow" onClick={clickNextHandler}>
-          <ArrowForwardIosIcon fontSize="large" />
-        </div>
-      </div>
-      </div>
       </MainLayout>
     );
   } else {
-    
-    return <MainLayout><div>LOADING...</div></MainLayout>;
+    return (
+      <MainLayout>
+        <div className="testpage__cont">
+          <div className="testpage__load">
+            <div id="fountainG">
+              <div id="fountainG_1" class="fountainG"></div>
+              <div id="fountainG_2" class="fountainG"></div>
+              <div id="fountainG_3" class="fountainG"></div>
+              <div id="fountainG_4" class="fountainG"></div>
+              <div id="fountainG_5" class="fountainG"></div>
+              <div id="fountainG_6" class="fountainG"></div>
+              <div id="fountainG_7" class="fountainG"></div>
+              <div id="fountainG_8" class="fountainG"></div>
+            </div>
+          </div>
+        </div>
+      </MainLayout>
+    );
   }
 }

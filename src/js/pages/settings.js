@@ -100,8 +100,6 @@ export default function Settings() {
             <VolumeUp />
           </div>
         </div>
-
-        <div>а тута можна сделать чегонить еще</div>
       </div>
     </div>
   );
