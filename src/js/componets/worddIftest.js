@@ -148,14 +148,7 @@ export default function WordDifTest({ word, crct, setCrct }) {
       </div>
       <div className="wordtest__buttons" hidden={!wordCntx.showDifButton}>
         <button onClick={difClickHandler}>{diffword ? "Убрать из сложных" : "Сложное слово"}</button>
-        <button
-          onClick={() => {
-            alert(word.word);
-          }}
-        >
-          Показать слово
-        </button>
-      </div>
+              </div>
     </div>
   );
 }
