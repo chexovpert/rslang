@@ -63,23 +63,28 @@ export default (isAuthenticated) => {
     return (
       <Switch>
         <WordProvider>
-          {/* {routeList.map(({ path, Component }) => (
-            <Route
-              key={path}
-              path={path}
-              exact
-              render={(props) => <Component {...props}></Component>}
-            >
-              {({ match }) => (
-                <CSSTransition
-                  timeout={1000}
-                  classNames="pages"
-                  unmountOnExit
-                  in={match != null}
-                ></CSSTransition>
-              )}
-            </Route>
-          ))} */}
+          <Route path="/login" exact>
+            <Login></Login>
+          </Route>
+          <Route path="/register" exact>
+            <Registration></Registration>
+          </Route>
+          <Settings />
+          <Route path={"/classbook"} exact>
+            <TextBook />
+          </Route>
+          <Route path={"/testing"}>
+            <TestingPage />
+          </Route>
+          <Route path={"/testingdif"}>
+            <TestingDifPage />
+          </Route>
+          <Route path="/vocabulary/:type/:group?/:page?">
+            <Vocabulary />
+          </Route>
+          <Route path="/wordlist/:group/:page">
+            <Wordlist />
+          </Route>
           <Route path="/" exact>
             <MainPage></MainPage>
           </Route>
@@ -96,7 +101,6 @@ export default (isAuthenticated) => {
     <Switch>
       <div className="content-wrapper">
         <WordProvider>
-          {/* <Header></Header> */}
           <Route path="/" exact>
             <MainPage></MainPage>
           </Route>
@@ -106,10 +110,7 @@ export default (isAuthenticated) => {
           <Route path="/register" exact>
             <Registration></Registration>
           </Route>
-
-          {/* <Route path={"/settings"} exact> */}
           <Settings />
-          {/* </Route> */}
           <Route path={"/classbook"} exact>
             <TextBook />
           </Route>
@@ -125,9 +126,6 @@ export default (isAuthenticated) => {
           <Route path="/wordlist/:group/:page">
             <Wordlist />
           </Route>
-          {/* <Route path="/games" exact>
-            <Minigames />
-          </Route> */}
           <Route path={"/games/sprint/:group?/:page?"} exact render={(props) => <Sprint {...props} />} />
           <Route path={"/games/savanna/:group?/:page?"} exact render={(props) => <Savanna {...props}></Savanna>} />
           <Route path={"/games/audio/:group?/:page?"} exact render={(props) => <AudioChallenge {...props}></AudioChallenge>} />
