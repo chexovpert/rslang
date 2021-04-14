@@ -84,72 +84,72 @@ export default function Vocabulary() {
   if (load) {
     return (
       <MainLayout>
-        <div className="vocabulary__container">
-          {/* <div className="vocabulary__title">
-        Это ваш словарь. Тут вы можете увидеть какие слова вы выучили или же какие для вас сложные
-      </div> */}
-          <div className="vocabulary__buttons">
-            <Link to={"/vocabulary/learned/1/1"}>
-              <div>Изученные слова</div>
-            </Link>
-            <Link to={"/vocabulary/difficult/1/1"}>
-              <div>Сложные слова</div>
-            </Link>
-            <Link to={"/vocabulary/deleted/1/1"}>
-              <div>Удаленные слова</div>
-            </Link>
-          </div>
-
-          <div className="wordlist__groups">
-            {Array.from({ length: 6 }, (x, i) => i + 1).map((elem) => {
-              return (
-                <Link to={`/vocabulary/${type}/${elem}/${page}`}>
-                  <div className={parseInt(group) === elem ? "wordlist__active" : null}>{`Group ${elem}`}</div>
-                </Link>
-              );
-            })}
-          </div>
-          <div className="vocabulary__content">
-            <div className="wordsmissing" style={{ display: `${hide ? "none" : "flex"}` }}>
-              В данном разделе слова отсутствуют по различным на то причинам
+        <div className="vocabulary__cont">
+          <div className="vocabulary__container">
+            <div className="vocabulary__groups">
+              {Array.from({ length: 6 }, (x, i) => i + 1).map((elem) => {
+                return (
+                  <Link to={`/vocabulary/${type}/${elem}/${page}`}>
+                    <div className={`${parseInt(group) === elem ? "wordlist__active" : null} group`}>{`Group ${elem}`}</div>
+                  </Link>
+                );
+              })}
             </div>
-            {/* {setHide(false)} */}
-            {wordsarray.map((elem, index) => {
-              if (wordsarrayid.includes(elem.id)) {
-                if (hide === false) {
-                  setHide(true);
-                }
-                if (type === "deleted") {
-                  if (dltWordsId.includes(elem.id)) {
-                    return <Word word={elem} key={index} delHndlr={delHandler} />;
+            <div className="vocabulary__buttons">
+              <Link to={"/vocabulary/learned/1/1"}>
+                <div className={type === "learned" ? "activated" : null}>Изученные слова</div>
+              </Link>
+              <Link to={"/vocabulary/difficult/1/1"}>
+                <div className={type === "difficult" ? "activated" : null}>Сложные слова</div>
+              </Link>
+              <Link to={"/vocabulary/deleted/1/1"}>
+                <div className={type === "deleted" ? "activated" : null}>Удаленные слова</div>
+              </Link>
+            </div>
+
+            <div className="vocabulary__content">
+              <div className="wordsmissing" style={{ display: `${hide ? "none" : "flex"}` }}>
+                В данном разделе слова отсутствуют по различным на то причинам
+              </div>
+              {/* {setHide(false)} */}
+              {wordsarray.map((elem, index) => {
+                if (wordsarrayid.includes(elem.id)) {
+                  if (hide === false) {
+                    setHide(true);
                   }
-                } else {
-                  if (type === "difficult") {
-                    if (difWordsId.includes(elem.id) && !dltWordsId.includes(elem.id)) {
-                      return <Word word={elem} key={index} delHndlr={delHandler} delDif={delDif} />;
+                  if (type === "deleted") {
+                    if (dltWordsId.includes(elem.id)) {
+                      return <Word word={elem} key={index} delHndlr={delHandler} />;
                     }
                   } else {
-                    if (!dltWordsId.includes(elem.id)) {
-                      return <Word word={elem} key={index} delHndlr={delHandler} delDif={delDif} />;
+                    if (type === "difficult") {
+                      if (difWordsId.includes(elem.id) && !dltWordsId.includes(elem.id)) {
+                        return <Word word={elem} key={index} delHndlr={delHandler} delDif={delDif} />;
+                      }
+                    } else {
+                      if (!dltWordsId.includes(elem.id)) {
+                        return <Word word={elem} key={index} delHndlr={delHandler} delDif={delDif} />;
+                      }
                     }
                   }
                 }
-              }
-            })}
+              })}
+            </div>
+            <Pagination
+              className="wordlist__pagination"
+              count={30}
+              variant="outlined"
+              shape="rounded"
+              size="small"
+              renderItem={(item) => (
+                <PaginationItem
+                  component={Link}
+                  to={`/vocabulary/${type}/${group}/${item.page === 1 ? "1" : `${item.page}`}`}
+                  {...item}
+                />
+              )}
+            />
           </div>
-          <Pagination
-            className="wordlist__pagination"
-            count={30}
-            variant="outlined"
-            shape="rounded"
-            renderItem={(item) => (
-              <PaginationItem
-                component={Link}
-                to={`/vocabulary/${type}/${group}/${item.page === 1 ? "1" : `${item.page}`}`}
-                {...item}
-              />
-            )}
-          />
         </div>
       </MainLayout>
     );

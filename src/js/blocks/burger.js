@@ -11,8 +11,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MenuIcon from "@material-ui/icons/Menu";
-//import MailIcon from "@material-ui/icons/Mail";
+import SettingsIcon from "@material-ui/icons/Settings";
 import { Link, Route, useHistory } from "react-router-dom";
+import { useWordContext } from "../context/WordContext";
 
 const useStyles = makeStyles({
   list: {
@@ -49,18 +50,11 @@ const studyBookRoutes = [
     name: "Учебник",
     route: "/classbook",
   },
-  {
-    name: "Testing Page",
-    route: "/testing",
-  },
+
   {
     name: "Словарь",
-    route: "/vocabulary/learned",
+    route: "/vocabulary/learned/1/1",
   },
-  //   {
-  //     name: "Sprint",
-  //     route: "/games/sprint",
-  //   },
 ];
 export default function TemporaryDrawer() {
   const classes = useStyles();
@@ -70,16 +64,17 @@ export default function TemporaryDrawer() {
     bottom: false,
     right: false,
   });
+  const wordCntx = useWordContext();
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
 
     setState({ ...state, [anchor]: open });
+  };
+  const settingsHandler = () => {
+    wordCntx.setSettings(true);
   };
 
   const list = (anchor) => (
@@ -100,6 +95,12 @@ export default function TemporaryDrawer() {
             </ListItem>
           </Link>
         ))}
+        <ListItem button key={"elem.name"} onClick={settingsHandler}>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary={"Настройки"} />
+        </ListItem>
       </List>
       <Divider />
       <List>
@@ -124,11 +125,7 @@ export default function TemporaryDrawer() {
           <Button onClick={toggleDrawer(anchor, true)}>
             <MenuIcon color="secondary" />
           </Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
+          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
         </React.Fragment>

@@ -43,21 +43,42 @@ export default (props) => {
     },
   ];
   const wordsHandler = async (group, page = 0) => {
-    try {
-      const data = await request(
-        `https://react-learnwords-rslang.herokuapp.com/words?group=${group}&page=${page}`,
-        "GET",
-        null,
-        { accept: "application/json" }
-      );
-      const randomWords = data.slice().sort(() => Math.random() - 0.5);
-      randomWords.map((elem) => (elem.checked = true));
-      //const randomGuesses = data.slice().sort(() => Math.random() - 0.5);
-      setFullData({ data: randomWords });
-      //console.log(data);
-      //console.log(randomWords);
-    } catch (e) {
-      console.log(e);
+    if (props.type === "sprint") {
+      const rqst = pagesHandler(group, page);
+      let wordsarr = [];
+      try {
+        let rq = await Promise.all(
+          rqst.map(async (elem) => {
+            const data = await request(
+              `https://react-learnwords-rslang.herokuapp.com/words?group=${elem[0]}&page=${elem[1]}`,
+              "GET",
+              null,
+              { accept: "application/json" }
+            );
+            wordsarr = wordsarr.concat(data);
+          })
+        );
+        setFullData(wordsarr.sort(() => Math.random() - 0.5));
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        const data = await request(
+          `https://react-learnwords-rslang.herokuapp.com/words?group=${group}&page=${page}`,
+          "GET",
+          null,
+          { accept: "application/json" }
+        );
+        const randomWords = data.slice().sort(() => Math.random() - 0.5);
+        randomWords.map((elem) => (elem.checked = true));
+        //const randomGuesses = data.slice().sort(() => Math.random() - 0.5);
+        setFullData({ data: randomWords });
+        //console.log(data);
+        //console.log(randomWords);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -162,3 +183,23 @@ export default (props) => {
     </FullScreen>
   );
 };
+
+function pagesHandler(currentGroup, currentPage) {
+  let array = [];
+  if (currentPage < 3) {
+    for (let i = 0; array.length < 4; i++) {
+      array.push([currentGroup, currentPage + i]);
+    }
+  } else {
+    if (currentPage > 28) {
+      for (let i = 0; array.length < 4; i++) {
+        array.push([currentGroup, currentPage - i]);
+      }
+    } else {
+      for (let i = -2; array.length < 4; i++) {
+        array.push([currentGroup, currentPage + i]);
+      }
+    }
+  }
+  return array;
+}

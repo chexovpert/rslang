@@ -5,13 +5,24 @@ import "../../styles/blocks/textbook.scss";
 import MainLayout from "../layouts/MainLayout";
 
 export default function TextBook() {
-  const [value, setValue] = useState(10);
-  const [pers, setPers] = useState(15);
+  const [value, setValue] = useState(0);
+  const [pers, setPers] = useState(2);
+  const [dif, setDif] = useState(true);
   useEffect(() => {
     if ("correctwordid" in localStorage) {
-      setValue(JSON.parse(localStorage.getItem("correctwordid")));
+      setValue(JSON.parse(localStorage.getItem("correctwordid")).length);
+      setPers(value / 36);
+    } else {
+      setValue(0);
     }
-    setPers(value.length / 36);
+    if ("difWordId" in localStorage) {
+      let dWordsId = JSON.parse(localStorage.getItem("difWordId"));
+      if (dWordsId.length < 20) {
+        setDif(false);
+      }
+    } else {
+      setDif(false)
+    }
   }, []);
   return (
     <MainLayout>
@@ -35,22 +46,23 @@ export default function TextBook() {
               <p>{"Посмотреть весь список слов"}</p>
             </div>
           </Link>
-          <Link to={"/testingdif"}>
+          <Link to={dif ? "/testingdif" : null}>
             <div className="textbook__cell">
               <h4 style={{ color: "blue", textDecoration: "dash ed" }}>НАПОМИНАНИЕ!!!</h4>
               <p>{"Повторить сложные слова"}</p>
+              {!dif ? <span id='mark'style={{  fontStyle: "italic" }}>пока мало сложных</span> : null}
             </div>
           </Link>
         </div>
         <div className="textbook__statistic">
-          <h2>Выучено всего слов</h2>
-          <p>{`Изучено  ${value.length} из 3600 слов`}</p>
+          <h3>Выучено всего слов</h3>
+          <p>{`Изучено  ${value} из 3600 слов`}</p>
           <div className="textbook__linear">
             <LinearProgress variant="determinate" value={pers} />
+            <br/>
           </div>
-          <div>Здесь можно разместить чтото еще</div>
+          {/* <br/> */}
         </div>
-        {/* <div>Здесь можно разместить чтото еще</div> */}
       </div>
     </MainLayout>
   );

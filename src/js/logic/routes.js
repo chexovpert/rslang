@@ -41,7 +41,7 @@ const routeList = [
     Component: TextBook,
   },
   {
-    path: "/vocabulary/:type",
+    path: "/vocabulary/:type/:group?/:page?",
     Component: Vocabulary,
   },
   {
@@ -86,7 +86,7 @@ export default (isAuthenticated) => {
           <Route path={"/games/savanna/:group?/:page?"} exact render={(props) => <Savanna {...props}></Savanna>} />
           <Route path={"/games/audio/:group?/:page?"} exact render={(props) => <AudioChallenge {...props}></AudioChallenge>} />
           <Route path={"/games/forkids/:group?/:page?"} exact render={(props) => <EnglishForKids {...props}></EnglishForKids>} />
-
+          <Route path={"/games/sprint/:group?/:page?"} exact render={(props) => <Sprint {...props} />} />
           <Redirect to={"/"} />
         </WordProvider>
       </Switch>
@@ -119,7 +119,7 @@ export default (isAuthenticated) => {
           <Route path={"/testingdif"}>
             <TestingDifPage />
           </Route>
-          <Route path="/vocabulary/:type/:group/:page">
+          <Route path="/vocabulary/:type/:group?/:page?">
             <Vocabulary />
           </Route>
           <Route path="/wordlist/:group/:page">
@@ -128,9 +128,7 @@ export default (isAuthenticated) => {
           {/* <Route path="/games" exact>
             <Minigames />
           </Route> */}
-          <Route path={"/games/sprint"} exact>
-            <Sprint />
-          </Route>
+          <Route path={"/games/sprint/:group?/:page?"} exact render={(props) => <Sprint {...props} />} />
           <Route path={"/games/savanna/:group?/:page?"} exact render={(props) => <Savanna {...props}></Savanna>} />
           <Route path={"/games/audio/:group?/:page?"} exact render={(props) => <AudioChallenge {...props}></AudioChallenge>} />
           <Route path={"/games/forkids/:group?/:page?"} exact render={(props) => <EnglishForKids {...props}></EnglishForKids>} />

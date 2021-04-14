@@ -3,40 +3,75 @@
     display: flex;
     width: 100%;
     margin-left: 15px;
+
     div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 10vw;
       min-width: 90px;
       height: 30px;
-      background-color: rgb(255, 224, 184);
+      background-color: rgba(255, 224, 184, 0.521);
       margin: 5px 0 0;
       color: black;
       text-align: center;
       border: 1px solid rgb(255, 186, 96);
       border-bottom: none;
       border-start-start-radius: 5px;
+
+      @media (max-width: 700px) {
+        transform: rotate(-90deg);
+        margin: 25px 0 0;
+        height: 50px;
+      }
+    }
+    @media (max-width: 700px) {
+      min-width: 450px;
+    }
+    @media (max-width: 700px) {
+      min-width: 10px;
+      a {
+        width: 45px;
+        height: 90px;
+        margin: 0;
+      }
     }
   }
 
   &__active {
-    background-color: antiquewhite !important;
+    background-color: rgba(250, 235, 215, 0.808) !important;
+  }
+
+  &__cont {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.197), rgba(0, 0, 0, 0.217)),
+      url("../../assets/images/backgrounds/book-background.png");
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__pagination {
     padding: 10px 0;
-    background-color: antiquewhite;
+    background-color: rgba(250, 235, 215, 0.568);
     width: 100%;
     ul {
       justify-content: center;
+    }
+    @media (max-width: 460px) {
+      min-width: 320px;
+      font-size: 10px;
     }
   }
 
   &__content {
     width: 100%;
     min-height: 75vh;
-    background-color: antiquewhite;
+    background-color: rgba(250, 235, 215, 0.568);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   &__container {
@@ -46,7 +81,64 @@
     flex-direction: column;
     align-items: center;
     align-self: center;
+    @media (max-width: 700px) {
+      min-width: 450px;
+    }
+    @media (max-width: 460px) {
+      min-width: 320px;
+    }
   }
+
+  &__minigames {
+    width: 150px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 50px;
+    right: 0.5vw;
+    border-radius: 15px;
+    background-color: rgba(250, 235, 215, 0.473);
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background-color: black;
+      border-radius: 50%;
+    }
+    span {
+      width: 100px;
+    }
+    @media (max-width: 400px) {
+      // display: none;
+    }
+  }
+}
+
+#minigame-open {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+#minigame-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: black;
+  border: 2px solid white;
+  width: 25px;
+  height: 25px;
+  font-size: 10px;
+  position: relative;
+  right: -60px;
+  top: -10px;
+  transition: linear 0.5s;
 }
 
 #fountainG {
