@@ -96,33 +96,30 @@ export default function WordTest({ word }) {
           </div>
           <br />
           <div style={{ display: `${wordCntx.learnd ? "flex" : "none"}` }}>
-          <form 
-            onSubmit={(event) => {
-              event.preventDefault();
-              clickHandler();
-            }}
-            
-          >
-            <Input
-              id="standard-basic"
-              type="text"
-              label="Введите слово"
-              onKeyPress={(event) => (event.key === "Enter" ? clickHandler.bind(this) : null)}
-              onChange={(event) => wordCntx.setAnswer(event.target.value)}
-              value={wordCntx.answer}
-              // style={{ width: 350 }} 
-              autoComplete="off"
-              color={wrong ? "secondary" : "primary"}
-            />
-            
-          </form>
-          <div className="wordtest__agree" onClick={clickHandler}>
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                clickHandler();
+              }}
+            >
+              <Input
+                id="standard-basic"
+                type="text"
+                label="Введите слово"
+                onKeyPress={(event) => (event.key === "Enter" ? clickHandler.bind(this) : null)}
+                onChange={(event) => wordCntx.setAnswer(event.target.value)}
+                value={wordCntx.answer}
+                autoComplete="off"
+                color={wrong ? "secondary" : "primary"}
+              />
+            </form>
+            <div className="wordtest__agree" onClick={clickHandler}>
               <CheckIcon />
             </div>
             <div className="wordtest__clean" onClick={() => wordCntx.setAnswer("")}>
               <ClearIcon />
             </div>
-            </div>
+          </div>
           <br style={{ display: `${wordCntx.learnd ? "flex" : "none"}` }} />
           <div className="wordtest__meaning" style={{ display: `${wordCntx.learnd ? "none" : "flex"}` }}>
             <div dangerouslySetInnerHTML={{ __html: word.textMeaning }} />
@@ -149,7 +146,9 @@ export default function WordTest({ word }) {
         </div>
       </div>
       <div className="wordtest__buttons" hidden={!wordCntx.showDifButton}>
-        <button onClick={difClickHandler}>{diffword ? "Убрать из сложных" : "Отметить как сложное "}</button>
+        {wordCntx.showDifButton ? (
+          <button onClick={difClickHandler}>{diffword ? "Убрать из сложных" : "Отметить как сложное "}</button>
+        ) : null}
       </div>
     </div>
   );

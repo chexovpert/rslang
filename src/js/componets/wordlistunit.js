@@ -2,7 +2,6 @@ import "../../styles/components/wordlistunit.scss";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 import { useWordContext } from "../context/WordContext";
 import { useCallback, useEffect, useState } from "react";
-import Settings from "../pages/settings";
 import Popup from "./popup";
 
 export default function Wordunit({ word, delHndlr }) {
@@ -65,33 +64,36 @@ export default function Wordunit({ word, delHndlr }) {
           <VolumeUpIcon
             title="Прослушать произношение"
             onClick={(event) => {
+              wordCntx.soundHandler(word.audio);
               event.stopPropagation();
-              wordCntx.soundHandler.bind(this, word.audio);
             }}
           />
         </div>
-        <div>{word.wordTranslate}</div>
-        {/* <div>{word.transcription}</div> */}
+        {wordCntx.showWordTransl ? <div>{word.wordTranslate}</div> : null}
       </div>
       <div className="wordunit__buttons">
-        <button
-          className="wordunit__button-submit"
-          onClick={(event) => {
-            event.stopPropagation();
-            clickHandler();
-          }}
-        >
-          {diffword ? "Убрать из сложных" : "Сложное слово"}
-        </button>
-        <button
-          className="wordunit__button-submit"
-          onClick={(event) => {
-            event.stopPropagation();
-            delClickHndlr();
-          }}
-        >
-          Удалить слово
-        </button>
+        {wordCntx.showDifButton ? (
+          <button
+            className="wordunit__button-submit"
+            onClick={(event) => {
+              event.stopPropagation();
+              clickHandler();
+            }}
+          >
+            {diffword ? "Убрать из сложных" : "Сложное слово"}
+          </button>
+        ) : null}
+        {wordCntx.showDelButton ? (
+          <button
+            className="wordunit__button-submit"
+            onClick={(event) => {
+              event.stopPropagation();
+              delClickHndlr();
+            }}
+          >
+            Удалить слово
+          </button>
+        ) : null}
       </div>
     </div>
   );
