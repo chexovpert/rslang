@@ -14,7 +14,6 @@ export default function Vocabulary() {
   const [wordsarrayid, setWordsarrayid] = useState([]);
   const [load, setLoad] = useState(false);
   const [hide, setHide] = useState(false);
-  // const [test, setTest] = useState(true);
   const wordCntx = useWordContext();
   const [dltWordsId, setDltWordsId] = useState([]);
   const [difWordsId, setDifWordsId] = useState([]);
@@ -29,35 +28,48 @@ export default function Vocabulary() {
       })
       .then((data) => {
         data && setWordsarray(data);
-        setLoad(true);
         setHide(false);
       })
       .catch((error) => console.error("country countries loader", error));
 
     if (type === "difficult") {
-      if ("difWord" in localStorage) {
+      if ("difWordId" in localStorage) {
         setWordsarrayid(JSON.parse(localStorage.getItem("difWordId")));
         setDifWordsId(JSON.parse(localStorage.getItem("difWordId")));
         setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
+      } else {
+        setWordsarrayid([]);
       }
     }
     if (type === "learned") {
-      if ("correctword" in localStorage) {
+      if ("correctwordid" in localStorage) {
         setWordsarrayid(JSON.parse(localStorage.getItem("correctwordid")));
+      } else {
+        setWordsarrayid([]);
+      }
+      if ("difWordId" in localStorage) {
+      } else {
+        localStorage.setItem("difWordId", JSON.stringify([]));
+      }
+      if ("deletewordid" in localStorage) {
+      } else {
+        localStorage.setItem("deletewordid", JSON.stringify([]));
       }
     }
     if (type === "deleted") {
-      if ("deleteword" in localStorage) {
+      if ("deletewordid" in localStorage) {
         setWordsarrayid(JSON.parse(localStorage.getItem("deletewordid")));
         setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
         setDifWordsId(JSON.parse(localStorage.getItem("difWordId")));
+      } else {
+        setWordsarrayid([]);
       }
     }
+    setLoad(true);
   }, [type, group, page]);
 
   const delDif = useCallback(
     (word) => {
-      console.log("delDif");
       setDifWordsId(JSON.parse(localStorage.getItem("difWordId")));
     },
     [difWordsId]
@@ -65,16 +77,13 @@ export default function Vocabulary() {
 
   const delHandler = useCallback(
     (word) => {
-      console.log("delHandler");
       if ("deletewordid" in localStorage) {
         if (type !== "deleted") {
           wordCntx.deleteHndlr(word);
           setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
-          console.log("delHandler del");
         } else {
           wordCntx.removeDeleteHndlr(word);
           setDltWordsId(JSON.parse(localStorage.getItem("deletewordid")));
-          console.log("delHandler nondel");
         }
       }
     },
