@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/rslang/static/css/main.ce2260c1.chunk.css",
+    "main.js": "/rslang/static/js/main.a2ad9c42.chunk.js",
+    "main.js.map": "/rslang/static/js/main.a2ad9c42.chunk.js.map",
+    "runtime-main.js": "/rslang/static/js/runtime-main.aaa65626.js",
+    "runtime-main.js.map": "/rslang/static/js/runtime-main.aaa65626.js.map",
+    "static/js/2.9552f286.chunk.js": "/rslang/static/js/2.9552f286.chunk.js",
+    "static/js/2.9552f286.chunk.js.map": "/rslang/static/js/2.9552f286.chunk.js.map",
+    "index.html": "/rslang/index.html",
+    "static/css/main.ce2260c1.chunk.css.map": "/rslang/static/css/main.ce2260c1.chunk.css.map",
+    "static/js/2.9552f286.chunk.js.LICENSE.txt": "/rslang/static/js/2.9552f286.chunk.js.LICENSE.txt",
+    "static/media/audio.d08ca865.jpg": "/rslang/static/media/audio.d08ca865.jpg",
+    "static/media/avatar1.0bd3359b.png": "/rslang/static/media/avatar1.0bd3359b.png",
+    "static/media/avatar2.cd8ea820.png": "/rslang/static/media/avatar2.cd8ea820.png",
+    "static/media/wordlist.scss": "/rslang/static/media/book-background.0e387635.png",
+    "static/media/correct.23d0e138.mp3": "/rslang/static/media/correct.23d0e138.mp3",
+    "static/media/englishforkids.d7bcb8af.jpg": "/rslang/static/media/englishforkids.d7bcb8af.jpg",
+    "static/media/error.88bbaea7.mp3": "/rslang/static/media/error.88bbaea7.mp3",
+    "static/media/games.81ef0a40.png": "/rslang/static/media/games.81ef0a40.png",
+    "static/media/headphone.9c39c0a7.png": "/rslang/static/media/headphone.9c39c0a7.png",
+    "static/media/logo-rs-school.baf9b61d.svg": "/rslang/static/media/logo-rs-school.baf9b61d.svg",
+    "static/media/mainpageimage.0691c32f.png": "/rslang/static/media/mainpageimage.0691c32f.png",
+    "static/media/online.e041b85e.png": "/rslang/static/media/online.e041b85e.png",
+    "static/media/popup.scss": "/rslang/static/media/popup.fdd50db4.jpg",
+    "static/media/savannah.27e79e2e.jpg": "/rslang/static/media/savannah.27e79e2e.jpg",
+    "static/media/settings.scss": "/rslang/static/media/settings.9401e885.jpg",
+    "static/media/sprint.d76fdbc7.jpg": "/rslang/static/media/sprint.d76fdbc7.jpg",
+    "static/media/studybook.e0b3b122.png": "/rslang/static/media/studybook.e0b3b122.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aaa65626.js",
+    "static/js/2.9552f286.chunk.js",
+    "static/css/main.ce2260c1.chunk.css",
+    "static/js/main.a2ad9c42.chunk.js"
+  ]
+}
