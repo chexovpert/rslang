@@ -153,7 +153,7 @@ export const WordProvider = ({ children }) => {
 
   function progressHandler() {
     let progress = [];
-    if (pagenum > 30) {
+    if (pagenum > 29) {
       progress = [groupnum + 1, 0];
     } else {
       progress = [groupnum, pagenum + 1];

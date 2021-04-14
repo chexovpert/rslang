@@ -74,7 +74,6 @@ export default function TemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
   const settingsHandler = () => {
-    console.log("sett");
     wordCntx.setSettings(true);
   };
 

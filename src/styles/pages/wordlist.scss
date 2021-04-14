@@ -23,7 +23,7 @@
         transform: rotate(-90deg);
         margin: 25px 0 0;
         height: 50px;
-      } 
+      }
     }
     @media (max-width: 700px) {
       min-width: 450px;
@@ -39,7 +39,7 @@
   }
 
   &__active {
-    background-color: rgba(250, 235, 215, 0.589) !important;
+    background-color: rgba(250, 235, 215, 0.808) !important;
   }
 
   &__cont {
@@ -58,7 +58,7 @@
     ul {
       justify-content: center;
     }
-    @media (max-width:460px) {
+    @media (max-width: 460px) {
       min-width: 320px;
       font-size: 10px;
     }
@@ -71,6 +71,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   &__container {
@@ -118,19 +119,19 @@
   }
 }
 
-#minigame-open{
+#minigame-open {
   position: fixed;
   bottom: 50px;
   right: 50px;
 }
 
-#minigame-close{
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 50%;
-background-color: black;
-border: 2px solid white;
+#minigame-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: black;
+  border: 2px solid white;
   width: 25px;
   height: 25px;
   font-size: 10px;
