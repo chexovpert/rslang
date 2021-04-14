@@ -13,13 +13,6 @@ export default function Popup({ word, setShow }) {
     }
   }, [word]);
 
-  useEffect(() => {
-    setDiffword(false);
-    if (dWordsId.includes(word.id)) {
-      setDiffword(true);
-    }
-  }, [dWordsId]);
-
   return (
     <div className="popup__container" onMouseDown={setShow}>
       <div
