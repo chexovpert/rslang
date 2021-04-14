@@ -6,9 +6,9 @@ export default function Complete() {
     <Link to={"/classbook"}>
       <div className="compl__container">
         <div className="compl__content">
-          <p>Поздравляем! Вы прошли этап!</p>
+          <h1>Поздравляем! Вы прошли этап!</h1>
           <p>На сегодня вы выполнили задание.</p>
-          <p>Можете повторить другие слова или же поиграть в игры</p>
+          <p>Можете повторить другие слова, поиграть в игры или же продолжить обучение</p>
         </div>
       </div>
     </Link>

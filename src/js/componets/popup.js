@@ -30,17 +30,12 @@ export default function Popup({ word, setShow }) {
           <div className="popup__title">
             <div className="popup__word">
               <h1>{word.word}</h1>
-              <VolumeUpIcon
-                onClick={wordCntx.soundHandler.bind(this, word.audio)}
-                title="Прослушать произношение"
-              />
+              <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audio)} title="Прослушать произношение" />
             </div>
-            <div className="popup__translate">
-              Перевод: {word.wordTranslate}
-            </div>
-            <div className="popup__transcript">
-              Транскрипция: {word.transcription}
-            </div>
+            <div className="popup__translate">Перевод: {word.wordTranslate}</div>
+            <div className="popup__transcript">Транскрипция: {word.transcription}</div>
+            {wordCntx.showWordTransl ? <div className="popup__translate">Перевод: {word.wordTranslate}</div> : null}
+            <div className="popup__transcript">Транскрипция: {word.transcription}</div>
           </div>
         </div>
 
@@ -48,27 +43,19 @@ export default function Popup({ word, setShow }) {
           <h3>Значение слова</h3>
           <div className="popup__meaning">
             <div dangerouslySetInnerHTML={{ __html: word.textMeaning }} />
-            <VolumeUpIcon
-              onClick={wordCntx.soundHandler.bind(this, word.audioMeaning)}
-              title="Прослушать произношение"
-            />
+            <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audioMeaning)} title="Прослушать произношение" />
           </div>
-          <div className="popup__meaning-transl">
-            {word.textMeaningTranslate}
-          </div>
+          <div className="popup__meaning-transl">{word.textMeaningTranslate}</div>
+          {wordCntx.showExtraTransl ? <div className="popup__meaning-transl">{word.textMeaningTranslate}</div> : null}
         </div>
         <div className="popup__example_container">
           <h3>Пример слова в предложении</h3>
           <div className="popup__example">
             <div dangerouslySetInnerHTML={{ __html: word.textExample }} />
-            <VolumeUpIcon
-              onClick={wordCntx.soundHandler.bind(this, word.audioExample)}
-              title="Прослушать произношение"
-            />
+            <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audioExample)} title="Прослушать произношение" />
           </div>
-          <div className="popup__example-transl">
-            {word.textExampleTranslate}
-          </div>
+          <div className="popup__example-transl">{word.textExampleTranslate}</div>
+          {wordCntx.showExtraTransl ? <div className="popup__example-transl">{word.textExampleTranslate}</div> : null}
         </div>
       </div>
     </div>

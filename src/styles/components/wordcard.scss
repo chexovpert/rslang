@@ -40,6 +40,13 @@
     }
   }
 
+  &__icon {
+    &:hover {
+      opacity: 0.65;
+      cursor: pointer;
+    }
+  }
+
   &__example {
     &_container {
       margin: 10px 0;
