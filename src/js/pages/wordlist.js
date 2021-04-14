@@ -10,6 +10,8 @@ import TimerIcon from "@material-ui/icons/Timer";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import AudiotrackIcon from "@material-ui/icons/Audiotrack";
 import SpaIcon from "@material-ui/icons/Spa";
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
+import CloseIcon from '@material-ui/icons/Close';
 
 import "../../styles/pages/wordlist.scss";
 import { useWordContext } from "../context/WordContext";
@@ -17,6 +19,7 @@ export default function Wordlist() {
   const [words, setWords] = useState([]);
   const [load, setLoad] = useState(false);
   const [dltWordsId, setDltWordsId] = useState([]);
+  const [hide, setHide] = useState(false)
   const { group } = useParams();
   const { page } = useParams();
   const wordCntx = useWordContext();
@@ -68,7 +71,13 @@ export default function Wordlist() {
                   return <Wordunit word={elem} delHndlr={delHandler} />;
                 }
               })}
-              <div className="wordlist__minigames">
+              {!hide ?<Fab size="medium" id='minigame-open' onClick={()=>{setHide(true)}}>
+                    <SportsEsportsIcon />
+                  </Fab> : null}
+              {hide ? <div className="wordlist__minigames">
+              <div  id='minigame-close' onClick={()=>{setHide(false)}}>
+                    <CloseIcon />
+                  </div>
                 <Link to={`/games/savanna/${group}/${page}`}>
                   <Fab variant="extended" size="medium" /*style={{ width: 180 }}*/>
                     <SpaIcon />
@@ -93,7 +102,8 @@ export default function Wordlist() {
                     Sprint
                   </Fab>
                 </Link>
-              </div>
+              
+              </div> : null}
             </div>
           ) : (
             <div className="wordlist__content">
@@ -115,6 +125,7 @@ export default function Wordlist() {
             count={30}
             variant="outlined"
             shape="rounded"
+            size='small'
             renderItem={(item) => (
               <PaginationItem component={Link} to={`/wordlist/${group}/${item.page === 1 ? "1" : `${item.page}`}`} {...item} />
             )}
