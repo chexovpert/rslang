@@ -32,6 +32,8 @@ export default function Popup({ word, setShow }) {
               <h1>{word.word}</h1>
               <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audio)} title="Прослушать произношение" />
             </div>
+            <div className="popup__translate">Перевод: {word.wordTranslate}</div>
+            <div className="popup__transcript">Транскрипция: {word.transcription}</div>
             {wordCntx.showWordTransl ? <div className="popup__translate">Перевод: {word.wordTranslate}</div> : null}
             <div className="popup__transcript">Транскрипция: {word.transcription}</div>
           </div>
@@ -43,6 +45,7 @@ export default function Popup({ word, setShow }) {
             <div dangerouslySetInnerHTML={{ __html: word.textMeaning }} />
             <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audioMeaning)} title="Прослушать произношение" />
           </div>
+          <div className="popup__meaning-transl">{word.textMeaningTranslate}</div>
           {wordCntx.showExtraTransl ? <div className="popup__meaning-transl">{word.textMeaningTranslate}</div> : null}
         </div>
         <div className="popup__example_container">
@@ -51,6 +54,7 @@ export default function Popup({ word, setShow }) {
             <div dangerouslySetInnerHTML={{ __html: word.textExample }} />
             <VolumeUpIcon onClick={wordCntx.soundHandler.bind(this, word.audioExample)} title="Прослушать произношение" />
           </div>
+          <div className="popup__example-transl">{word.textExampleTranslate}</div>
           {wordCntx.showExtraTransl ? <div className="popup__example-transl">{word.textExampleTranslate}</div> : null}
         </div>
       </div>

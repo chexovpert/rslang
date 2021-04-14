@@ -57,8 +57,13 @@ import savannaBackground from "../../assets/images/backgrounds/savannah.jpg";
 const text = "Саванна";
 export default (props) => {
   return (
-    <GameLayout {...props} gameBackground={savannaBackground} text={text}>
-      {(gameprops) => <SavannaBlock data={gameprops}></SavannaBlock>}
+    <GameLayout
+      type="mouyagovnoigra"
+      {...props}
+      gameBackground={savannaBackground}
+      text={text}
+    >
+      {(fullData) => <SavannaBlock data={fullData}></SavannaBlock>}
     </GameLayout>
   );
 };
