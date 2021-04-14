@@ -95,13 +95,13 @@ export default function WordTest({ word }) {
             Транскрипция: {word.transcription}
           </div>
           <br />
-
-          <form
+          <div style={{ display: `${wordCntx.learnd ? "flex" : "none"}` }}>
+          <form 
             onSubmit={(event) => {
               event.preventDefault();
               clickHandler();
             }}
-            style={{ display: `${wordCntx.learnd ? "flex" : "none"}` }}
+            
           >
             <Input
               id="standard-basic"
@@ -110,17 +110,19 @@ export default function WordTest({ word }) {
               onKeyPress={(event) => (event.key === "Enter" ? clickHandler.bind(this) : null)}
               onChange={(event) => wordCntx.setAnswer(event.target.value)}
               value={wordCntx.answer}
-              style={{ width: 350 }}
+              // style={{ width: 350 }} 
               autoComplete="off"
               color={wrong ? "secondary" : "primary"}
             />
-            <div className="wordtest__agree" onClick={clickHandler}>
+            
+          </form>
+          <div className="wordtest__agree" onClick={clickHandler}>
               <CheckIcon />
             </div>
             <div className="wordtest__clean" onClick={() => wordCntx.setAnswer("")}>
               <ClearIcon />
             </div>
-          </form>
+            </div>
           <br style={{ display: `${wordCntx.learnd ? "flex" : "none"}` }} />
           <div className="wordtest__meaning" style={{ display: `${wordCntx.learnd ? "none" : "flex"}` }}>
             <div dangerouslySetInnerHTML={{ __html: word.textMeaning }} />
@@ -147,14 +149,7 @@ export default function WordTest({ word }) {
         </div>
       </div>
       <div className="wordtest__buttons" hidden={!wordCntx.showDifButton}>
-        <button onClick={difClickHandler}>{diffword ? "Убрать из сложных" : "Сложное слово"}</button>
-        <button
-          onClick={() => {
-            alert(word.word);
-          }}
-        >
-          Показать слово
-        </button>
+        <button onClick={difClickHandler}>{diffword ? "Убрать из сложных" : "Отметить как сложное "}</button>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { useWordContext } from "../context/WordContext";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Complete from "../componets/taskcompl";
+import MainLayout from "../layouts/MainLayout";
 
 export default function TestingDifPage() {
   const [words, setWords] = useState([]);
@@ -88,6 +89,8 @@ export default function TestingDifPage() {
 
   if (load) {
     return (
+      <MainLayout>
+        <div className='testpage__cont'>
       <div className="testpage__container">
         {compl ? <Complete /> : null}
         <div className="testpage__arrow" onClick={clickPrevHandler}>
@@ -98,8 +101,10 @@ export default function TestingDifPage() {
           <ArrowForwardIosIcon fontSize="large" />
         </div>
       </div>
+      </div>
+      </MainLayout>
     );
   } else {
-    return <div>LOADING...</div>;
+    return <MainLayout><div>LOADING...</div></MainLayout>;
   }
 }

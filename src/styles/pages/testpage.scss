@@ -1,34 +1,59 @@
 .testpage {
+  &__cont {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.197), rgba(255, 255, 255, 0.217)),
+      url("../../assets/images/backgrounds/book-background.png");
+    background-repeat: no-repeat  ;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   &__container {
-    width: 80vw;
+    width: 100vw;
     min-width: 600px;
-    height: 85vh;
-    background-color: antiquewhite;
+    height: 87vh;
+    background-color: rgba(250, 235, 215, 0.381);
     color: black;
     display: flex;
     justify-content: center;
     align-self: center;
     display: flex;
-    // align-items: center;
     justify-content: space-between;
+    @media (max-width: 600px) {
+      min-width: 300px;
+    }
+  }
+
+  &__load {
+    height: 87vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__arrow {
-    // width: 5vw;
     display: flex;
     height: 100%;
     align-items: center;
     padding: 15px;
-    background-color: rgb(253, 227, 192);
+    background-color: rgba(253, 227, 192, 0.333);
     &:hover {
       cursor: pointer;
-      background-color: rgb(250, 209, 154);
+      background-color: rgba(250, 208, 154, 0.714);
       color: rgb(95, 95, 95);
+    }
+    @media (max-width: 400px) {
+      padding: 3px;
+      font-size: 12px;
     }
   }
 
   &__word {
-    width: 60%;
+    width: 80%;
     align-self: center;
+    justify-content: space-around;
+    @media (max-width: 900px) {
+      width: 95%;
+    }
   }
 }

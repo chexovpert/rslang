@@ -41,7 +41,7 @@ const routeList = [
     Component: TextBook,
   },
   {
-    path: "/vocabulary/:type",
+    path: "/vocabulary/:type/:group?/:page?",
     Component: Vocabulary,
   },
   {
@@ -119,7 +119,7 @@ export default (isAuthenticated) => {
           <Route path={"/testingdif"}>
             <TestingDifPage />
           </Route>
-          <Route path="/vocabulary/:type/:group/:page">
+          <Route path="/vocabulary/:type/:group?/:page?">
             <Vocabulary />
           </Route>
           <Route path="/wordlist/:group/:page">

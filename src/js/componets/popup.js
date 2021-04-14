@@ -2,13 +2,10 @@ import { useWordContext } from "../context/WordContext";
 import "../../styles/components/popup.scss";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
 
 export default function Popup({ word, setShow }) {
   const wordCntx = useWordContext();
   const [dWordsId, setDWordsId] = useState([]);
-  const [diffword, setDiffword] = useState(false);
-  const { type } = useParams();
 
   useEffect(() => {
     if ("difWordId" in localStorage) {
@@ -22,21 +19,6 @@ export default function Popup({ word, setShow }) {
       setDiffword(true);
     }
   }, [dWordsId]);
-
-  function clickHandler() {
-    if (type !== "difficult") {
-      if (diffword) {
-        wordCntx.removeDifHndlr(word);
-        setDWordsId(JSON.parse(localStorage.getItem("difWordId")));
-      } else {
-        wordCntx.difHndlr(word);
-        setDWordsId(JSON.parse(localStorage.getItem("difWordId")));
-      }
-    } else {
-      wordCntx.removeDifHndlr(word);
-      setDWordsId(JSON.parse(localStorage.getItem("difWordId")));
-    }
-  }
 
   return (
     <div className="popup__container" onMouseDown={setShow}>
