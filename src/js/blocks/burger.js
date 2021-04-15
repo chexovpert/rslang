@@ -9,6 +9,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
+import TimerIcon from "@material-ui/icons/Timer";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import AudiotrackIcon from "@material-ui/icons/Audiotrack";
+import SpaIcon from "@material-ui/icons/Spa";
+//import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MenuIcon from "@material-ui/icons/Menu";
 import SettingsIcon from "@material-ui/icons/Settings";
@@ -27,18 +32,22 @@ const gameRoutes = [
   {
     name: "Savannah",
     route: "/games/savanna",
+    Icon: SpaIcon
   },
   {
     name: "Audio Challenge",
     route: "/games/audio",
+    Icon: AudiotrackIcon
   },
   {
     name: "English for Kids",
     route: "/games/forkids",
+    Icon: MenuBookIcon
   },
   {
     name: "Sprint",
     route: "/games/sprint",
+    Icon: TimerIcon
   },
 ];
 const studyBookRoutes = [
@@ -108,7 +117,7 @@ export default function TemporaryDrawer() {
           <Link to={elem.route} exact>
             <ListItem button key={elem.name}>
               <ListItemIcon>
-                <SportsEsportsIcon />
+                <elem.Icon></elem.Icon>
               </ListItemIcon>
               <ListItemText primary={elem.name} />
             </ListItem>

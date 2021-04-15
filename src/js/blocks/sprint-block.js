@@ -87,7 +87,7 @@ export default function SprintBlock({ data }) {
   return (
     <div className="savanna">
       <div className="statistic" style={{ display: `${wordCntx.timerOut ? "flex" : "none"}` }}>
-        {wordCntx.timerOut ? <Gameover correct={correctWords} wrong={wrongWords} /> : null}
+        {wordCntx.timerOut ? <Gameover correct={correctWords} wrong={wrongWords} score={score} /> : null}
       </div>
       <div className="sprint__container">
         <div className="sprint__timer">

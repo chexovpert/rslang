@@ -19,7 +19,8 @@ export default () => {
         JSON.stringify({ ...form }),
         { Accept: "application/json", "Content-Type": "application/json" }
       );
-      console.log(data);
+      //console.log(data);
+      if(data) {
       auth.login(
         data.token,
         data.userId,
@@ -27,13 +28,19 @@ export default () => {
         data.refreshToken,
         data.message
       );
+      }
     } catch (e) {
       console.log(e);
     }
   };
-  // useEffect(() => {
-  //   console.log(error);
-  // }, error);
+  useEffect(() => {
+    if(error===403){
+    alert("Неправильный пароль")
+    }
+    if(error===404){
+    alert("Пользователь не найден")
+    }
+  }, [error]);
   return (
     <MainLayout>
       <div className="registration">

@@ -19,13 +19,21 @@ export default () => {
         JSON.stringify({ ...form }),
         { Accept: "application/json", "Content-Type": "application/json" }
       );
+      if(data) {
+        alert('успешная регистрация')
+      }
     } catch (e) {
       console.log(e);
     }
   };
   useEffect(() => {
-    console.log(error);
-  }, error);
+    if(error===422){
+      alert("Неправильное имя или пароль")
+      }
+    if(error===417){
+      alert("Пользователь с данным email уже существует")
+      }
+  }, [error]);
   return (
     <MainLayout>
       <div className="registration">

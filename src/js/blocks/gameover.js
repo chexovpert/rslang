@@ -15,6 +15,7 @@ export default (props) => {
   const [url, setUrl] = useState(null);
   const correctWords = props.correct;
   const wrongWords = props.wrong;
+  const score = props.score;
   const [selectedValue, setSelectedValue] = useState("stats");
   const [toggle, setToggle] = useState(true);
   const [toggle1, setToggle1] = useState(false);
@@ -46,6 +47,9 @@ export default (props) => {
               <p className="gameover__screen_title-p">
                 слов изучено {correctWords ? correctWords.length : 0}, {wrongWords ? wrongWords.length : 0} на изучении
               </p>
+              { score && <p className="gameover__screen_title-p">
+                Ваш счет: {score}
+              </p>}
             </div>
             <div className="gameover_screen_stats">
               <div className="gameover_screen_stats-statCircle">
