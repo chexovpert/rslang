@@ -1,0 +1,58 @@
+.settings {
+  &__container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // color: black;
+    z-index: 2;
+    text-shadow: 1px 1px 2px black;
+    position: fixed;
+    background-color: rgba(131, 255, 127, 0.432);
+  }
+
+  &__content {
+    width: 30vw;
+    min-width: 470px;
+    height: 40vh;
+    // background-color: antiquewhite;
+    background-image: linear-gradient(rgba(81, 255, 0, 0.322), rgba(255, 255, 255, 0.164)),
+      url("../../assets/images/backgrounds/settings.jpg");
+    background-size: cover;
+    z-index: 3;
+    border-radius: 30px;
+    box-shadow: 3px 3px 2px gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    h5 {
+      margin-top: 5px;
+    }
+    div {
+      padding: 0 5px;
+      align-items: center;
+    }
+    @media (max-width: 500px) {
+      min-width: 300px;
+      font-size: 14px;
+      height: 350px;
+      span {
+        font-size: 12px;
+        text-align: start;
+      }
+    }
+  }
+
+  &__sound {
+    width: 25vw;
+    min-width: 400px;
+    display: flex;
+    justify-content: space-around;
+    @media (max-width: 500px) {
+      min-width: 300px;
+    }
+  }
+}

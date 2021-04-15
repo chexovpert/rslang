@@ -1,45 +1,37 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  HashRouter,
-} from "react-router-dom";
+import { HashRouter } from "react-router-dom";
+
+import useRoutes from "../logic/routes";
+import useAuth from "../hooks/auth.hook";
+import AuthContext from "../context/AuthContext";
+
 function PageComponents() {
+  const {
+    token,
+    login,
+    logout,
+    userId,
+    name,
+    refreshToken,
+    message,
+  } = useAuth();
+  const isAuthenticated = !!token;
+  const routes = useRoutes(isAuthenticated);
   return (
-    <HashRouter basename="/">
-      <Switch>
-        <Route path="/" exact>
-          <div className="App">
-            <header className="App-header">
-              {/* <img src={logo} className="App-logo" alt="logo" /> */}
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
-            </header>
-          </div>
-        </Route>
-        <Route
-          path={"/classbook/:category"}
-          exact
-          render={(props) => (
-            <div>smth</div>
-            // <CountryPage
-            //   // countryData={this.state.countryData}
-            //   {...props}
-            // ></CountryPage>
-          )}
-        />
-      </Switch>
-    </HashRouter>
+    <AuthContext.Provider
+      value={{
+        token,
+        login,
+        logout,
+        userId,
+        isAuthenticated,
+        name,
+        refreshToken,
+        message,
+      }}
+    >
+      <HashRouter basename="/">{routes}</HashRouter>
+    </AuthContext.Provider>
   );
 }
 

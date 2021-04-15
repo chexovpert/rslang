@@ -1,0 +1,139 @@
+.footer__wrapper {
+  /*position: absolute;
+  bottom: 0;
+  left: 0;*/
+  position: relative;
+  width: 100%;
+  height: 40px;
+  color: var(--white);
+  border-top: 2px solid white;
+}
+
+.footer__list {
+  padding: 0 50px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-rs__wrapper {
+  width: 100px;
+}
+
+.rsschool__link {
+  padding: 1px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  transition: border-radius 0.2s ease-out;
+}
+
+.rsschool__link:hover {
+  border-radius: 6px;
+  transition: border-radius 0.2s ease-in-out;
+}
+
+.task-date {
+  position: absolute;
+  left: calc(50% - 40px);
+  bottom: 0;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: lighter;
+  width: 80px;
+  height: 100%;
+  line-height: 40px;
+}
+
+.rslogo-img {
+  width: 90%;
+}
+
+.authors__wrapper,
+.octicon__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.authors__list {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.authors__item {
+  display: flex;
+  align-items: center;
+  transition: transform 0.1s ease-in;
+}
+
+.authors__item,
+.octicon__wrapper,
+.octicon {
+  margin-right: 10px;
+}
+
+.authors__item:last-child {
+  margin-right: 0;
+}
+
+.octicon {
+  fill: white;
+  margin: 0;
+}
+
+.authors__link {
+  transition: color 0.3s ease-in, transform 0.2s ease-in;
+}
+
+.authors__link:hover {
+  color: var(--whiteOpacity);
+  transition: color 0.2s ease-in, transform 0.2s ease-in;
+}
+
+.authors__item:active {
+  transform: scale(0.9);
+  transition: transform 0.1s ease-in;
+}
+
+@media (max-width: 768px) {
+  .footer__list {
+    padding: 0 20px;
+  }
+
+  .logo-rs__wrapper {
+    width: 60px;
+  }
+
+  .task-date {
+    letter-spacing: 0;
+    width: 40px;
+    font-size: 0.8rem;
+  }
+
+  .octicon__wrapper {
+    margin-right: 5px;
+  }
+
+  .octicon {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+  }
+
+  .authors__list {
+    flex-direction: column;
+  }
+
+  .authors__item {
+    font-size: 0.7rem;
+    margin: 0;
+  }
+
+  .authors__link {
+    line-height: 1;
+    text-align: right;
+    width: 100%;
+  }
+}

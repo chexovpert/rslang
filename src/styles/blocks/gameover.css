@@ -1,0 +1,159 @@
+.gameover__screen {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #64b5f6;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.gameover__screen_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.gameover__screen_title-p {
+  border-bottom: white 1px dashed;
+}
+.gameover__screen_switchWindow {
+  width: 300px;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+}
+.gameover__screen_switchWindow-listContainer {
+  overflow-y: scroll;
+  height: 270px;
+  margin: 10px 10px;
+
+  box-sizing: border-box;
+}
+.gameover_screen_stats-statCircle {
+  z-index: 4;
+  background-color: blanchedalmond;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.gameover_screen_stats-outerCircle {
+  z-index: 3;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+}
+.gameover_screen_stats-innerCircle {
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: honeydew;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+.gameover_screen_stats-animation {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  bottom: 0;
+  background-color: black;
+  transition: 2s ease-in-out all;
+}
+/* .gameover_screen_stats-animation:hover {
+  height: 90%;
+} */
+.gameover_screen-radioGroup {
+  display: flex;
+}
+.gameover__screen_switchWindow-list {
+  border-bottom: solid black 1px;
+}
+.gameover__screen_switchWindow-correctTitle {
+  background-color: green;
+  border-radius: 15px;
+  width: 30px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+}
+.gameover__screen_switchWindow-wrongTitle {
+  background-color: red;
+  border-radius: 15px;
+  width: 30px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+}
+.gameover__screen_switchWindow-soundButton {
+  width: 30px;
+  height: 25px;
+  display: inline-block;
+  text-align: center;
+  opacity: 0.8;
+  transition: opacity linear 0.3s;
+  margin-right: 10px;
+  border: none;
+}
+.gameover__screen_switchWindow-soundButton:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.gameover__screen_switchWindow-word {
+  display: inline-block;
+  size: 15px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+.gameover__screen_switchWindow-wordTranslate {
+  size: 15px;
+  opacity: 0.8;
+  margin-right: 10px;
+}
+.gameover__screen_switchWindow-li {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-bottom: 10px;
+}
+.gameover-animation-enter {
+  transform: scale(0.9);
+  opacity: 0;
+  /* transform: translateX(100vw); */
+}
+.gameover-animation-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+  /* transition: transform 1s linear;
+  transform: translateX(0%); */
+}
+/* .wb-enter-done {
+    transform: translateX(0%);
+  } */
+.gameover-animation-exit {
+  opacity: 1;
+}
+.gameover-animation-exit-active {
+  transform: scale(0.9);
+  transition: transform 300ms linear, opacity 300ms linear;
+  opacity: 0;
+}
+.gameover-animation-exit-done {
+  /* opacity: 0; */
+  /* display: none; */
+}

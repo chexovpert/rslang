@@ -1,0 +1,102 @@
+.wordunit {
+  &__container {
+    display: flex;
+    width: 95%;
+    height: 10vh;
+    background-color: azure;
+    font-size: 23px;
+    color: black;
+    margin: 10px 5px 0px;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: space-around;
+    &:hover {
+      box-shadow: 1px 2px 3px gray;
+    }
+    @media (max-width:700px) {
+      height: 15vh;
+      min-width: 310px;
+      font-size: 15px;
+    }
+
+
+    svg{
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+      
+    }
+    @media (max-width:500px) {
+      width: 15px;
+    }
+    }
+
+    .image {
+      height: 8vh;
+      border-radius: 10px;
+      border: 2px solid black;
+      margin: 0px 10px;
+      @media (max-width:500px) {
+        height: auto;
+        width: 65px;        
+      }
+    }
+  }
+  &__word {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    align-items: center;
+    @media (max-width:500px) {
+      div{
+      width: 80px;
+      // word-wrap: break-word;
+      hyphens: auto;
+    }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    @media (max-width:700px) {
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+  &__button-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    border: 1px solid #407df4;
+    transition: all 0.2s linear;
+    margin: auto;
+    margin: 0 5px;
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+    @media (max-width:500px) {
+      font-size: 12px;
+      width: 110px;
+    }
+  }
+
+  &__content {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    @media (max-width:500px) {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.diffword {
+  border: 2px solid red;
+}

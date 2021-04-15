@@ -1,0 +1,127 @@
+.vocabulary {
+  &__cont {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.197), rgba(0, 0, 0, 0.217)),
+      url("../../assets/images/backgrounds/book-background.png");
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__container {
+    width: 95vw;
+    min-height: 80vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(250, 235, 215, 0.466);
+    color: black;
+    @media (max-width: 700px) {
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    div {
+      width: 30vw;
+      height: 50px;
+      border: 2px solid wheat;
+      // text-align: center;
+      background-color: rgba(240, 255, 255, 0.39);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      @media (max-width: 700px) {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+    @media (max-width: 700px) {
+      // position: relative;
+    }
+  }
+
+  &__content {
+    width: 80%;
+    height: 100%;
+    min-height: 70vh;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    .wordsmissing {
+      display: flex;
+      font-size: 30px;
+      // text-align: center;
+      justify-content: center;
+      align-items: center;
+      background-color: none;
+      margin: 50px;
+      height: 60vh;
+    }
+    @media (max-width: 700px) {
+      width: 90%;
+    }
+  }
+
+  &__groups {
+    display: flex;
+    width: 100%;
+    // overflow-x: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 15vw;
+      min-width: 90px;
+      height: 30px;
+      background-color: rgba(255, 224, 184, 0.521);
+      color: black;
+      text-align: center;
+      border: 1px solid rgb(255, 186, 96);
+      border-bottom: none;
+      border-start-start-radius: 5px;
+
+      @media (max-width: 700px) {
+        // transform: rotate(-90deg);
+        width: 105px;
+        height: 30px;
+        a {
+          width: 110px;
+        }
+      }
+    }
+    @media (max-width: 700px) {
+      min-width: 450px;
+    }
+    @media (max-width: 700px) {
+      min-width: 10px;
+      a {
+        width: 105px;
+        height: 30px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.activated {
+  background-color: azure !important;
+}
+
+.groups {
+  justify-content: center;
+  margin-left: 0px !important;
+  div {
+    width: 15vw !important;
+    @media (max-width: 700px) {
+      align-items: center;
+    }
+  }
+}

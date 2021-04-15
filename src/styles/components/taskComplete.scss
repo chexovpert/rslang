@@ -1,0 +1,38 @@
+.compl {
+  &__container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    position: fixed;
+    left: 0;
+    background-color: rgba(127, 255, 195, 0.678);
+  }
+
+  &__content {
+    width: 40vw;
+    height: 25vh;
+    // background-color: antiquewhite;
+    background-image: linear-gradient(rgba(215, 250, 232, 0.26), rgba(215, 250, 232, 0.26)),
+      url("../../assets/images/backgrounds/complete.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 3;
+    border-radius: 30px;
+    box-shadow: 3px 3px 2px gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    text-shadow: 1px 1px 1px white;
+    color: rgb(58, 0, 0);
+    p {
+      font-size: 25px;
+      font-style: italic;
+    }
+  }
+}

@@ -1,4 +1,14 @@
 @import "./common/common.css";
+@import "./blocks/header.css";
+@import "./blocks/main-page.css";
+@import "./blocks/registration.css";
+@import "./blocks/footer.css";
+@import "./blocks/main-page.css";
+@import "./blocks/savanna.css";
+@import "./blocks/audiochallenge.css";
+@import "./blocks/gameover.css";
+@import "./blocks/englishforkids.css";
+@import "./layouts/gamelayout.css";
 
 body {
   margin: 0;
@@ -8,7 +18,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.fullscreen-enabled {
+  overflow: auto;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
