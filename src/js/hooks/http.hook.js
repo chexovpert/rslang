@@ -7,30 +7,23 @@ export default () => {
   const request = useCallback(
     async (url, method = "GET", body = null, headers = {}) => {
       setLoading(true);
-      setError(null)
+      setError(null);
       try {
         const response = await fetch(url, {
           method,
           body,
           headers,
         });
-        //console.log(response);
-        //console.log(response.ok);
         if (!response.ok) {
-          console.log(response);
-          //console.log("неправильное имя или пароль");
           setError(response.status);
           throw new Error(response.status || "Ошибка");
         }
         const data = await response.json();
-        console.log(data)
-        
         setLoading(false);
         return data;
       } catch (error) {
         console.log(error);
         setLoading(false);
-        
       }
     },
     []

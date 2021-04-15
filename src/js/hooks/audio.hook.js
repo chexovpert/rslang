@@ -8,7 +8,6 @@ export default (url) => {
   const toggleAudio = () => setPlaying(!playing);
   const changeSrc = (url) => {
     setSrc(url);
-    console.log(url);
   };
 
   useEffect(() => {

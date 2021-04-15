@@ -56,7 +56,7 @@ export default (props) => {
       }
       wrongAudio.play();
       setWrongWordsLength(wrongWords.length);
-      console.log("wrong");
+      //console.log("wrong");
     }
   };
   const nextpageHandler = () => {

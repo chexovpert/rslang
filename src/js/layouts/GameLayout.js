@@ -72,10 +72,7 @@ export default (props) => {
         );
         const randomWords = data.slice().sort(() => Math.random() - 0.5);
         randomWords.map((elem) => (elem.checked = true));
-        //const randomGuesses = data.slice().sort(() => Math.random() - 0.5);
         setFullData({ data: randomWords });
-        //console.log(data);
-        //console.log(randomWords);
       } catch (e) {
         console.log(e);
       }
